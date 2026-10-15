@@ -1,0 +1,1490 @@
+{
+  "format": "knowledge-flashcards-deck-v1",
+  "exportedAt": "2026-07-20T21:19:06.831Z",
+  "id": "custom-1784582346831",
+  "stackId": "phil-epistemik",
+  "title": "Analytische Einführung in die Erkenntnistheorie",
+  "description": "Karteikartensammlung basierend auf Thomas Grundmanns analytischer Einführung in die Erkenntnistheorie.",
+  "topic": "Philosophie",
+  "author": "Anonymer Weizen",
+  "date": "2026-07-20",
+  "complexity": "Fortgeschritten",
+  "level": "BSc",
+  "cards": [
+    {
+      "id": 1776268551554,
+      "front": "  \nWie lässt sich die klassische Definition von Wissen (Erkenntnis) formal-logisch als Menge von notwendigen und hinreichenden Bedingungen explizieren?",
+      "back": "Wissen ($K$) eines Subjekts $S$ bezüglich einer Proposition $p$ liegt genau dann vor, wenn drei Bedingungen konjunktiv erfüllt sind:  \n  \n1\\. **Überzeugungsbedingung (Doxastisch):** $B(S,p)$ ($S$ glaubt $p$).  \n2\\. **Wahrheitsbedingung (Faktiv):** $T(p)$ ($p$ ist objektiv der Fall).  \n3\\. **Rechtfertigungsbedingung (Epistemisch):** $J(S,p)$ ($S$ hat adäquate Gründe für $p$).  \n  \n**Formalisierung:**  \n$$K(S,p) \\\\leftrightarrow B(S,p) \\\\land T(p) \\\\land J(S,p)$$",
+      "tags": "",
+      "guid": "1HAgOqU63T",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 1: Einführung",
+      "cards": [
+        {
+          "id": 1776268551554,
+          "ord": 0,
+          "did": 1776268714589
+        }
+      ]
+    },
+    {
+      "id": 1776268551555,
+      "front": "  \nWorin besteht die essenzielle philosophische Funktion der Rechtfertigungskomponente $J(S,p)$ innerhalb der Standardanalyse?",
+      "back": "Die Rechtfertigung fungiert als **Brückenprinzip** zwischen dem subjektiven Zustand (Überzeugung) und der objektiven Welt (Wahrheit).  \n  \n* **Zweck:** Eliminierung des Zufalls (epistemisches Glück).  \n* **Abgrenzung:** Ohne $J(S,p)$ wäre die Übereinstimmung von Glaube und Wahrheit bloßes Raten oder ein blinder Mechanismus (z. B. ein unreflektiert abgelesenes Thermometer). Wahre Überzeugungen bedürfen der Gründe, um als Erkenntnis zu gelten.",
+      "tags": "",
+      "guid": "RniyeJXLPl",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 1: Einführung",
+      "cards": [
+        {
+          "id": 1776268551555,
+          "ord": 0,
+          "did": 1776268714589
+        }
+      ]
+    },
+    {
+      "id": 1776268551556,
+      "front": "  \nWoran erkennen Sie bei der Lektüre eines Textes, dass der Autor einen defizitären (z. B. rein behavioristischen oder kognitionswissenschaftlichen) Wissensbegriff verwendet?",
+      "back": "Durch die Identifikation **reduktionistischer Tendenzen** in der Argumentationsstruktur:  \n  \n* **Fehlendes $T(p)$:** Wissen wird rein auf neurophysiologische Prozesse oder evolutionäre Überlebensvorteile reduziert, ohne die objektive Wahrheit zu thematisieren.  \n* **Fehlendes $J(S,p)$:** Ein System (z. B. KI) wird \"wissend\" genannt, nur weil es korrekte Vorhersagen trifft. Hier liegt eine **Äquivokation** vor: Der Autor verwechselt \"wahre Information\" (Output) mit \"Erkenntnis\" (intern gerechtfertigte Einsicht).",
+      "tags": "",
+      "guid": "5xbgBO9Xbu",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 1: Einführung",
+      "cards": [
+        {
+          "id": 1776268551556,
+          "ord": 0,
+          "did": 1776268714589
+        }
+      ]
+    },
+    {
+      "id": 1776268551557,
+      "front": "  \nWie lässt sich das antike Kriteriumsproblem des Sextus Empiricus strukturell formalisieren, das sich gegen die Möglichkeit einer normativen Erkenntnistheorie richtet?",
+      "back": "Um die Wahrheit eines Urteils $U$ zu bewerten, benötigen wir ein Kriterium $M_1$. Die Rechtfertigung von $M_1$ erfordert ein Metakriterium $M_2$. Dies führt zum **Agrippa-Trilemma**:  \n  \n1\\. **Infiniter Regress:** $M_1 \\\\leftarrow M_2 \\\\leftarrow M_3 \\\\dots \\\\infty$  \n2\\. **Dogmatischer Abbruch:** $M_n$ wird ohne weitere Begründung als absolut gesetzt.  \n3\\. **Epistemischer Zirkel:** $M_1$ wird durch den Erfolg oder die Existenz von $M_1$ selbst gerechtfertigt.",
+      "tags": "",
+      "guid": "LqbJKgdyUF",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 1: Einführung",
+      "cards": [
+        {
+          "id": 1776268551557,
+          "ord": 0,
+          "did": 1776268714589
+        }
+      ]
+    },
+    {
+      "id": 1776268551558,
+      "front": "  \nWarum scheitert der methodische Naturalismus, der erkenntnistheoretische Fragen rein empirisch lösen will, an der epistemischen Zirkularität?",
+      "back": "Der Naturalismus begeht einen **begründungstheoretischen Zirkel**: Er nutzt empirische Methoden ($M_{emp}$), um die Validität eben jener empirischen Methoden zu beweisen.  \n  \n* **Logische Konsequenz:** Ein Zirkel der Form $p \\\\to p$ ist zwar deduktiv valide, aber **epistemisch wertlos**, da das zu Beweisende bereits als Rechtfertigungsbasis vorausgesetzt wird.  \n* **Alternative:** Erkenntnistheorie erfordert eine unabhängige, apriorische Methode (z. B. die Begriffsanalyse).",
+      "tags": "",
+      "guid": "3KtQTFPs8J",
+      "mid": 1770298967856,
+      "usn": 2578,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 1: Einführung",
+      "cards": [
+        {
+          "id": 1776268551558,
+          "ord": 0,
+          "did": 1776268714589
+        }
+      ]
+    },
+    {
+      "id": 1776268551559,
+      "front": "  \nWie dekonstruieren Sie ein Argument in einem Text, das eine empirische Disziplin (z. B. Neurowissenschaft) zur ultimativen epistemischen Richterinstanz erhebt?",
+      "back": "Prüfung auf den **epistemischen Zirkel** mittels kritischer Fragen:  \n  \n1\\. **Abhängigkeitstest:** Hängt die Validität der neurowissenschaftlichen Messung von der Zuverlässigkeit der empirischen Wahrnehmung des Forschers ab?  \n2\\. **Anwendung:** Wenn der Text behauptet: \"Die Hirnforschung beweist die Adäquatheit unserer Wahrnehmung\", wenden Sie das **Gehirn-im-Tank-Szenario** an.  \n3\\. **Fazit:** Wenn die Methode sich selbst begründet, ist sie als normative Basis für Wissen disqualifiziert.",
+      "tags": "",
+      "guid": "ifmBxmKWBy",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 1: Einführung",
+      "cards": [
+        {
+          "id": 1776268551559,
+          "ord": 0,
+          "did": 1776268714589
+        }
+      ]
+    },
+    {
+      "id": 1776268551560,
+      "front": "  \nWie lässt sich das Verhältnis der theoretischen Kerndisziplinen (Erkenntnistheorie, Metaphysik, Semantik) strukturell abbilden?",
+      "back": "Weg von historischen Hierarchien (Primat der Metaphysik in der Antike oder der Erkenntnistheorie bei Kant) hin zum **integrativen Modell**:  \n  \n* **Struktur:** Wechselseitige Interdependenz ($Metaphysik \\\\leftrightarrow Erkenntnistheorie \\\\leftrightarrow Semantik$).  \n* **Paradigma:** Das moderne analytische Modell sieht keine einseitige Priorität, sondern ein konsistentes Gesamtsystem.",
+      "tags": "",
+      "guid": "GAEgOvRYgj",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 1: Einführung",
+      "cards": [
+        {
+          "id": 1776268551560,
+          "ord": 0,
+          "did": 1776268714589
+        }
+      ]
+    },
+    {
+      "id": 1776268551561,
+      "front": "  \nWarum kann die Erkenntnistheorie nicht autonom operieren, sondern ist logisch an die Semantik und Ontologie/Metaphysik gebunden?",
+      "back": "1\\. **Semantische Bindung:** Wahrheit ist ein semantischer Begriff (Geist-Welt-Relation). Ohne Klärung der Bedeutung von Begriffen lassen sich keine Normen für Gründe festlegen.  \n2\\. **Metaphysische Schranke:** Jede metaphysische Setzung (z. B. abstrakte Objekte) muss **epistemisch legitimierbar** (zugänglich) sein. Umgekehrt darf die Erkenntnistheorie keine Zugänge fordern, die ontologisch unmöglich sind.",
+      "tags": "",
+      "guid": "tk4xemp6Lc",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 1: Einführung",
+      "cards": [
+        {
+          "id": 1776268551561,
+          "ord": 0,
+          "did": 1776268714589
+        }
+      ]
+    },
+    {
+      "id": 1776268551562,
+      "front": "Woran erkennen Sie, dass ein Autor in einem Text die integrative Balance der theoretischen Philosophie verletzt und illegitime Hierarchien aufbaut?",
+      "back": "Durch zwei methodologische Konsistenztests:  \n  \n* **Test auf Ontologischen Dogmatismus:** Werden Entitäten postuliert (z. B. \"Dinge an sich\"), ohne einen rationalen oder kausalen Erkenntnisweg zu ihnen zu definieren? (Verletzung der Zugänglichkeitsbedingung).  \n* **Test auf Semantischen Defekt:** Bewertet der Autor eine Methode als \"gerechtfertigt\", bevor die Wahrheitsbedingungen (Semantik) des Zielbereichs geklärt sind? Ohne klares Ziel (Bedeutung) ist das Mittel (Rechtfertigung) nicht evaluierbar.",
+      "tags": "",
+      "guid": "Pzpi8hLu2N",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 1: Einführung",
+      "cards": [
+        {
+          "id": 1776268551562,
+          "ord": 0,
+          "did": 1776268714589
+        }
+      ]
+    },
+    {
+      "id": 1776268551545,
+      "front": "  \nWelche Art von Wahrheit ist für die Erkenntnistheorie exklusiv relevant und auf welche Träger $x$ lässt sich das Wahrheitsprädikat $T(x)$ korrekt anwenden?",
+      "back": "Exklusiv relevant ist die **propositionale Wahrheit**.  \n* **Ausschluss:** Ontologische Wahrheit (z. B. „ein wahrer Freund“) oder Heideggers „Erschlossenheit“ scheiden aus.  \n* **Anwendung:** $T(x)$ ist anwendbar auf Gebilde mit **propositionalem Gehalt** (dass etwas der Fall ist), die eine **Geist-zu-Welt-Entsprechungsrichtung** aufweisen (z. B. Überzeugungen, Aussagesätze).  \n* **Ontologie:** Platonische Propositionen werden verworfen; Sätze und Überzeugungen sind Träger *aufgrund* ihres Gehalts.",
+      "tags": "",
+      "guid": "QmvH0cWkt4",
+      "mid": 1770298967856,
+      "usn": 2578,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776268551545,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776268551546,
+      "front": "Warum löst die Rückführung der Wahrheitswertträger auf den „propositionalen Gehalt konkreter Sätze und Überzeugungen“ das Problem der Indexikalität?",
+      "back": "Linguistische Sätze oder psychologische Zustände ändern ihren Wahrheitswert oft je nach Kontext (Zeit, Ort, Sprecher). Da Wahrheit jedoch **absolut** sein muss, bietet der Gehalt die Lösung:  \n* Indem Wahrheit als Eigenschaft der spezifischen, raumzeitlich fixierten **Instanziierung** (die Extension) des Inhalts (Äußerung/Überzeugung) aufgefasst wird, bleibt der Wahrheitswert konstant.  \n* Dies rettet die absolute Wahrheit ohne den Rückgriff auf abstrakte platonische Entitäten.",
+      "tags": "",
+      "guid": "5mAEGbUXvs",
+      "mid": 1770298967856,
+      "usn": 2567,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776268551546,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776268551547,
+      "front": "  \nWie identifizieren Sie bei einem Autor einen semantischen Kategorienfehler bezüglich des Wahrheitsbegriffs?",
+      "back": "**Prüfung auf propositionale Bivalenz:**  \nTesten Sie, ob der Wahrheitsbegriff des Autors sinnvoll das logische Prinzip der **Zweiwertigkeit** (wahr/falsch) zulässt.  \n* Begriffe wie „wahre Kunst“ oder „Wahrheit des Seins“ operieren in ontologischen/hermeneutischen Kategorien.  \n* **Konsequenz:** Da die propositionale Struktur (Aussage vs. Irrtum) fehlt, ist der Text für formale erkenntnistheoretische Argumentationsanalysen an dieser Stelle unbrauchbar.",
+      "tags": "",
+      "guid": "y7ajNbBnFO",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776268551547,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776268551548,
+      "front": "  \nWie lauten die fünf unstrittigen formalen und semantischen Adäquatheitsbedingungen für jede akzeptable Wahrheitstheorie?",
+      "back": "1\\. **Absolutheit:** $\\\\neg \\\\exists S_1, S_2: T_{S1}(p) \\\\land \\\\neg T_{S2}(p)$ (Kein Relativismus).  \n2\\. **Extensionalität:** Wenn $Ext(a) = Ext(b)$, dann $T(\\\\dots a \\\\dots) \\\\leftrightarrow T(\\\\dots b \\\\dots)$.  \n3\\. **Zitattilgungsschema (Disquotation):** $T('p') \\\\leftrightarrow p$.  \n4\\. **Unabhängigkeit:** Wahrheit $\\\\neq$ Fürwahrhalten (Minimaler Realismus).  \n5\\. **Sprachinvarianz:** Wahrheit ist nicht sprachrelativ (Bedeutung = Wahrheitsbedingung).",
+      "tags": "",
+      "guid": "Ob83UcFHcR",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776268551548,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776268551549,
+      "front": "  \nWorin liegt die argumentative Sprengkraft des Zitattilgungsschemas und der Unabhängigkeitsbedingung?",
+      "back": "* **Zitattilgung ($T(p) \\\\leftrightarrow p$):** Garantiert den untrennbaren logischen Zusammenhang zwischen Repräsentation und dem Wahrmacher in der Welt ($p$ ist wahr gdw. $p$).  \n* **Unabhängigkeit:** Sichert metaphysisch ab, dass die Welt autonom vom Erkenntnisvermögen existiert.  \n* **Pointe:** Diese Axiome blockieren Versuche, Wahrheit rein als psychologischen Konsens oder interne Kohärenz (ohne Weltbezug) zu definieren.",
+      "tags": "",
+      "guid": "rnPKhiYTRk",
+      "mid": 1770298967856,
+      "usn": 2579,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776268551549,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776268551550,
+      "front": "  \nWie dekonstruieren Sie einen Text, der Wahrheit als reines Konstrukt der Sprache oder des Diskurses verkaufen will?",
+      "back": "**Applikation des Übersetzbarkeits-Tests:**  \n* **Hebel:** Die Bedeutung eines Satzes entspricht seinen Wahrheitsbedingungen.  \n* **Argument:** Wäre Wahrheit rein sprachrelativ, gäbe es keine sprachübergreifenden Wahrheitsbedingungen. Eine Übersetzung zwischen Sprachen wäre logisch unmöglich.  \n* **Konsequenz:** Da der Autor (durch Zitate oder Begriffe) meist selbst sprachübergreifend operiert, begeht er einen **performativen Widerspruch**.",
+      "tags": "",
+      "guid": "DiAfCT1K8T",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776268551550,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776268551551,
+      "front": "Wie lässt sich die Grundthese der epistemischen Wahrheitstheorien (EWT) formalisieren und welche zwei Hauptvarianten gibt es?",
+      "back": "Die EWT behauptet die analytische Identität von Natur und Kriterium der Wahrheit:  \n$$T(p) \\\\leftrightarrow \\\\operatorname{Kriterium}(p) \\\\quad \\\\text{ (z. B. Evidenz, Kohärenz)}.$$  \n  \n1\\. **Variante 1 (Faktisch):** $T(p) \\\\leftrightarrow J_{\\\\text{faktisch}}(p)$ (Rechtfertigung im Hier und Jetzt).  \n2\\. **Variante 2 (Ideal):** $T(p) \\\\leftrightarrow J_{\\\\text{ideal}}(p)$ (Rechtfertigung unter optimalen Bedingungen).",
+      "tags": "",
+      "guid": "2I9RySgiyW",
+      "mid": 1770298967856,
+      "usn": 2586,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776268551551,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776268551552,
+      "front": "  \nAn welchen logischen Defekten scheitern beide Varianten der epistemischen Wahrheitstheorien zwingend?",
+      "back": "* **Gegen V1 (Faktisch):** Scheitert am **Relativitätseinwand** (Kriterien wandeln sich, Wahrheit bleibt absolut) und am **Transzendenzeinwand** (rechtfertigungstranszendente Wahrheiten, z. B. historische Fakten ohne Belege).  \n* **Gegen V2 (Ideal):** Scheitert am **Zirkularitätseinwand**. Die Definition „idealer Bedingungen“ setzt meist „Irrtumsfreiheit“ (also Wahrheit) bereits voraus. Zudem fehlt der epistemische Gewinn, da ideale Bedingungen faktisch unerreichbar sind.",
+      "tags": "",
+      "guid": "RCDQi8gG6m",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776268551552,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776268551553,
+      "front": "  \nMit welchem analytischen Hebel bringen Sie Texte zu Fall, die Wahrheit durch „idealen Konsens“ oder „ideale Kohärenz“ definieren?",
+      "back": "**Prüfung auf den „Primat der Wahrheit“:**  \n1\\. **Zweck-Mittel-Analyse:** Zeigen Sie, dass Rechtfertigung instrumentell auf Wahrheit ausgerichtet ist. Die Definition des Ziels durch das Mittel ist ein logischer Zirkel.  \n2\\. **Regress-Test:** Wenn Wahrheit = Kohärenz ist, was macht dann die Aussage „Das System ist kohärent“ wahr? Entweder eine Tatsache (Realismus) oder weitere Kohärenz (**vitiöser Regress**), was den Wahrheitswert unbestimmt lässt.",
+      "tags": "",
+      "guid": "1aHyWld2gs",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776268551553,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776872885474,
+      "front": "Wie lautet die formal-semantische Prämisse des Verifikationismus, die zur Ablehnung realistischer Wahrheitstheorien führen soll?",
+      "back": "Der Verifikationismus postuliert eine Äquivalenz zwischen Bedeutung und Rechtfertigungskriterien:  \n  1. Die Bedeutung eines Satzes zu verstehen, heißt, seine Wahrheitsbedingungen zu kennen.  \n  2. Wahrheitsbedingungen zu kennen, heißt (laut Verifikationismus), die Kriterien für seine *Verifikation* (Anwendung) zu kennen.  \n*Logische Konsequenz:* Ein Satz hat nur dann Bedeutung/Wahrheit, wenn er für uns empirisch verifizierbar (rechtfertigbar) ist. Wahrheit transzendiert unsere Rechtfertigung folglich nicht.",
+      "tags": "",
+      "guid": "b&~gGQW!47",
+      "mid": 1770298967856,
+      "usn": 2507,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776872885476,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776872911219,
+      "front": "An welchem kategorialen Fehler scheitert das semantische Argument des Verifikationismus?",
+      "back": "Es verwechselt *Wahrheitsbedingungen* mit *Verifikationskriterien*. Um einen Satz zu verstehen, müssen wir nicht wissen, wie wir ihn überprüfen können, sondern nur, *wie die Welt beschaffen wäre, wenn er wahr wäre*.  \n*Gedankenexperiment:* Ein \"Gehirn im Tank\" verfügt über keine Kriterien, um seine Lage zu verifizieren, dennoch versteht es die Proposition seiner Lage vollkommen. Bedeutung erfordert keine Kriterien für Verifikation.",
+      "tags": "",
+      "guid": "oXc]M]R!!c",
+      "mid": 1770298967856,
+      "usn": 2507,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776872911219,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776872928691,
+      "front": "Wie identifizieren und dekonstruieren Sie einen verifikationistischen Fehlschluss in einem Text?",
+      "back": "Behauptet der Text, eine Aussage sei \"sinnlos\" oder \"weder wahr noch falsch\", nur weil wir sie methodisch nicht überprüfen können (z.B. exakte Temperatur auf dem Mars vor 1 Milliarde Jahren)?  \n  \n*Intervention:* Trennen Sie sofort die *semantische Ebene* (Was besagt der Satz?) von der *epistemischen Ebene* (Wie weisen wir ihn nach?). Entziehen Sie dem Autor die Prämisse, dass unbeweisbare Sätze bedeutungslos seien.",
+      "tags": "",
+      "guid": "cDAhAuO7<R",
+      "mid": 1770298967856,
+      "usn": 2507,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776872928691,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776872941266,
+      "front": "Wie lässt sich das Feld der epistemischen Wahrheitstheorien als $3 \\times 2$ Matrix systematisieren?",
+      "back": "Die EWT definiert $T(p) \\\\leftrightarrow K(p)$. Dabei nimmt das Kriterium $K$ drei Formen an, unter zwei verschiedenen Bedingungen:  \n  * *Kriterien ($K$):* Evidenz (z.B. Phänomenalismus), Konsens (z.B. Habermas), Kohärenz (z.B. Neurath, Blanshard).  \n  * *Bedingungen ($B$):* Faktisch (hier und jetzt) vs. Ideal (am Ende der Forschung/unter idealen Diskursbedingungen).",
+      "tags": "",
+      "guid": "p~:>+vY0cx",
+      "mid": 1770298967856,
+      "usn": 2507,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776872941266,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776872952313,
+      "front": "Welche logischen \"Totschlagargumente\" (Defeater) gelten spezifisch für faktische und welche für ideale EWT?",
+      "back": "  * *Gegen faktische Bedingungen ($B_{faktisch}$):*  \n    1. **Relativitätseinwand:** Faktische Kriterien ändern sich mit der Zeit/Person, Wahrheit jedoch nie.  \n    2. **Transzendenzeinwand:** Es gibt wahrheitsfähige Aussagen, für die es faktisch keine Kriterien mehr gibt (z.B. exaktes Wetter vor 100.000 Jahren).  \n  * *Gegen ideale Bedingungen ($B_{ideal}$):*  \n    1. **Zirkularitätseinwand:** \"Ideale Bedingungen\" (z.B. zwangloser Diskurs) lassen sich nicht definieren, ohne den Begriff der Wahrheit (Irrtumsfreiheit/das *bessere* Argument) bereits vorauszusetzen.",
+      "tags": "",
+      "guid": "F;gGZR,(Tx",
+      "mid": 1770298967856,
+      "usn": 2507,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776872952313,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776872968120,
+      "front": "Sie analysieren einen Text, der Wahrheit als \"faktische wissenschaftliche Kohärenz\" oder \"gesellschaftlichen Konsens\" definiert. Welchen formalen Test wenden Sie an?",
+      "back": "*Der Vergangenheits-Test (Transzendenz).* Konfrontieren Sie die vom Autor aufgestellte Theorie mit rechtfertigungstranszendenten Wahrheiten.  \n*Gegenargument im Essay:* \"Gäbe es Wahrheit nur als faktischen Konsens, dann hätte der Satz 'Vor 100.000 Jahren regnete es hier' keinen Wahrheitswert, da kein Konsens/Evidenz mehr faktisch möglich ist. Da der Satz aber logisch das Prinzip der Bivalenz erfüllt, muss die Definition des Autors falsch sein.\"",
+      "tags": "",
+      "guid": "pG7,Kb;`AX",
+      "mid": 1770298967856,
+      "usn": 2507,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776872968120,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776872980794,
+      "front": "Wie lässt sich logisch beweisen, dass der Begriff der Wahrheit dem Begriff der Rechtfertigung primär (übergeordnet) ist?",
+      "back": "Über den Beweis durch Differenzierung von Rationalitätsarten:  \n  * *Pragmatische Rechtfertigung ($J_{prag}$):* Ziel = Handlungserfolg (Bsp.: Ich glaube an meinen Erfolg, um motiviert zu sein).  \n  * *Epistemische Rechtfertigung ($J_{epi}$):* Ziel = Wahrheit.  \n  Da $J_{epi}$ teleologisch exklusiv durch das Ziel der Wahrheit definiert ist, ist die Wahrheit logisch primär.",
+      "tags": "",
+      "guid": "H/a1$H@yW+",
+      "mid": 1770298967856,
+      "usn": 2507,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776872980794,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776872989376,
+      "front": "Warum macht der Primat der Wahrheit jede epistemische Wahrheitstheorie logisch unmöglich?",
+      "back": "Da epistemische Rechtfertigung nur als *Instrument* zur Erreichung der Wahrheit definiert werden kann, führt der Versuch, das *Ziel* (Wahrheit) durch das *Instrument* (Rechtfertigung) zu definieren, in einen unweigerlichen Definitionszirkel. Das Ziel muss konzeptionell vor dem Instrument existieren.",
+      "tags": "",
+      "guid": "Gxc#$!~eIt",
+      "mid": 1770298967856,
+      "usn": 2507,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776872989376,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776872997983,
+      "front": "Wie entlarven Sie in einem Text die kategoriale Verwechslung von Wahrheit und Rechtfertigung?",
+      "back": "Prüfen Sie, ob der Autor die Eigenschaft des Messinstruments mit der Eigenschaft der gemessenen Entität gleichsetzt.\n\n*Analogie für den Text:* Wenn ein Autor behauptet, Wahrheit sei nichts anderes als ideale Rechtfertigung (z.B. Evidenz), dekonstruieren Sie dies mit dem Thermometer-Argument: \"Der Autor definiert die Temperatur (Wahrheit) durch die Anzeige eines idealen Thermometers (Rechtfertigung). Das Thermometer misst jedoch nur einen Zustand, der unabhängig von ihm existiert.\"",
+      "tags": "",
+      "guid": "jLy(l,%W+k",
+      "mid": 1770298967856,
+      "usn": 2507,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 2: Wahrheit",
+      "cards": [
+        {
+          "id": 1776872997983,
+          "ord": 0,
+          "did": 1776268690476
+        }
+      ]
+    },
+    {
+      "id": 1776874318940,
+      "front": "Wie formalisiert Goldman (in seiner frühen Phase) den \"wissensgenerierenden Zusatzfaktor\" rein externalistisch durch Kausalität, und durch welches metaphysische Gegenbeispiel (abseits der Gettier-Umwelt) lässt sich dieser Ansatz zwingend falsifizieren?",
+      "back": "**Formale Struktur:**  \nWissen liegt vor, wenn die Überzeugung durch ihre eigene wahrmachende Tatsache verursacht wird: $W(S,p) \\\\leftrightarrow B(S,p) \\\\land T(p) \\\\land K(f(p), B(S,p))$, wobei $K$ die Kausalrelation und $f(p)$ die Tatsache, dass $p$, ist.  \n  \n**Philosophische Pointe:**  \nGoldman eliminiert die (anfällige) interne Rechtfertigungskomponente komplett zugunsten der Kausalität, um das Gettier-Problem zu lösen (da bei Gettier die Ursache für die Überzeugung nie der tatsächliche Wahrmacher ist). Die Theorie scheitert jedoch fundamental an *notwendigen Wahrheiten* (z. B. Mathematik: $2+2=4$). Kausale Aussagen haben einen kontrafaktischen Charakter: Wäre die Ursache nicht, wäre die Wirkung nicht. Da aber notwendige Tatsachen (wie Zahlenrelationen) in allen möglichen Welten Bestand haben, können sie keine kausale Wirksamkeit entfalten. Folglich gäbe es kein mathematisches Wissen, was eine reductio ad absurdum der kausalen Theorie darstellt. Zudem scheitert die Theorie am Scheunenfassaden-Fall, da Henrys Überzeugung zwar exakt von der echten Scheune vor ihm verursacht wird, das Wissen aber durch die bloß modale (kausal inaktive) Umgebung von Attrappen zerstört wird.  \n  \n**Methodischer Transfer:**  \nWenn Wissenschaftstheoretiker oder Kognitionswissenschaftler epistemische Relationen rein auf faktische physikalische Kausalrelationen reduzieren wollen, kontern Sie mit modal abstrakten Entitäten (Zahlen, Logik). Sobald ein Wahrheitsmacher kausal inert ist, kollabieren rein kausale Erkenntnismodelle.",
+      "tags": "",
+      "guid": "tXZruZOmY9",
+      "mid": 1770298967856,
+      "usn": 2764,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318940,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318941,
+      "front": "Durch welche modale Umkehrung der Perspektive überwinden Zuverlässigkeitstheorien (Reliabilismus) die Schwächen der Kausaltheorie, und wie lässt sich die Eigenschaft der Zuverlässigkeit wahrscheinlichkeitstheoretisch korrekt fassen?",
+      "back": "**Formale Struktur:**  \nAnstatt zu fordern, dass die Wahrmacher-Tatsache die Überzeugung erzwingt, wird gefordert, dass der *Prozess* (oder die Methode) der Überzeugungsbildung das Vorliegen der Tatsache erzwingt oder hochgradig wahrscheinlich macht: $P(T(p) | Methode) \\\\approx 1$.  \n  \n**Philosophische Pointe:**  \nDie Zuverlässigkeit einer Methode darf keinesfalls als bloß faktische (aktuale) Wahrheitsbilanz missverstanden werden. Eine stehengebliebene Uhr, auf die man zufällig nur exakt zu der einen Uhrzeit schaut, in der sie richtig geht, hat eine aktuale Wahrheitsbilanz von 100%, ist aber keine zuverlässige Methode zur Zeitmessung. Für Wissen ist eine *Wahrheitsgarantie* gefordert: Die Überzeugung darf nicht leicht falsch sein können. Die Zuverlässigkeit eines Mechanismus ist demnach eine statistisch-modale Eigenschaft, die über eine Menge von faktischen und relevanten kontrafaktischen Situationen (möglichen Welten) evaluiert werden muss.  \n  \n**Methodischer Transfer:**  \nNutzen Sie dieses Konzept, um empiristische Naivität zu entlarven: Eine Methode ist nicht schon dann wissenschaftlich exakt oder \"wissensgenerierend\", wenn sie im Labor *zufällig* einmal empirisch wahre Daten geliefert hat. Fordern Sie den kontrafaktischen Test: Hätte die Methode auch dann Fehler verhindert, wenn die Umstände leicht variiert hätten?",
+      "tags": "",
+      "guid": "96Z9h9NfKz",
+      "mid": 1770298967856,
+      "usn": 2667,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318941,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318942,
+      "front": "Welche drei kategorial unterschiedlichen modalen Konzepte der \"Wahrheitsgarantie\" konkurrieren innerhalb der Zuverlässigkeitstheorien (Gewissheit, Sensitivität, Sicherheit), und wie definieren sie logisch die Distanz zu Irrtumswelten?",
+      "back": "**Formale Struktur:**  \n1\\\\. **Gewissheit (Certainty):** In *keiner* denkmöglichen Welt ($W_{all}$) wird die Überzeugung auf diese Weise gebildet und ist falsch.  \n2\\\\. **Sensitivität (Sensitivity):** In der der aktualen Welt *nächsten* möglichen Welt ($w_{nahe}$), in der $p$ falsch ist ($\\\\neg p$), wird die Überzeugung nicht gebildet ($\\\\neg B(p)$).  \n3\\\\. **Sicherheit (Safety):** In *allen relevanten, nahen* kontrafaktischen Situationen ($W_{relevant}$), in denen die Überzeugung auf diese Weise gebildet wird, ist sie wahr.  \n  \n**Philosophische Pointe:**  \n*Gewissheit* ist logisch am stärksten, treibt die Erkenntnistheorie aber sofort in den Skeptizismus, da fast keine empirische Überzeugung gegen jede noch so absurde denkbare Irrtumswelt gefeit ist.  \n*Sensitivität* erfordert eine minimale Diskriminationsfähigkeit zwischen Wahrheit und Falschheit, fokussiert sich aber *nur* auf die allernächste Welt, in der die Tatsache nicht besteht.  \n*Sicherheit* schwächt den metaphysischen Fokus ab: Irrtümer dürfen unter \"relevanten kontrafaktischen Umständen\" schlicht nicht auftreten.  \n  \n**Methodischer Transfer:**  \nDies ist Ihr wichtigstes formalsemantisches Skalpell. Die Wahl des modalen Operators determiniert, wie Wissen evaluiert wird. Bei *Sensitivität* haben wir eine objektiv eindeutige Welten-Metrik (die allernächste Nicht-p-Welt), bei *Sicherheit* handeln wir uns das sogenannte \"Unbestimmtheitsproblem\" ein, da unklar bleibt, welche und wie viele Welten ontologisch als \"relevant nahe\" definiert werden. Zwingen Sie Autoren, die von \"Zuverlässigkeit\" sprechen, sich auf eine dieser Topologien festzulegen.",
+      "tags": "",
+      "guid": "n8YZnwtfAu",
+      "mid": 1770298967856,
+      "usn": 2725,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318942,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318943,
+      "front": "Beweisen Sie formal, warum die elegante Definition von Wissen als \"sensitive, wahre Überzeugung\" ein logisches Desaster ist, da sie das epistemische Geschlossenheitsprinzip (die Wissensvermehrung durch Logik) zerstört.",
+      "back": "**Formale Struktur:**  \nSensitivitäts-Bedingung: Wäre $p$ falsch, würde S nicht glauben, dass $p$.  \nGeschlossenheitsprinzip: $W(p) \\\\land W(p \\\\rightarrow q) \\\\land B(q) \\\\rightarrow W(q)$.  \n  \n**Philosophische Pointe (Der Beweis):**  \n* Nehmen wir an, (1) Jonas sieht einen Tisch vor sich ($p$). Seine Überzeugung ist sensitiv: Wäre der Tisch nicht da, würde er ihn nicht sehen. Sei (2) die nächste Welt ohne Tisch, denn Jonas Wahrnehmung wird nicht von einem Dämon beeinflusst. Jonas *weiß* also (1). Aus (1) (Hier ist ein Tisch) folgt logisch deduktiv (2) (\"Meine Wahrnehmung, dass hier kein Tisch sei wird durch keinen Dämon erzeugt\"). Jonas leitet (2) korrekt ab.  \nAber: Jonas *weiß* (2) unter der Sensitivitäts-Prämisse nicht! Denn wäre (2) falsch (wäre er also *doch* von einem Dämon besessen), dann würde seine Wahrnehmung von der jetzigen sich nicht Unterscheiden. Jonas würde also $q$ (Ich bin kein Gehirn im Tank) *trotzdem glauben*, obwohl es falsch ist.   \n* **Konsequenz:** Wir sehen, dass falls (1) oder (2) Wahr ist, jeweils beide Fälle maximal von einander Unterschieden werden müssen. Sensitive Wahrheit impliziert eine maximale Diskriminationsfähigkeit, welche nicht möglich ist.   \n  \n**Methodischer Transfer:**  \nSensitivität (Truth-Tracking nach Nozick) bestraft die Logik. Wenn ein methodisches Werkzeug (wie die Sensitivität) dazu führt, dass deduktive Mathematik und elementare logische Schlüsse keinen Wissenstransfer mehr leisten dürfen, schneidet sich das philosophische System ins eigene Fleisch. Bevorzugen Sie daher in formalen Analysen die *Sicherheit* (Safety) – sie erhält das Geschlossenheitsprinzip am Leben, da der Bereich relevanter Welten über den logischen Schluss hinweg konstant bleibt.",
+      "tags": "",
+      "guid": "Vmq6IX6tiu",
+      "mid": 1770298967856,
+      "usn": 2785,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318943,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318944,
+      "front": "Wie dekonstruiert Gettiers erstes Gegenbeispiel (\"Smith und der unverhoffte Job\") die klassische JTB-Analyse (Wissen = gerechtfertigte, wahre Überzeugung) formal?",
+      "back": "**Formale Struktur:**  \nDie Ableitung einer wahren Konklusion aus einer gerechtfertigten, aber falschen Prämisse via existenzieller Generalisierung: $P(a) \\\\vdash \\\\exists x P(x)$.  \n  \n**Philosophische Pointe:**  \nSmith hat exzellente, wahrscheinlichkeitstheoretisch gute Gründe für eine Prämisse $P_1$: \"Jones bekommt den Job und Jones hat 10 Münzen\". Aus $P_1$ folgert er durch existentielle Generalisierung deduktiv korrekt $K$: \"Derjenige, der den Job bekommt, hat 10 Münzen\". Da das fundamentale Prinzip gilt, dass Rechtfertigung unter logischer Ableitung geschlossen ist (Geschlossenheitsprinzip), ist $K$ zwingend gerechtfertigt. Da nun völlig zufällig Smith selbst den Job bekommt und (ohne es zu wissen) 10 Münzen hat, ist $K$ wahr. Wir haben also eine gerechtfertigte, wahre Überzeugung, die durch reinen epistemischen Zufall (\"Glück im Unglück\") wahr ist. Intuitiv ist dies offenkundig kein Wissen.  \n  \n**Methodischer Transfer:**  \nAls philosophischer Analytiker müssen Sie das \"Prinzip der Geschlossenheit der Rechtfertigung unter logischer Implikation\" in formalen Argumenten präzise handhaben. Ohne dieses Prinzip bricht die Gettier-Konstruktion in sich zusammen. Suchen Sie in epistemologischen Texten gezielt nach diesem Muster: Eine hochgradig empirisch fundierte Einzelbehauptung ($a$) wird auf eine Existenzaussage ($\\\\\\\\exists x$) generalisiert, deren Wahrheitsmacher dann jedoch völlig entkoppelt von der ursprünglichen Evidenzbasis ist.",
+      "tags": "",
+      "guid": "ghsIqg3v3s",
+      "mid": 1770298967856,
+      "usn": 2717,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318944,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318945,
+      "front": "Welches formallogische Prinzip nutzt Gettier in seinem zweiten Gegenbeispiel (\"Meier und sein Golf\"), um den fundamentalen Riss zwischen Wahrheit und Rechtfertigung zu demonstrieren? _(Logische Anatomie von Gettier-Fall 2)_",
+      "back": "#### Formale Struktur  \nDie Ableitung einer wahren Konklusion aus einer gerechtfertigten, falschen Prämisse durch die Einführungsregel der Adjunktion (einschließendes Oder): $p \\\\vdash p \\\\lor q$.  \n  \n#### Philosophische Pointe  \nSmith ist exzellent gerechtfertigt zu glauben, dass sein Bekannter Meier einen Golf besitzt ($p$). Aus der wahren Aussage $p$ folgt logisch zwingend $p \\\\lor q$, wobei $q$ eine völlig beliebige, für Smith unbegründete Proposition ist (z. B. \"Krause ist in Berlin\"). (Formales Detail: Hier muss zwingend das einschließende, nicht das ausschließende Oder verwendet werden, da aus $p$ nicht logisch $(p \\\\text{ XOR } q)$ folgt). Smith leitet logisch sauber $p \\\\lor q$ ab und ist folglich darin gerechtfertigt. Nun ist $p$ faktisch falsch (Meier hat einen Mietwagen), aber $q$ ist durch einen bizarren Zufall faktisch wahr. Die Disjunktion $p \\\\lor q$ ist damit wahr und gerechtfertigt, konstituiert aber intuitiv kein Wissen.  \n  \n#### Methodischer Transfer  \nBeachten Sie die toxischen Gefahren der Adjunktion in der epistemischen Logik. Aus einer stark gerechtfertigten Überzeugung lässt sich deduktiv jede beliebige Disjunktion ableiten und damit rechtfertigen. Fällt der ontologische Wahrmacher der Gesamtaussage dann in das \"eingeschmuggelte\" Disjunkt ($q$), ist die ursprüngliche Rechtfertigung völlig vom tatsächlichen Wahrmacher entkoppelt. Das ist ein Hebel, um formalsemantische Schwachstellen in Texten aufzubrechen.",
+      "tags": "",
+      "guid": "MIz3Padn8i",
+      "mid": 1770298967856,
+      "usn": 2609,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318945,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318946,
+      "front": "**[Diagnostik des Gettier-Problems]** Welche fundamentale erkenntnistheoretische Lücke in der Standardanalyse des Wissens offenbaren die Gettier-Fälle, und welche generelle Marschrichtung für Lösungsansätze erzwingen sie?",
+      "back": "**Formale Struktur:**  \nDie Erweiterung der Wissensdefinition: $W(S,p) \\\\leftrightarrow B(S,p) \\\\land T(p) \\\\land J(S,p) \\\\land X_{\\\\text{extern}}$. Die Begründung ($J$) und der Wahrmacher für ($T$) dürfen nicht bloß akzidentiell (zufällig) zusammentreffen.  \n  \n**Philosophische Pointe:**  \nIn den Gettier-Fällen funktioniert die subjektive, kognitive Perspektive des Akteurs absolut fehlerfrei: Er schließt logisch einwandfrei aus sehr guten induktiven Gründen. Das Defizit ist rein objektiver Natur: Die Welt kooperiert nicht richtig. Die Gründe, die dem Subjekt zur Verfügung stehen, sind nicht auf die richtige Weise kausal oder modal mit der Wahrheit der Schlussfolgerung verbunden; die Überzeugung wird über den Umweg einer objektiv falschen Prämisse wahr. Die zwingende Konsequenz: Wissen erfordert einen externen, wissensgenerierenden Zusatzfaktor (z.B. eine robuste kausale Kette oder methodische Zuverlässigkeit), der die Koinzidenz von Rechtfertigung und Wahrheit metaphysisch sichert und den epistemischen Zufall eliminiert.  \n  \n**Methodischer Transfer:**  \nBegreifen Sie die Gettier-Fälle als den definitiven Todesstoß für den reinen Internalismus in der Wissensdefinition. Ein rein internalistisches Rechtfertigungsmodell – das nur fordert, dass S gute Gründe in seinem kognitiven Haushalt besitzt – kann den Abstand zur objektiven Realität nie überbrücken. Wenn Sie Erkenntnistheorie ab der zweiten Hälfte des 20. Jahrhunderts lesen, evaluieren Sie zwingend, wie der jeweilige Autor diesen externen \"Anti-Zufalls-Faktor\" formuliert.",
+      "tags": "",
+      "guid": "IVU1H80Uw9",
+      "mid": 1770298967856,
+      "usn": 2609,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318946,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318947,
+      "front": "**[Gettier und das Rechtfertigungsmodell]** Warum stellen die Gettier-Fälle aus der Perspektive des \"Gewissheitsmodells\" der Rechtfertigung formallogisch gar kein Problem für die Standardanalyse (JTB) dar, und warum ist dieser Ausweg dennoch philosophisch inakzeptabel?",
+      "back": "**Formale Struktur:**  \nGettier-Konstruktionen sind strikt abhängig vom Wahrscheinlichkeitsmodell der Rechtfertigung: Es muss logisch möglich sein, dass eine Falschheit gerechtfertigt ist ($J(p) \\\\land \\\\neg T(p)$).  \n  \n**Philosophische Pointe:**  \nWenn epistemische Rechtfertigung infallible, objektive Gewissheit fordern würde (im Sinne von Descartes: Gründe erzwingen die Wahrheit in jeder möglichen Welt), dann könnten falsche Prämissen niemals den Status der Rechtfertigung erlangen. In Gettiers Beispielen wäre die Ausgangsprämisse (dass Jones den Job bekommt oder Meier einen Golf hat) also gar nicht erst gerechtfertigt, da es sich um fehlbare, induktive Schlüsse handelt. In der Folge blieben auch die daraus abgeleiteten wahren Konklusionen völlig ungerechtfertigt. Es gäbe hier also keine \"gerechtfertigte, wahre Überzeugung\" ohne Wissen. Die JTB-Analyse bliebe unangetastet.  \nDieser deduktive Ausweg ist jedoch ein Pyrrhussieg: Der Gewissheitsbegriff treibt die epistemischen Standards so künstlich in die Höhe, dass er einen radikalen, universellen Skeptizismus bezüglich unseres Weltwissens zur Folge hätte. Für ein adäquates Abbild unserer Erkenntnispraxis müssen zwingend fehlbare Wahrscheinlichkeitsgründe akzeptiert werden.  \n  \n**Methodischer Transfer:**  \nAchten Sie stets auf das feine Wechselspiel von Rechtfertigungsmodell und Wissensdefinition. Ein Autor, der extrem strikte, infallibilistische Anforderungen an die \"Rechtfertigung\" stellt, immunisiert seine Theorie a priori gegen Gettier-Gegenbeispiele. Einen solchen Text dekonstruieren Sie nicht mit Gettier, sondern Sie weisen nach, dass der Autor den Wissensbegriff auf analytische Tautologien (oder mathematische Gewissheiten) verengt und damit den gesamten Bereich der empirischen Wissenschaften opfert.",
+      "tags": "",
+      "guid": "DO8eUHHk7x",
+      "mid": 1770298967856,
+      "usn": 2609,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318947,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318948,
+      "front": "Wie lassen sich die vier kategorialen Formen des Wissens voneinander abgrenzen, und durch welche analytischen Reduktionsschritte lässt sich ontologische Sparsamkeit (Ockhams Rasiermesser) zugunsten des propositionalen Wissens (*Wissen-dass*) argumentativ herstellen?",
+      "back": "**Formale Struktur / Kategorien:**  \nDie Erkenntnistheorie differenziert vier Wissensformen: (1) Wissen-dass (Bezug auf wahrheitsfähige Propositionen), (2) Bekanntschaftswissen (Bezug auf Gegenstände/Personen), (3) Wissen-wie-es-ist (Bezug auf eigene phänomenale Zustände), (4) Wissen-wie (Bezug auf praktisches Können).  \n  \n**Philosophische Pointe (Reduktionsmuster):**  \nEine Reduktion aller Wissensformen auf propositionales Wissen ist ein mächtiger theoretischer Zug, da nur *Wissen-dass* wahrheitsfähig, logisch-inferenziell verarbeitbar und intersubjektiv kommunizierbar ist.  \n* *Bekanntschaftswissen* lässt sich auf die Beherrschung demonstrativer Propositionen (\"Dieses [phänomenale Gegebenheitsweise] ist Mutter\") reduzieren.  \n* *Wissen-wie-es-ist* (etwa im Fall von Jacksons Mary) lässt sich als Erwerb neuer phänomenaler Gegebenheitsweisen für bereits objektiv bekannte physikalische Tatsachen modellieren, erfordert also keine neuen, obskuren metaphysischen Tatsachen.  \n* *Wissen-wie* (Ryles know-how) kann als Manifestation unzugänglicher (sub-personaler), impliziter Überzeugungen über Mittel-Zweck-Relationen rekonstruiert werden.  \n  \n**Methodischer Transfer:**  \nWenn ein Autor für eine nicht-propositionale, völlig inkommensurable oder rein intuitionistische Erkenntnisquelle argumentiert, nutzen Sie diese Reduktionsmuster. Zwingen Sie die Argumentation auf propositionalen Boden, um zu prüfen, ob hier illegitim behauptet wird, dass kognitive Leistungen einer rationalen oder inferenziellen Analyse prinzipiell entzogen seien.",
+      "tags": "",
+      "guid": "pjT3l2OhZw",
+      "mid": 1770298967856,
+      "usn": 2609,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318948,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318949,
+      "front": "Wie konstruiert Gilbert Ryle sein Regressargument (reductio ad absurdum) gegen die intellektualistische Reduktion von *Wissen-wie* auf *Wissen-dass*, und durch welche logische Fehleranalyse der Prämissen lässt sich dieser Schluss entkräften?",
+      "back": "**Formale Struktur (Ryles Modus Tollens):**  \nRyle argumentiert: Wenn *Wissen-wie* strikt *Wissen-dass* voraussetzt, muss jede intelligente Handlung (als Manifestation von Wissen-wie) durch eine vorgelagerte intelligente Denkhandlung (das Konsultieren von Wissen-dass) angeleitet werden. Da diese Denkhandlung selbst wieder intelligentes *Wissen-wie* erfordert, droht ein logischer Regress, der intelligentes Handeln unmöglich macht.  \n  \n**Philosophische Pointe (Fehleranalyse):**  \nDer logische Regress ist formal gültig, aber das Argument ist nicht schlüssig, da eine versteckte Prämisse empirisch falsch ist. Ryle unterstellt durch einen unzulässigen Allquantor, dass *jedes* propositionale Wissen zwingend durch eine willentliche, intelligente Denkhandlung zustande kommt. Tatsächlich erwerben wir propositionales Wissen jedoch oft durch völlig unwillkürliche Prozesse, wie etwa die direkte, unvermutete Sinneswahrnehmung. Da in diesen Fällen keine intentionale \"Handlung\" vorliegt, die wiederum Wissen-wie erfordern würde, wird der Regress gar nicht erst ausgelöst.  \n  \n**Methodischer Transfer:**  \nVerwenden Sie diese Analyse als heuristisches Schablonenwerkzeug: Prüfen Sie bei infiniten Regressargumenten in der philosophischen Literatur stets die zugrundeliegenden Allquantoren. Oft wird – wie hier bei Ryle – eine Eigenschaft, die nur für eine spezifische Teilmenge psychologischer Prozesse gilt (willentliche Denkakte), unzulässig auf *alle* kognitiven Prozesse verallgemeinert, um den Zirkel künstlich zu schließen.",
+      "tags": "",
+      "guid": "B6C3euWygF",
+      "mid": 1770298967856,
+      "usn": 2725,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318949,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318950,
+      "front": "**[Die Standardanalyse des Wissens]** Wie definiert die klassische (platonische) Standardanalyse propositionales Wissen formal, und wie wird die Notwendigkeit der doxastischen Bedingung (Überzeugung) gegen Einwände verteidigt?",
+      "back": "**Formale Struktur:**  \nWissen liegt vor, wenn eine Person S (i) überzeugt ist, dass p, (ii) p wahr ist, und (iii) S in ihrer Überzeugung gerechtfertigt ist (Klassische JTB-Analyse: $W(S,p) \\\\\\\\leftrightarrow B(S,p) \\\\\\\\land T(p) \\\\\\\\land J(S,p)$).  \n  \n**Philosophische Pointe:**  \nWissen erfordert eine genuin kognitive Perspektive, die sich von bloßer Informationsträgerschaft (wie in Baumringen oder erkalteter Lava) durch eine Geist-zu-Welt-Entsprechungsrichtung und die subjektive Zustimmung des Erkenntnissubjekts unterscheidet. Gegenbeispiele, wie der völlig unsichere, aber stets richtig ratende Geschichtsstudent, scheinen die Überzeugungsbedingung anzugreifen, da er Wissen ohne Überzeugung zu haben scheint. Dieser Angriff scheitert jedoch bei genauerer Analyse: Die Person verfügt in solchen Fällen über *dispositionale* Überzeugungen, derer sie sich (aufgrund fehlenden Metawissens) nur nicht bewusst ist. Die Notwendigkeit der Überzeugungsbedingung bleibt logisch unangetastet.  \n  \n**Methodischer Transfer:**  \nWenn in der Philosophie des Geistes, der Kognitionswissenschaft oder bei naturwissenschaftlichen Autoren von \"Wissen in Systemen\" oder \"Informationsverarbeitung\" die Rede ist, prüfen Sie rigoros, ob die Entsprechungsrichtung und die doxastische Verankerung (Überzeugung) gegeben sind. Wenn nicht, wird der Wissensbegriff hier unzulässig auf rein kausale Informationsträger ausgeweitet.",
+      "tags": "",
+      "guid": "YK1HUpszqO",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318950,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318951,
+      "front": "Worin besteht der formallogische und dynamische Unterschied zwischen dem Gewissheitsmodell und dem Wahrscheinlichkeitsmodell der epistemischen Rechtfertigung?",
+      "back": "**Formale Struktur:**  \nDas *Gewissheitsmodell* (Descartes) fordert, dass epistemische Gründe die Wahrheit der Überzeugung objektiv erzwingen und dies aus der Subjektperspektive erfasst wird ($J(p) \\\\\\\\rightarrow \\\\\\\\Box T(p)$).  \nDas *Wahrscheinlichkeitsmodell* (Peirce) fordert lediglich, dass Gründe die Wahrheit wahrscheinlich machen (z. B. durch induktive Inferenzen: $P(T(p) | J) > 0.5$).  \n  \n**Philosophische Pointe:**  \nDer fundamentale Unterschied liegt in der Logik der epistemischen Dynamik. Das Gewissheitsmodell ist streng *monoton*: Neues Wissen kann hinzugefügt werden, aber einmal etablierte Rechtfertigung ist absolut und geht niemals durch neue Informationen verloren. Das Wahrscheinlichkeitsmodell ist hingegen *nicht-monoton* (anfechtbar/defeasible). Neue Erkenntnisse können die Rechtfertigung zerstören, und zwar entweder als *widerlegende Anfechtungsgründe* (Evidenz, die direkt gegen die Wahrheit der Proposition spricht) oder als *unterminierende Anfechtungsgründe* (Evidenz, die die kausale/logische Verbindung zwischen dem Grund und der Proposition kappt, wie das Wissen um eine rote Beleuchtung bei einem Roteindruck).  \n  \n**Methodischer Transfer:**  \nNutzen Sie diese formale Unterscheidung zur Validitätsprüfung wissenschaftshistorischer Argumente. Wirft ein Autor einer vergangenen Theorie vor, sie sei nie gerechtfertigt gewesen, weil sie heute widerlegt ist, verlangt er implizit das absolutistische Gewissheitsmodell. Bei empirischen, falliblen Theorien (Wahrscheinlichkeitsmodell) ist die Existenz späterer Anfechtungsgründe kein Beweis für eine anfängliche Irrationalität, sondern ein systemimmanentes Merkmal rationaler, induktiver Erkenntnisdynamik.",
+      "tags": "",
+      "guid": "0MtUTTWk15",
+      "mid": 1770298967856,
+      "usn": 2648,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318951,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318952,
+      "front": "Wie verteidigt man die Wahrheitsbedingung des Wissens (Faktivität) analytisch gegen offenkundige alltagssprachliche Gegenbeispiele (z.B. \"Ich wusste die Antwort ganz genau, aber sie stellte sich als falsch heraus\")?",
+      "back": "**Formale Struktur:**  \n\"Wissen\" ist logisch-semantisch ein zwingendes Erfolgsverb (faktiv). Aus der Operator-Zuschreibung $W(S,p)$ folgt zwingend die Wahrheit von $p$. Ohne Wahrheit verfehlt der kognitive Akt sein Zielobjekt, die Tatsache in der Welt.  \n  \n**Philosophische Pointe:**  \nScheinbare Gegenbeispiele, in denen Wissen und Falschheit sprachlich unproblematisch kombiniert werden, sind keine empirischen Widerlegungen der Faktivität des Wissensbegriffs. Sie müssen vielmehr als semantische *epistemische Ellipsen* (verkürzte Sätze) dekonstruiert werden. Die vollständige, logisch korrekte Struktur der Aussage lautet: \"Ich *meinte zu wissen* (ich war absolut subjektiv gewiss), wie die Antwort lauten musste, stellte aber im Nachhinein fest, dass sie falsch war\". Hier wird alltagssprachlich fälschlicherweise rein subjektive Sicherheit mit dem objektiven Gelingen (Wahrheit) äquivociert.  \n  \n**Methodischer Transfer:**  \nSetzen Sie dieses Analysewerkzeug ein, um relativistischen oder postmodernen Texten zu begegnen. Wenn Autoren behaupten, \"das Wissen des Mittelalters hat sich als falsch herausgestellt\" und daraus ableiten, Wahrheit sei relativ, korrigieren Sie die Syntax: Frühere *subjektiv für gewiss gehaltene, gerechtfertigte Überzeugungen* haben sich als falsch herausgestellt. Wissen war es de facto nie. Dieser semantische Schnitt eliminiert den Schein-Relativismus sofort.",
+      "tags": "",
+      "guid": "qHgxiXESpd",
+      "mid": 1770298967856,
+      "usn": 2714,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318952,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318953,
+      "front": "Wie expliziert die moderne Korrespondenztheorie die Entitäten der Wahrheitsrelation (Wahrmacher und Wahrheitswertträger), um metaphysische und semantische Unschärfen zu vermeiden?",
+      "back": "**Formale Struktur:**  \nWahrheit ist eine metaphysisch robuste Relation zwischen einem Repräsentationsgehalt und der Welt.  \n  \n**Philosophische Pointe:**  \n* **Der Wahrmacher (Truth-maker):** Gegenstände der Welt (wie \"dieser Tisch\") sind als Wahrmacher zu unspezifisch, da sie ihre Eigenschaften zumeist nur kontingenterweise besitzen. Ein Gegenstand könnte seine Eigenschaften ändern und dennoch als numerisch identischer Gegenstand weiterexistieren. Folgt man Bertrand Russell, sind Wahrmacher vielmehr *Tatsachen*. Eine Tatsache besteht logisch betrachtet darin, dass ein bestimmter Gegenstand eine bestimmte Eigenschaft instantiiert (z. B. $Fa$). Diese Tatsachen sind Entitäten in der raum-zeitlichen Welt und keine wahren Propositionen in einer platonischen Hinterwelt.  \n* **Der Wahrheitswertträger (Truth-bearer):** Die Relation der Korrespondenz darf nicht als exakte Ähnlichkeit (qualitative Identität) zwischen einem psychologischen/linguistischen Zustand und der Welt missverstanden werden. Mentale Zustände sind keine Tatsachen in der Welt im gleichen Sinne. Die Übereinstimmung besteht ausschließlich zwischen dem *propositionalen Inhalt* des Wahrheitswertträgers und der wahrmachenden Tatsache.  \n  \n**Methodischer Transfer:**  \nWenn Sie in einem formalen Argument auf den Begriff der \"Korrespondenz\" stoßen, prüfen Sie rigoros die ontologische Kategorie der Relata: Werden hier fälschlicherweise Dinge (Kategorie: Objekt) statt Tatsachen (Kategorie: Sachverhalt) als Wahrmacher eingesetzt?",
+      "tags": "",
+      "guid": "UeVuZCl9vr",
+      "mid": 1770298967856,
+      "usn": 2667,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318953,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318954,
+      "front": "Wie lässt sich die Korrespondenzrelation für elementare Sätze formal-semantisch fassen, ohne in einen Definitionszirkel (die Verwendung des Wahrheitsbegriffs im Definiens) zu geraten?",
+      "back": "**Formale Struktur:**  \nDie Reduktion der Korrespondenz auf subsententiale semantische Relationen.  \n  \n**Philosophische Pointe:**  \nWenn man Wahrheit einfach als \"Übereinstimmung des propositionalen Inhalts mit einer Tatsache\" definiert, droht ein Definitionszirkel, da sich der propositionale Inhalt in der Regel nur über seine Wahrheitsbedingungen angeben lässt. Die metaphysisch und logisch saubere Lösung besteht darin, die Korrespondenz auf semantische Relationen *unterhalb der Ebene ganzer Sätze* (wie die Referenz bzw. Extension) zurückzuführen.  \nFür einen singulären Satz der Form $Fa$ (\"Sokrates ist ein Mensch\") lautet die Bedingung: Der Satz ist wahr genau dann, wenn der Gegenstand, auf den der Name referiert ($a$), die Eigenschaft instantiiert, auf die das Prädikat referiert ($F$).  \n  \n**Methodischer Transfer:**  \nNutzen Sie dieses Werkzeug, um zirkuläre Wahrheitsdefinitionen in Texten aufzubrechen. Sobald ein Autor Wahrheit auf der Satzebene durch \"Übereinstimmung\" definieren will, verlangen Sie die formalsemantische Reduktion auf die Referenz der Terme, in der der Wahrheitsbegriff selbst nicht mehr auftaucht.",
+      "tags": "",
+      "guid": "Cr9LU813F5",
+      "mid": 1770298967856,
+      "usn": 2648,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318954,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318955,
+      "front": "Rekonstruieren und dekonstruieren Sie Freges klassisches Argument gegen den relationalen Charakter der Wahrheit, welches auf der syntaktischen Einstelligkeit des Wahrheitsprädikats basiert.",
+      "back": "**Formale Struktur (Freges Argument):**  \n* Prämisse: \"Wahr\" ist in unserer Sprache ein einstelliges Prädikat (Syntaktische Beobachtung).  \n* Konklusion: Wahrheit kann keine zweistellige Relation (z. B. zwischen Geist und Welt) sein (Semantische/Ontologische Behauptung).  \n  \n**Philosophische Pointe:**  \nDas Argument beruht auf einem unzulässigen Fehlschluss von der Syntax auf die Semantik. Es ist ein Kategorienfehler, aus syntaktischen Eigenschaften eines Ausdrucks zwingend auf die Natur des Bezeichneten zu schließen. Auch die Alltagssprache bietet Beispiele für Prädikate, die grammatisch einstellig sind ($P(x)$), aber logisch-semantisch eine zweistellige Relation ausdrücken ($\\\\exists y R(x,y)$). Beispiel: Der Satz \"Jonas ist verheiratet\" ist syntaktisch einstellig und wohlgeformt, das Verheiratetsein drückt aber denotativ eine zweistellige Relation aus (man ist immer *mit jemandem* verheiratet).  \n  \n**Methodischer Transfer:**  \nWenden Sie dieses Dekonstruktionsmuster stets an, wenn linguistische Philosophen ontologische Schlüsse aus reinen Grammatikbeobachtungen ziehen. Trennen Sie scharf zwischen der Oberflächensyntax einer natürlichen Sprache und der logischen Tiefenstruktur der realen Relationen.",
+      "tags": "",
+      "guid": "pVACnDw0WW",
+      "mid": 1770298967856,
+      "usn": 2725,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318955,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318956,
+      "front": "Wie entkräftet der Korrespondenztheoretiker den Einwand (unter anderem abgeleitet aus Heideggers Thesen), dass Wahrheit subjektabhängig und somit ein bloßes menschliches Konstrukt sei?",
+      "back": "**Formale Struktur:**  \nDas Argument des Gegners verwechselt die Existenzbedingungen der *Korrespondenzrelation* mit den Existenzbedingungen des *Wahrmachers*.  \n  \n**Philosophische Pointe:**  \nHeidegger hat logisch gesehen Recht damit, dass die *Relation* der Korrespondenz subjektabhängig ist. Eine Relation $R(x,y)$ kann nur instanziiert werden, wenn beide Relata ($x$ und $y$) existieren. Da Wahrheitswertträger (Überzeugungen, gedachte Sätze) Produkte eines denkenden Subjekts sind, entsteht die Relation erst mit dem Subjekt.  \nDer Fehlschluss liegt jedoch darin, daraus abzuleiten, dass Wahrheit nicht objektiv sei. Der Korrespondenztheoretiker hält daran fest, dass der *Wahrmacher* (die Tatsache in der Welt) vollkommen objektiv und subjektunabhängig existiert.  \n  \n**Methodischer Transfer:**  \nWenn Sie mit konstruktivistischen Argumenten konfrontiert werden (\"Wahrheit existiert erst durch den Menschen\"), spalten Sie das Argument logisch auf: Ist die Rede vom Wahrheitswertträger (Subjektabhängig: Ja) oder vom Wahrmacher (Subjektabhängig: Nein)? Die Trennung dieser beiden ontologischen Instanzen ist ein hocheffektives Instrument zur Abwehr epistemischer Relativismen.",
+      "tags": "",
+      "guid": "csjF5gQMZN",
+      "mid": 1770298967856,
+      "usn": 2667,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318956,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318957,
+      "front": "**[Freges Zirkularitätseinwand]** Warum scheitert Freges Vorwurf, jede metaphysische Definition der Wahrheit als Korrespondenz verstricke sich bei der Anwendung zwingend in einen epistemischen oder logischen Definitionszirkel?",
+      "back": "**Formale Struktur (Freges Zirkel-Behauptung):**  \nFrege unterstellt der Definition $p \\\\\\\\text{ ist wahr} \\\\\\\\leftrightarrow p \\\\\\\\text{ stimmt mit einer Tatsache überein}$ die notwendige Transformation in: $p \\\\\\\\text{ ist wahr} \\\\\\\\leftrightarrow \\\\\\\\text{Es ist wahr, dass } p \\\\\\\\text{ mit einer Tatsache übereinstimmt}$.  \n  \n**Philosophische Pointe:**  \nDer von Frege behauptete Zirkel entsteht künstlich durch einen völlig unnötigen semantischen Aufstieg. Im Definiens (der rechten Seite der Äquivalenz) der Korrespondenztheorie wird lediglich *über die Welt* geredet, nämlich über das Bestehen von relationalen Tatsachen. Es gibt keinerlei logische oder semantische Notwendigkeit, der rechten Seite das Prädikat \"ist wahr\" voranzustellen, um den Weltbezug herzustellen. Die Relation selbst ist keine Wahrheit, sondern ein metaphysischer Wahrmacher (etwas Nichtsprachliches).  \n  \n**Methodischer Transfer:**  \nNutzen Sie diese Analyse zur Entlarvung artifizieller Regresse. Prüfen Sie bei Zirkel-Vorwürfen gegen Definitionen, ob der Zirkel in der metaphysischen Relation selbst liegt oder ob der Kritiker (wie Frege) unzulässigerweise epistemische Verifikationsbedingungen (das Feststellen, *dass* es wahr ist) in die rein ontologische Definition hineinschmuggelt.",
+      "tags": "",
+      "guid": "WmPF40BJCU",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318957,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1776874318958,
+      "front": "Eine simple Korrespondenztheorie führt zur ontologischen Inflation, da sie obskure negative, disjunktive oder konjunktive Tatsachen postulieren müsste. Wie lässt sich dieses Problem formalästhetisch durch den Logischen Atomismus auflösen?",
+      "back": "**Formale Struktur:**  \nErsetzung einer pauschalen Wahrheitserklärung durch eine *rekursive Definition der Wahrheit* (im Sinne Russells und Wittgensteins).  \n  \n**Philosophische Pointe:**  \nUm zu vermeiden, dass das Universum mit Entitäten wie \"negativen Tatsachen\" oder \"disjunktiven Tatsachen\" bevölkert werden muss, beschränkt der Logische Atomismus die direkte Korrespondenz ausschließlich auf *atomare Sätze*.  \n* Die Wahrheit eines atomaren Satzes wird durch eine einfache korrespondierende Tatsache in der Welt begründet.  \n* Die Wahrheit aller logisch komplexen Sätze (Konjunktionen, Disjunktionen, Negationen) wird rein kompositional auf die Wahrheitswerte dieser atomaren Sätze und die Funktion der logischen Junktoren zurückgeführt.  \n* Ein negativer Satz (\"Es regnet nicht\") benötigt somit keine negative Tatsache in der Welt, sondern ist schlicht wahr aufgrund der *Inexistenz* eines Wahrmachers für den korrespondierenden atomaren positiven Satz (\"Es regnet\"). (Wobei selbst für dieses Detail von Armstrong alternative mengentheoretische Modellierungen vorgeschlagen wurden).  \n  \n**Methodischer Transfer:**  \nDas Prinzip der Rekursion ist ein mächtiges ontologisches Rasiermesser (Ockhams Rasiermesser). Wenn theoretische Konstrukte zu einer Inflation unplausibler Entitäten führen, prüfen Sie, ob sich das Phänomen durch die Angabe von atomaren Basiselementen und rekursiven logischen Verknüpfungsregeln formal sauberer und ontologisch sparsamer modellieren lässt.",
+      "tags": "",
+      "guid": "uSoDQwDMyE",
+      "mid": 1770298967856,
+      "usn": 2763,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1776874318958,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781041186791,
+      "front": "Wie formalisiert Robert Nozick propositionales Wissen im Rahmen seiner \"Truth-Tracking\"-Theorie, und durch welche metaphysischen Gegenbeispiele lassen sich seine postulierten Sensitivitäts- und Stabilitätsbedingungen als streng genommen nicht notwendig entlarven?",
+      "back": "**Formale Struktur:**  \nWissen erfordert nach Nozick eine kontrafaktische Kovarianz zwischen Tatsache und Überzeugung.  \n$W(S,p) \\\\leftrightarrow B(S,p) \\\\land T(p) \\\\land (\\\\neg p \\\\rightarrow \\\\neg B(p)) \\\\land (p \\\\rightarrow B(S,p))$.  \nBedingung 3 formuliert die *Sensitivität* (Wäre $p$ falsch, würde S nicht glauben, dass $p$), Bedingung 4 die *Stabilität* (Wäre $p$ wahr, würde S $p$ auch in nahen möglichen Welten glauben).  \n  \n**Philosophische Pointe:**  \nNozick fügt die Stabilitätsbedingung primär hinzu, um pathologische Konstrukte wie ein künstlich stimuliertes Gehirn-im-Tank (GiT) auszuschließen. Ein solches GiT erfüllt zwar die Sensitivität (wäre es kein GiT, würde es dies in einer normalen Welt auch nicht glauben), aber seine Überzeugung ist hochgradig instabil, da der manipulierende Wissenschaftler ihm die Wahrheit jederzeit vorenthalten könnte.  \nDennoch sind beide Bedingungen als notwendige Kriterien zu stark und damit fehlerhaft:  \n* **Sensitivität ist nicht notwendig:** Eine Großmutter, die den gesunden Zustand ihres Enkels direkt sieht, *weiß*, dass er gesund ist. Wäre er jedoch tot, würde die Familie ihr dies verschweigen und Gesundheit vortäuschen. Sie würde es also in der nächsten $\\\\neg p$-Welt *trotzdem* glauben. (Ihre Methode der direkten Wahrnehmung ist sensitiv, ihre Überzeugung jedoch nicht).  \n* **Stabilität ist nicht notwendig:** Ein verirrter Wanderer, der zufällig ein funktionierendes GPS-Gerät findet, weiß plötzlich, wo er ist. Er hätte dieses Wissen in extrem nahen kontrafaktischen Welten (in denen er den Rucksack übersieht) nicht gehabt. Eine leicht zu verfehlende Wahrheit zerstört faktisches Wissen jedoch nicht.  \n  \n**Methodischer Transfer:**  \nWenn Sie in wissenschaftstheoretischen Modellen auf Kovarianz-Bedingungen stoßen, trennen Sie rigoros zwischen der Eigenschaft der *Überzeugung* und der Eigenschaft der *Methode*. Nozicks Fehler bestand formal darin, die modalen Bedingungen an den bloßen Glaubenszustand $B(p)$ zu knüpfen, anstatt die kausale Methode der Überzeugungsbildung in die logische Formel zu integrieren.  \n  \n***",
+      "tags": "",
+      "guid": "WMCXqP7brB",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781041186791,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781041186792,
+      "front": "Wie modifiziert Fred Dretske die Idee der Sensitivität durch seinen Ansatz der \"zwingenden Gründe\", und an welchen logisch-ontologischen Entitäten kollabiert dieses System unausweichlich?",
+      "back": "**Formale Struktur:**  \n$W(S,p) \\\\leftrightarrow B(S,p) \\\\land T(p) \\\\land \\\\exists g (K(g, B(S,p)) \\\\land (\\\\neg p \\\\rightarrow \\\\neg g))$.  \nWissen erfordert einen Grund $g$, der die Überzeugung kausal auf die richtige Weise hervorbringt und der ein *zwingender Grund* ist (Sensitivität des Grundes: Wäre $p$ falsch, würde $g$ nicht vorliegen).  \n  \n**Philosophische Pointe:**  \nDretske repariert Nozick, indem er die Stabilitätsbedingung verwirft und die Sensitivität an den kausal operierenden *Grund* (bzw. die Information oder Methode) bindet. Dies löst viele Alltagsszenarien elegant, scheitert jedoch katastrophal an notwendigen Wahrheiten (Mathematik, Logik).  \nMathematische Tatsachen (wie $2+2=4$) sind in *allen* möglichen Welten wahr. Eine kontrafaktische Welt, in der $\\\\neg p$ gilt, existiert metaphysisch nicht. Eine Sensitivitätsprüfung (Würde der Grund in der $\\\\neg p$-Welt fehlen?) läuft bei notwendigen Wahrheiten ins Leere, da ein zwingender Grund hier a priori unmöglich ist. Demnach gäbe es kein mathematisches Wissen, was eine erkenntnistheoretische *reductio ad absurdum* der Theorie darstellt.  \nZudem scheitert die Theorie an modalen \"Gefahren\" wie den Scheunenfassaden: Henrys visuelles Erlebnis (der Grund $g$) wäre in der nächsten $\\\\neg p$-Welt (vor einer Attrappe) exakt dasselbe, Dretske müsste Henry also fälschlicherweise Wissen absprechen – oder zusprechen, je nachdem wie man die \"nächste\" Welt definiert.  \n  \n**Methodischer Transfer:**  \nVerwenden Sie die Mathematik stets als ultimativen \"Stresstest\" für kausale oder kontrafaktische Epistemologien. Wenn eine Theorie Wahrheitsmacher zwingend als raumzeitliche oder kontrafaktisch variable Diskriminatoren fordert, weisen Sie mathematisch nach, dass die Theorie als allgemeingültiges erkenntnistheoretisches Fundament ungeeignet ist.  \n  \n***",
+      "tags": "",
+      "guid": "ACqc6zCck0",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781041186792,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781041186793,
+      "front": "Was ist der formale Kern der Sensitivitätsbedingung und inwiefern führt die Forderung nach einer \"maximalen Diskriminationsfähigkeit\" hierbei in ein scheinbar unlösbares erkenntnistheoretisches Dilemma (bzgl. Geschlossenheit vs. Skeptizismus)?",
+      "back": "**Formale Struktur:**  \n* **Sensitivität (minimale Diskriminationsfähigkeit):** Das System muss *nur* in der allernächsten möglichen Welt, in der $p$ falsch ist, abweichend reagieren (Wahrheits-Tracking im engeren Radius).  \n* **Gewissheit (maximale Diskriminationsfähigkeit):** Das System muss in *allen* logisch möglichen Welten, in denen $p$ falsch ist, abweichend reagieren (perfektes Wahrheits-Tracking).  \n  \n**Philosophische Pointe:**  \nDie Sensitivitätsbedingung brilliert zunächst durch eine objektiv eindeutige Metrik: Nur die *nächste* $\\\\neg p$-Welt ist relevant. Dies verleiht uns eine \"minimale Diskriminationsfähigkeit\".  \nIhr größtes Problem offenbart sich jedoch bei dem Versuch, das logische Geschlossenheitsprinzip (Modus Ponens) aufrechtzuerhalten. Wenn ich weiß, dass vor mir ein Tisch steht ($p$), folgt logisch, dass ich kein körperloses Gehirn-im-Tank bin ($q$). Wenn Sensitivität Wissen konstituiert, weiß ich zwar $p$ (da die nächste Welt ohne Tisch eine normale Welt ohne Tisch ist, in der ich ihn auch nicht sehe), aber ich weiß $q$ nicht (da in der nächsten Welt, in der ich *doch* ein Gehirn-im-Tank bin, mir der Tisch exakt gleich simuliert würde).  \nWollen wir die logische Geschlossenheit retten, zwingt uns das Modell dazu, eine **maximale Diskriminationsfähigkeit** zu fordern. Wir müssten $p$ von *jeder denkbaren* $\\\\neg p$-Welt (inklusive bizarren Dämonen-Welten) unterscheiden können, also absolute Gewissheit besitzen. Der Preis hierfür ist jedoch der totale Skeptizismus, da endliche Wesen diese maximale Diskriminationsfähigkeit empirisch nie leisten können.  \n  \n**Methodischer Transfer:**  \nAls philosophischer Analytiker erkennen Sie hier das klassische Opfer-Szenario: Sie können nicht gleichzeitig Topologie (Sensitivität), Logik (Geschlossenheit) und Alltagsrealismus retten. Wenn ein Autor auf Basis von minimaler Diskrimination argumentiert, zwingen Sie ihn aufzuzeigen, wie er logische Inferenzen ohne Wahrheitsverlust rechtfertigt. Die Sensitivität bestraft den logischen Schluss.  \n  \n***",
+      "tags": "",
+      "guid": "i8gvuB6rr9",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781041186793,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781041186794,
+      "front": "Durch welchen theoretischen Schwenk versucht Alvin Goldman die logischen Defekte der Sensitivitäts-basierten (und kausalen) Theorien zu umgehen, und welches ontologische \"Unbestimmtheitsproblem\" handelt er sich damit unweigerlich ein?",
+      "back": "**Formale Struktur:**  \nDer Fokus wechselt von der kontrafaktischen Sensitivität der Einzelüberzeugung zur generellen *Prozess-Zuverlässigkeit*.  \n$W(S,p) \\\\leftrightarrow B(S,p) \\\\text{ ist durch einen Prozess verursacht, dessen Wahrheitsbilanz in allen }$  \n$\\\\text{relevanten faktischen und kontrafaktischen Situationen zu 100\\\\% positiv ist.}$.  \n  \n**Philosophische Pointe:**  \nGoldman verzichtet darauf, dass Gründe in der allernächsten Nicht-$p$-Welt zwingend abwesend sein müssen. Stattdessen fordert er, dass der *Typus* des überzeugungsbildenden Mechanismus (z.B. visuelle Wahrnehmung) in allen \"relevanten\" Welten fehlerfrei funktioniert oder Irrtümer verhindert.  \nIndem der Bereich der \"relevanten Welten\" über die logische Inferenz hinweg konstant gehalten wird, rettet diese Position das Geschlossenheitsprinzip.  \nDer philosophische und mathematische Defekt liegt jedoch in den Randbedingungen der Metrik: dem **Unbestimmtheitsproblem**. Es existieren schlichtweg keine harten, objektiven Tatsachen, die a priori festlegen, welche Radius-Größe kontrafaktischer Welten als \"relevant\" gilt. Sind Scheunenfassaden in Kalifornien \"relevant\", wenn ich in Deutschland fahre? Da dies objektiv unbestimmt bleibt, wird die Zuweisung von Wissen arbiträr oder sie kollabiert in den semantischen Kontextualismus, bei dem der Beurteilende die Relevanz-Maßstäbe nach Belieben setzt.  \n  \n**Methodischer Transfer:**  \nNutzen Sie dieses Unbestimmtheitsproblem als kritisches Werkzeug gegen naturalistische und prozess-orientierte Theorien. Sobald ein Autor abstrakte Mengen (wie \"alle *relevanten* x\") einführt, verlangen Sie die exakte Definitionsmenge. Ohne klare ontologische Fundierung des Begriffs \"relevant\" operiert das Modell mit einer formallogischen Leerstelle, die jede gewünschte Konklusion zulässt.",
+      "tags": "",
+      "guid": "7LKIEHZlAL",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781041186794,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781199372575,
+      "front": "In welche logisch-topologische Aporie geraten die posttraditionellen externalistischen Wissensanalysen (Sensitivität vs. Prozess-Zuverlässigkeit), die den semantischen Kontextualismus als notwendigen Ausweg motiviert?",
+      "back": "**### Formale Struktur**\n\nDas unlösbare Spannungsfeld zwischen der Erhaltung der deduktiven Geschlossenheit (Logik) und der exakten Bestimmung der Wahrheitsbedingungen (Semantik/Topologie).  \n\n**###**  **Philosophische Pointe**\n\nDer Analytiker steht vor einer harten Wahl (einem Dilemma):\n\n1.  **Horn (Sensitivität nach Dretske/Nozick):** Definiert man Wissen über zwingende Gründe (die Überzeugung ist sensitiv in der _nächsten_ $\\\\neg p$-Welt), hat man eine objektiv eindeutige Metrik. Der katastrophale Preis ist jedoch die Zerstörung des Prinzips der Geschlossenheit unter bekannter logischer Implikation.\n2.  **Horn (Prozess-Zuverlässigkeit / Sicherheit nach Goldman u. a.):** Fordert man, dass der Prozess in allen \"relevanten\" möglichen Welten die Wahrheit garantiert, kann man das Geschlossenheitsprinzip logisch retten. Der Preis hierfür ist das _Unbestimmtheitsproblem_: Es gibt schlicht keine harten ontologischen Tatsachen, die den Radius der relevanten Welten objektiv fixieren (Wie weit entfernt darf eine Irrtumsmöglichkeit im Scheunenfassaden-Fall sein, um noch als \"relevant\" zu gelten?).\n\n**###** **Methodischer Transfer:**\n\nErkennen Sie dieses Dilemma als fundamentales Theorem der modernen Erkenntnistheorie. Jede rein objektive/invariante externalistische Theorie muss entweder die formale Logik (Geschlossenheit) opfern oder eine semantische Leerstelle (Unbestimmtheit der Relevanz) in Kauf nehmen. Zwingen Sie bei Textanalysen den Autor zur Offenlegung, welches der beiden Opfer er erbringt.",
+      "tags": "",
+      "guid": "Celq(g9&o]",
+      "mid": 1770298967856,
+      "usn": 2818,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781199372578,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781199430119,
+      "front": "Wie operiert der semantische Kontextualismus sprachphilosophisch, um die scheinbare Kontradiktion zwischen alltäglichen Wissenszuschreibungen und radikalem Skeptizismus formalsemantisch aufzulösen?",
+      "back": "### Formale Struktur\n\nDer Wahrheitswert des Satzes \"S weiß, dass $p$\" ist keine einfache Funktion der Relation zwischen Subjekt S und der Proposition $p$, sondern enthält einen versteckten Index für den Kontext des _Zuschreibers_A: $Wahr(W(S, p, c_A))$.\n\n  \n\n**### Philosophische Pointe**\n\nDer semantische Kontextualismus vollzieht einen \"linguistic turn\": Das Prädikat \"wissen\" verhält sich logisch wie ein indexikalischer Ausdruck (z. B. \"flach\" oder \"hier\"). Die Maßstäbe für die Anwendung des Prädikats hängen ausschließlich vom Äußerungskontext ab, genauer gesagt: vom Kontext desjenigen, der das Wissen _zuschreibt_ (Zuschreibungskontextualismus), nicht vom Kontext des Erkenntnissubjekts. Wenn ein Beobachter A (im Alltag) sagt \"S weiß, dass $p$\", so kann dies wahr sein, weil A nur alltägliche Irrtumsmöglichkeiten in Betracht zieht. Wenn Beobachter B (ein skeptischer Philosoph) gleichzeitig sagt \"S weiß nicht, dass $p$\", so ist auch dies wahr, da B den Maßstab durch die Erwähnung bizarrer Dämonen-Szenarien extrem angehoben hat. Es liegt schlicht kein logischer Widerspruch vor, da A und B von verschiedenen propositionalen Gehalten sprechen.\n\n**### Methodischer Transfer**\n\nNutzen Sie das Werkzeug der Indexikalität, um Scheinwidersprüche in Texten zu dekonstruieren. Wenn zwei Autoren sich scheinbar widersprechen, prüfen Sie, ob das Prädikat kontextsensitiv ist. Wenn ja, fordern Sie die Spezifikation der konversationellen Faktoren (welche Irrtumsmöglichkeiten wurden explizit gemacht?), die den semantischen Maßstab im jeweiligen Text fixieren.",
+      "tags": "",
+      "guid": "prHd=@@g6?",
+      "mid": 1770298967856,
+      "usn": 2818,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781199430120,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781199462432,
+      "front": "Wie definiert der semantische Kontextualismus Wissen formal, und durch welchen Mechanismus löst diese Definition das Unbestimmtheitsproblem der Zuverlässigkeitstheorien exakt auf?",
+      "back": "**### Formale Struktur (Kontextualistische Definition)**\n\nDie Äußerung \"Subjekt S weiß die Proposition, dass $p$\" durch einen Zuschreiber A ist wahr genau dann, wenn: (i) S überzeugt ist, dass $p$, (ii) die Proposition, dass $p$, wahr ist, (iii) S's Überzeugung, dass $p$, durch einen Grund $g$ gestützt wird, (iv) dieser Grund $g$ die Wahrheit der Überzeugung in _allen Welten $w$ garantiert, die aus A's Perspektive aufgrund konversationeller Faktoren relevant sind_.  \n\n**### Philosophische Pointe**\n\nDiese formale Definition rettet die Theorie vor der ontologischen Unbestimmtheit. Während die klassische Zuverlässigkeitstheorie daran scheiterte, dass die Welt selbst uns keine harte Metrik liefert, welche möglichen Welten \"relevant\" sind, verlagert der Kontextualismus diese Festlegung auf die _Pragmatik der Konversation_. Was als \"relevante Welt\" in die Wahrheitsbedingung der Wissenszuschreibung eingeht, wird objektiv und exakt durch die konversationellen Parameter des Zuschreibers fixiert (z. B. dadurch, welche Irrtumsszenarien in der Konversation explizit artikuliert oder bedacht wurden).\n\n**### Methodischer Transfer**\n\nWenn Sie mit Theorien konfrontiert werden, die schwammige Mengen (wie \"alle relevanten Alternativen\") postulieren, nutzen Sie den kontextualistischen Zug als formales Sanierungswerkzeug. Verlagern Sie die Festlegung der Metrik von der Welt (Ontologie) in die Sprache (Semantik/Pragmatik). Die Parameter der Konversation (wie das explizite Aussprechen eines Zweifels) dienen dann als strenge logische Schalter, die den Radius der betrachteten möglichen Welten determinieren.",
+      "tags": "",
+      "guid": "r[Q~Y1_G!X",
+      "mid": 1770298967856,
+      "usn": 2818,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781199462432,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781996346462,
+      "front": "Wie argumentiert der Kontextualist anhand der \"deskriptiven Adäquatheit\" für die Indexikalität des Wissensbegriffs, und wie lässt sich dieser scheinbare Bedeutungswandel formal-pragmatisch im Rahmen des Invariantismus wegerklären?",
+      "back": "**Formale Struktur:**  \nDer Kontextualist deutet den Wechsel von $Wahr(W(S,p, c_{Alltag}))$ zu $\\\\neg Wahr(W(S,p, c_{strenger\\\\_Kontext}))$ als genuine semantische Eigenschaft des Prädikats \"Wissen\".  \n  \n**Philosophische Pointe:**  \nDas Argument der deskriptiven Adäquatheit besagt, dass unsere alltägliche Praxis der Wissenszuschreibung (z. B. am Bahnhof nach dem Zugfahrplan fragen) extrem variable Maßstäbe anlegt, je nachdem, welche Irrtumsmöglichkeiten der Beobachter gerade bedenkt. Spricht der Beobachter A dem Subjekt S unter strengen Maßstäben Wissen ab, so widerspricht er Beobachter B, der S unter Alltagsmaßstäben Wissen zuschreibt, logisch gar nicht.  \nDer Invariantist dekonstruiert dies jedoch rigoros: Die Wahrheitsbedingungen von $W(S,p)$ bleiben konstant. Was sich im strengen Kontext ändert, ist lediglich die *pragmatische Berechtigung* zur Behauptung (Assertibility). Im strengen Kontext wächst der rationale Zweifel, ob die invarianten Bedingungen de facto erfüllt sind, weshalb das Subjekt als Akt epistemischer Vorsicht die Zuschreibung verweigert. Die Semantik des Wissensbegriffs ändert sich hierbei nicht.  \n  \n**Methodischer Transfer:**  \nTrennen Sie in der Textanalyse stets messerscharf zwischen Semantik (Wahrheitsbedingungen) und Pragmatik (Behauptbarkeitsbedingungen). Ein scheinbarer semantischer Relativismus eines Autors lässt sich logisch oft auf eine schlichte epistemische Unsicherheit (Vorsicht) bei invarianten Wahrheitsbedingungen reduzieren.",
+      "tags": "",
+      "guid": "yPEsNeYkfW",
+      "mid": 1770298967856,
+      "usn": 2974,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781996346462,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781996346463,
+      "front": "**[Diagnostik des Skeptischen Paradoxons]** Wie löst der semantische Kontextualismus das Skeptische Paradoxon formal auf, und worin besteht der grundlegende Kategorienfehler dieser \"therapeutischen\" Diagnose?",
+      "back": "**Formale Struktur:**  \nDas Skeptische Paradoxon besteht aus drei intuitiv hochgradig plausiblen, aber logisch scheinbar inkonsistenten Prämissen:  \n(1) $\\\\neg W(S, \\\\neg Dämon)$  \n(2) $W(S, Hand) \\\\rightarrow W(S, \\\\neg Dämon)$ [Deduktive Geschlossenheit]  \n(3) $W(S, Hand)$.  \n  \n**Philosophische Pointe:**  \nDer Kontextualist löst das Paradoxon auf, indem er behauptet, es liege gar kein echter Widerspruch vor. Er indiziert die Kontexte: Prämisse (1) ist wahr relativ zum strengen Maßstab des skeptischen Kontextes ($c_{skeptisch}$), während Prämisse (3) wahr ist relativ zu unseren gewöhnlichen Alltagsmaßstäben ($c_{alltag}$).  \nDer Kategorienfehler dieser kontextualistischen Diagnose liegt jedoch in der Reduktion eines genuin epistemologischen Problems auf ein rein semantisches Missverständnis (eine Illusion). Der Skeptiker bestreitet Wissen nicht nur lokal in einem elitären Diskursraum, sondern behauptet radikal, dass wir selbst unter Alltagsstandards (den invarianten Bedingungen) über keinerlei Wissen verfügen, da er das Paradoxon kontextübergreifend verstanden wissen will.  \n  \n**Methodischer Transfer:**  \nVorsicht bei rein sprachanalytischen \"Auflösungen\" metaphysischer oder epistemologischer Paradoxien. Oft wird dabei der harte Kern des Problems (hier: die universelle Abwesenheit hinreichender epistemischer Gründe) lediglich semantisch weggedefiniert, anstatt die rationalen Grundlagen der Prämissen argumentativ anzugreifen.",
+      "tags": "",
+      "guid": "bLlH5TaA2z",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781996346463,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781996346464,
+      "front": "**[Instabilität und der Kollaps der Geschlossenheit]** Zeigen Sie formallogisch auf, warum der Versuch des Kontextualismus, das Prinzip der Geschlossenheit des Wissens zu retten, an der Instabilität der Konversation in der Anwendung unweigerlich scheitert.",
+      "back": "**Formale Struktur:**  \nGeschlossenheit gilt nach dem Kontextualisten strikt *intra-kontextuell*: $W_{c}(p) \\\\land W_{c}(p \\\\rightarrow q) \\\\rightarrow W_{c}(q)$.  \n  \n**Philosophische Pointe:**  \nDer Kontextualist fordert, dass der Kontext $c$ (der Maßstab der relevanten Alternativen) während der deduktiven Inferenz zwingend konstant bleiben muss, um den logischen Wissenstransfer zu gewährleisten.  \nDie fatale Schwachstelle liegt jedoch in der Praxis der Deduktion: Sobald das Subjekt von der Alltagsprämisse $p$ (\"Ich habe eine Hand\") auf die logisch implizierte schwergewichtige Konklusion $q$ (\"Ich bin kein Gehirn im Tank\") schließen will, bringt der bloße semantische Gehalt von $q$ (die Erwähnung der skeptischen Irrtumsmöglichkeit) den Kontext sofort zum Kippen. Der Kontextualist muss eingestehen, dass die Erwähnung von $q$ den Kontext von $c_{alltag}$ in $c_{skeptisch}$ transformiert. Im neuen Kontext $c_{skeptisch}$ ist jedoch die Prämisse $p$ gar nicht mehr gewusst. Die deduktive Wissensvermehrung sabotiert sich im Kontextualismus also durch Instabilität unweigerlich selbst.  \n  \n**Methodischer Transfer:**  \nPrüfen Sie bei theoretischen Modellen, die Gültigkeit auf semantische Parameter (Kontexte) relativieren, stets die Eigendynamik dieser Parameter. Ein logisches Prinzip (wie deduktive Geschlossenheit) ist epistemisch wertlos, wenn der Vollzug der Inferenz die Randbedingungen ihrer eigenen Gültigkeit eliminiert.",
+      "tags": "",
+      "guid": "fMeIOd8eqU",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781996346464,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1781996346465,
+      "front": "**[Die asymmetrische Pragmatik des Wissensbegriffs]** Mit welchen sprachphilosophischen Argumenten lässt sich die fundamentale These des semantischen Kontextualismus – die linguistische Indexikalität des Wissensbegriffs – rigoros dekonstruieren?",
+      "back": "**Formale Struktur:**  \nReductio ad absurdum der Indexikalitäts-Hypothese: Wenn \"Wissen\" indexikalisch wäre, müsste es die strukturellen Symmetrie- und Transparenzmerkmale klassischer Indexikalia (wie \"flach\" oder \"ich\") aufweisen.  \n  \n**Philosophische Pointe:**  \nDer Wissensbegriff verhält sich formalsemantisch völlig untypisch für ein Indexikal.  \n1\\. **Mangelnde Transparenz:** Kompetente Sprecher durchschauen echte Indexikalia sofort. Ein Streit, ob eine Straße \"flach\" (für Autos) oder \"nicht flach\" (unter dem Mikroskop) ist, wird alltagssprachlich sofort als unproblematischer Scheinwiderspruch erkannt. Die Debatte um den Skeptizismus wird jedoch von Sprechern seit Jahrtausenden als echter, tiefer Widerspruch verstanden.  \n2\\. **Asymmetrie der Kontexte:** Bei echten Indexikalia lassen sich Maßstäbe flexibel in beide Richtungen wechseln (\"Jetzt betrachten wir die Straße wieder als Autofahrer\"). Skeptische Maßstäbe lassen sich jedoch, einmal in den Diskurs eingeführt, nicht einfach durch Ignoranz wieder asymmetriefrei absenken.  \n3\\. **Unmöglichkeit der Relativierung:** Man kann sprachlich von \"relativ flach\" sprechen, aber Konstruktionen wie \"relativ gewusst\" oder \"unvollkommenes Wissen\" stellen semantische Kategorienfehler dar.  \n  \n**Methodischer Transfer:**  \nWenn Theoretiker versuchen, klassische Begriffe als indexikalisch oder kontextrelativ umzudefinieren, um theorieimmanente Paradoxien zu glätten, unterziehen Sie den Begriff einem linguistischen Stresstest. Fehlen Transparenz, Reversibilität und Graduierbarkeit, ist die Indexikalitäts-These empirisch wie analytisch gescheitert.",
+      "tags": "",
+      "guid": "HCmJP31fft",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1781996346465,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1782073138445,
+      "front": "Was besagt das epistemische Geschlossenheitsprinzip (Closure Principle) des Wissens und wie lässt es sich formallogisch auffassen?",
+      "back": "**Formale Struktur:**  \nDas Prinzip besagt, dass Wissen unter gewusster logischer Implikation geschlossen ist. Formal lässt sich dies ausdrücken als:  \n$W(s,t)p \\\\land W(s,t)(p \\\\Rightarrow q) \\\\land G(s,t)q \\\\rightarrow W(s,t)q$.  \n(Wenn Subjekt $s$ zum Zeitpunkt $t$ weiß, dass $p$, und weiß, dass $p$ $q$ impliziert, und aufgrund dessen $q$ glaubt ($G$), dann weiß $s$ auch $q$).  \nIn seiner exaktesten Form (GW4) schließt das Prinzip auch die Herleitung aus mehreren Prämissen sowie begriffliche Implikationen mit ein.  \n  \n**Philosophische Pointe:**  \nDas Geschlossenheitsprinzip ist das fundamentale Prinzip der Wissensvermehrung durch Deduktion. Es verkörpert die absolut plausible Alltagsintuition, dass wir durch logisch korrekte Schlüsse aus bestehendem Wissen neues Wissen generieren können.  \n  \n**Methodischer Transfer:**  \nIn der philosophischen Analyse fungiert dieses Prinzip oft als Prüfstein für externalistische Wissenstheorien. Theorien, die auf einer reinen \"Sensitivität\" der Überzeugung aufbauen (wie Nozicks Truth-Tracking), verletzen dieses Prinzip und müssen deduktives Schließen als Mittel des Wissenserwerbs verwerfen. Behandeln Sie den Erhalt der Geschlossenheit in der Textanalyse stets als starkes Adäquatheitskriterium für eine gelungene Definition von Wissen.",
+      "tags": "",
+      "guid": "P*YSr72*UB",
+      "mid": 1770298967856,
+      "usn": 3030,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1782073138445,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1782073189202,
+      "front": "Worin besteht das Transferprinzip als spezifische Interpretation des Geschlossenheitsprinzips, und worin liegt seine formalsemantische Schwachstelle bei \"schwergewichtigen Implikationen\"?",
+      "back": "**Formale Struktur:**  \nDas Transferprinzip (TP) ist eine restriktive Lesart der Geschlossenheit. Es fordert: Wenn S weiß, dass $p$, und weiß, dass $p$ $q$ impliziert, und deshalb $q$ glaubt, dann weiß S, dass $q$, *und zwar exakt aufgrund derselben Gründe, aufgrund derer S $p$ weiß*.  \n  \n**Philosophische Pointe:**  \nDas TP betrachtet den deduktiven Schluss als einen reinen Kanal, der die Rechtfertigungsgründe der Prämissen exakt auf die Konklusion weiterleitet. Fred Dretske attackiert genau dieses Prinzip: Unsere Wahrnehmung eines Zebras liefert uns den Grund für das Wissen, dass dort ein Zebra steht ($p$). $p$ impliziert logisch, dass es sich um keinen geschickt bemalten Maulesel handelt ($q$). Nach dem TP müsste unsere optische Wahrnehmung allein auch der Grund für unser Wissen von $q$ sein. Das ist aber falsch, da unsere Wahrnehmung nicht zwischen einem echten Zebra und einem bemalten Maulesel diskriminieren kann. Die Gründe für unsere alltäglichen Wahrnehmungen können also nicht das Wissen von derart \"schwergewichtigen Implikationen\" (wie der Falschheit skeptischer Hypothesen) stützen. Wahrnehmung ist als Grund nicht unter logischer Implikation geschlossen.  \n  \n**Methodischer Transfer:**  \nNutzen Sie die Unterscheidung zwischen dem allgemeinen Geschlossenheitsprinzip und dem Transferprinzip, um skeptische Argumente zu dekonstruieren. Wenn ein Autor (wie Dretske) behauptet, die Geschlossenheit des Wissens sei ungültig, prüfen Sie, ob er eigentlich nur das TP widerlegt. Man kann das Geschlossenheitsprinzip retten, indem man annimmt, dass nicht die ursprünglichen sinnlichen Gründe an die Konklusion transferiert werden, sondern dass die *Tatsache $p$ selbst* (die als Prämisse gewusst wird) zum neuen, unabhängigen Grund für die Kon",
+      "tags": "",
+      "guid": "Jhh&|N4^Xv",
+      "mid": 1770298967856,
+      "usn": 2879,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1782073189203,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1782308009243,
+      "front": "**[Die epistemische Topologie der Sicherheit]** Wie formalisiert die Sicherheitsbedingung (Safety) das Wissen, und wie entgeht sie dem „Unbestimmtheitsproblem“ der frühen Zuverlässigkeitstheorien, ohne Kontextualismus zu betreiben?",
+      "back": "**Formale Struktur:**  \nWissen liegt vor, wenn eine wahre Überzeugung auf einem *sicheren Grund* basiert. Ein Grund $g$ für die Proposition $p$ ist sicher, wenn in *allen naheliegenden möglichen Welten*, in denen $g$ vorkommt, $p$ wahr ist.  \n$W(p) \\\\leftrightarrow B(p) \\\\land T(p) \\\\land \\\\text{Safe}(g, p)$  \n  \n**Philosophische Pointe:**  \nIm Gegensatz zur Sensitivität (Nozick), die in genau *einer* spezifischen Welt (der nächsten $\\\\neg p$-Welt) abweichendes Verhalten fordert, verlangt die Sicherheit ein fehlerfreies Wahrheits-Tracking in einem ganzen *Bereich* naher Welten. Das Unbestimmtheitsproblem (Welche Welten sind \"nah\" und \"relevant\"?) löst dieser Ansatz nicht semantisch (durch die Pragmatik eines Gesprächskontextes), sondern externalistisch und objektiv: \"Normale\" Umwelten sind durch die evolutionäre Anpassung (oder das Design) unserer kognitiven Mechanismen metaphysisch fixiert.  \n  \n**Methodischer Transfer:**  \nNutzen Sie dieses Konzept, um invariantistische Theorien zu verteidigen. Wenn ein Autor behauptet, die Festlegung relevanter Irrtumsmöglichkeiten sei immer rein subjektiv oder sprachlich, kontern Sie mit der biologisch-teleologischen Fixierung unseres kognitiven Apparats. Ein Kompass hat objektive Normalbedingungen (Abwesenheit von Störmagneten), unabhängig davon, wer gerade auf ihn schaut.  \n  \n***",
+      "tags": "",
+      "guid": "NBx8NWL2L7",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1782308009243,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1782308009244,
+      "front": "**[Rettung der Logik und Widerlegung des Skeptikers]** Zeigen Sie formal auf, wie die Safety-Bedingung das deduktive Geschlossenheitsprinzip bewahrt und worin der modale Kategorienfehler des globalen Skeptizismus (Gehirn-im-Tank) besteht.",
+      "back": "**Formale Struktur:**  \nWahrheit ist unter logischer Implikation geschlossen: $p \\\\vdash q \\\\Rightarrow \\\\forall w (w \\\\models p \\\\rightarrow w \\\\models q)$.  \nWenn $g$ ein sicherer Grund für $p$ ist, dann ist $p$ in *allen nahen Welten* $W_{nah}$ wahr. Aus der logischen Implikation folgt zwingend, dass auch $q$ in allen $W_{nah}$ wahr ist. $g$ ist also logisch-mathematisch zwingend auch ein sicherer Grund für $q$. Geschlossenheit ist gerettet.  \n  \n**Philosophische Pointe:**  \nDer Skeptiker behauptet, wir wüssten alltägliche Dinge (Tisch vor mir = $p$) nicht, da wir nicht wissen, ob wir ein Gehirn im Tank ($\\\\neg GiT = q$) sind. Die Safety-Bedingung entlarvt dies als modalen Fehler: Eine Dämonen- oder GiT-Welt ist metaphysisch *extrem weit entfernt*. In allen Welten in unserer Nähe ($W_{nah}$) bin ich kein GiT. Mein Wahrnehmungserlebnis ist somit ein absolut sicherer Grund für meine Überzeugung, dass ich kein GiT bin. Der Skeptiker verwechselt Sicherheit mit Sensitivität: Bei Alltagsdingen (Tisch) ist ein sicherer Grund zugleich sensitiv (die nächste Welt ohne Tisch ist *nah*), bei skeptischen Thesen fallen sie auseinander.  \n  \n**Methodischer Transfer:**  \nWenn Sie skeptische Argumente analysieren, trennen Sie die modale Metrik. Verlangt das Argument des Autors implizit, dass wir in *allen* logisch denkbaren Welten (maximale Diskriminationsfähigkeit) fehlerfrei arbeiten müssen? Wenn ja, verweisen Sie auf die Sicherheitsbedingung, die uns erlaubt, deduktive Logik anzuwenden und weit entfernte Skeptizismus-Welten rational zu ignorieren.  \n  \n***",
+      "tags": "",
+      "guid": "5Ifts2DMIX",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1782308009244,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1782308009245,
+      "front": "**[Das Problem der trivialen Sicherheit bei notwendigen Wahrheiten]** An welcher ontologischen Besonderheit kollabiert die reine Definition von Wissen als „Überzeugung aus sicheren *Gründen*“, und durch welche methodologische Verschiebung lässt sich dies formal beheben?",
+      "back": "**Formale Struktur:**  \nNotwendige Wahrheiten (z.B. Mathematik: $2+2=4$) sind in *allen* möglichen Welten wahr ($w \\\\models p \\\\text{ für alle } w$).  \n  \n**Philosophische Pointe:**  \nWenn Sicherheit fordert, dass eine Überzeugung in nahen Welten nicht leicht falsch sein darf, dann erlangt eine notwendige Wahrheit diese Eigenschaft völlig \"umsonst\". Ein irrationales Bauchgefühl oder ein Würfelwurf als Grund für \"$2+2=4$\" wäre nach obiger Formel formal sicher, da es *keine* nahe Welt (überhaupt keine Welt) gibt, in der \"$2+2=4$\" falsch ist und der Grund in die Irre führen könnte.  \nDie Rettung liegt in der Verschiebung von sicheren *Gründen* zu sicheren *Methoden*: Die kognitive Methode (Bauchgefühl) generiert in nahen Welten *unterschiedliche* Gehalte (z.B. $3+3=5$), die dann falsch sind. Die *Methode* ist also nicht sicher, selbst wenn sie kontingenterweise einmal einen notwendig wahren Gehalt erzeugt.  \n  \n**Methodischer Transfer:**  \nDieses Rasiermesser ist entscheidend bei der Analyse von Kognitionswissenschaften und KI-Modellen. Wenn ein System zufällig einen notwendig wahren Output generiert, hat es deshalb noch kein Wissen. Prüfen Sie immer die *Methode* über den Raum der nahen möglichen Welten, nicht nur den isolierten modalen Status des Outputs.  \n  \n***",
+      "tags": "",
+      "guid": "it5A7d3u7n",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1782308009245,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1782308009246,
+      "front": "Wie definiert die Tugenderkenntnistheorie (Virtue Epistemology nach Sosa/Zagzebski) das Wissen, und durch welche analytische Aufspaltung lässt sich nachweisen, dass sie keinen echten Mehrwert gegenüber dem Reliabilismus bietet?",
+      "back": "**Formale Struktur:**  \n$Wissen = \\\\text{Wahre Überzeugung als Manifestation intellektueller Tugend (Kompetenz) der Person}$.  \n  \n**Philosophische Pointe:**  \nDie Tugenderkenntnistheorie verlagert die Wissensgenerierung auf die Verdienste des Subjekts. Dieser Ansatz lässt sich jedoch wie folgt dekonstruieren:  \n* Deutet man \"Tugend\" als *epistemische Verantwortlichkeit* (Fleiß, Sorgfalt, Wahrheitsliebe), kann sie die Wahrheit logisch nicht erzwingen. Henry kann die Scheunenfassade maximal verantwortungsvoll betrachten und irrt im Fassaden-Land dennoch. Sie schützt also nicht vor Gettier.  \n* Deutet man \"Tugend\" als *Fähigkeit zuverlässiger Wahrheitsfindung*, ist die Theorie nichts anderes als ein Reliabilismus in veränderter Terminologie.  \nZudem scheitert sie empirisch am \"Atomismus\" (wir haben oft viel Einzelwissen durch hochspezialisierte, aber fehleranfällige Quellen) und verkennt die Rolle externer Instrumente und des Zeugnisses anderer (Testimony), bei denen der Verdienst für das Wissen *nicht* exklusiv beim Subjekt liegt.  \n  \n**Methodischer Transfer:**  \nWenn Sie auf \"Epistemology of Virtue\"-Ansätze stoßen, erzwingen Sie die analytische Trennung: Ist hier \"subjektive Sorgfalt\" oder \"objektive Zuverlässigkeit\" gemeint? Zeigen Sie auf, dass der Fokus auf subjektive Verdienste die arbeitsteilige Realität der modernen Wissenschaften (die stark auf Vertrauen in externe Instrumente und Netzwerke beruht) systematisch verfehlt.",
+      "tags": "",
+      "guid": "Gw0PhFhWmV",
+      "mid": 1770298967856,
+      "usn": 2974,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 3: Wissen",
+      "cards": [
+        {
+          "id": 1782308009246,
+          "ord": 0,
+          "did": 1776873021725
+        }
+      ]
+    },
+    {
+      "id": 1784033666292,
+      "front": "Wie lässt sich Timothy Williamsons Ansatz zur Basis der Rechtfertigung formal fassen und inwiefern vertritt er dabei einen „Psychologismus der Gründe“?",
+      "back": "* **Formale Identität:** Williamson setzt Evidenz (Gründe, $E$) mit Wissen ($K$) gleich: $E = K$. Nur das, was wir wissen, kann als epistemischer Grund fungieren.  \n* **Psychologismus:** Obwohl Williamson einen radikalen Externalismus vertritt (Wissen involviert zwingend die Außenwelt), bleibt er ein Psychologist bezüglich der Gründe. Gründe sind für ihn primär *mentale Zustände* des Erkenntnissubjekts (denn Wissen fasst er als einen solchen mentalen Zustand auf).",
+      "tags": "",
+      "guid": "nZCzumHg01",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666292,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666293,
+      "front": "Woran scheitert Williamsons psychologisches Modell ($E = K$) in der analytischen Praxis, insbesondere bei der Erklärung von fehlerhaften Überzeugungen?",
+      "back": "Das Modell scheitert an der phänomenologischen Realität und überintellektualisiert die Wahrnehmung:  \n* **Das Halluzinations-Problem:** In einer Halluzination ist die Überzeugung falsch, also kein Wissen ($K$). Wenn aber nur Wissen rechtfertigt ($E=K$), muss der Grund für die (falsche, aber scheinbar gerechtfertigte) Außenweltüberzeugung ein unfehlbares *introspektives Wissen* sein (z.B. „Ich weiß, dass es mir so *erscheint*“).  \n* **Ausschlusskriterium:** Diese Herleitung (Zweifel bezüglich der eigenen Gründe) erfordert introspektive Begriffe zweiter Ordnung. Dies schließt empirische Rechtfertigung bei Kleinkindern und Tieren logisch aus, da diese solche Metabergriffe nicht besitzen.  \n* **Historischer Transfer:** Falsifizierte, aber historisch bewährte wissenschaftliche Theorien (z.B. Newtonsche Mechanik) wären retrospektiv niemals gerechtfertigt gewesen, da sie kein Wissen darstellten. Die Gleichsetzung bindet Gründe zu eng an die Wahrheit.",
+      "tags": "",
+      "guid": "nndkgw8BTn",
+      "mid": 1770298967856,
+      "usn": 3030,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666293,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666294,
+      "front": "Wie ist das formale teleologische Verhältnis von Wahrheit, epistemischen Kriterien und Wissen definiert, wenn man den Wahrheitsmonismus voraussetzt?",
+      "back": "* **Das Ziel:** Wahrheit ist das *einzige intrinsische Ziel* menschlicher Erkenntnisbemühungen. Wissen selbst ist *kein* kognitives Ziel.  \n* **Das Kriterium:** Da wir keinen direkten „Wahrheitssinn“ besitzen, fungieren ausschließlich unsere Verfahren und Maßstäbe der Rechtfertigung (die epistemischen Kriterien) als Indikatoren/Kriterien für Wahrheit.  \n* **Das Resultat (Wissen):** Wissen ($W$) ist kein Ziel, sondern eine Funktion aus wahrer Proposition ($p$) und korrekter Methodenwahl ($M$): $W = Resultat(p \\\\leftrightarrow wahr \\\\ \\\\land \\\\ M_{wahrheitsgarantierend})$.",
+      "tags": "",
+      "guid": "HM2ixe8SnJ",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666294,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666295,
+      "front": "Wenn Wissen selbst kein Wahrheitskriterium ist und aus der Erste-Person-Perspektive primär die Erfüllung von Rechtfertigungsmaßstäben zählt – worin besteht dann die *methodologische Rolle* des Wissens für unsere Erkenntnispraxis?",
+      "back": "Wissenszuschreibungen operieren als induktives Selektionsinstrument auf der Meta-Ebene.  \n* **Identifikation von Quellen:** Wenn wir (induktiv) feststellen, dass eine Methode oder ein Instrument in der Vergangenheit nicht nur zufällig wahre Überzeugungen, sondern echtes Wissen hervorgebracht hat, identifizieren wir diese als *Wissensquelle*.  \n* **Analytischer Nutzen:** Der Begriff des Wissens dient uns also dazu, Methoden einen *maximalen instrumentellen Wert* für zukünftigen Erkenntniserwerb zuzuschreiben. (Prüffrage an Texte: Nutzt der Autor das Konzept „Wissen“ zur Validierung einer neuen Methodik?).",
+      "tags": "",
+      "guid": "s98pF8e6dy",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666295,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666296,
+      "front": "Wie lassen sich der Wahrheitsmonismus und der epistemische Werte-Pluralismus in Bezug auf unsere kognitiven Ziele formal fassen?",
+      "back": "* **Wahrheitsmonismus:** Die Menge der intrinsischen epistemischen Werte enthält nur ein Element: $V_{int} = \\\\{Wahrheit\\\\}$. Die Rechtfertigung ($R$) hat einen strikt abgeleiteten, instrumentellen Wert ($V_{inst}$), d.h. sie fungiert als Wahrheitsindikator: $P(Wahrheit \\\\mid R) > P(Wahrheit \\\\mid \\\\neg R)$. Das kognitive Doppelziel lautet: Glaube eine Proposition $p \\\\leftrightarrow p$ ist wahr.  \n* **Pluralismus:** Die Menge der intrinsischen Werte ist größer: $V_{int} = \\\\{Wahrheit, Rechtfertigung/Rationalit\\\\ddot{a}t\\\\}$. Der kognitive Prozess selbst (z.B. seine Zuverlässigkeit oder Rationalität) trägt einen eigenen intrinsischen Wert, der nicht auf reine Wahrheitsmaximierung reduzierbar ist.",
+      "tags": "",
+      "guid": "nLw4tp8K8c",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666296,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666297,
+      "front": "Worin besteht das fundamentale Spannungsverhältnis zwischen dem Wahrheitsmonismus und der sokratischen „Menon-Intuition“?",
+      "back": "Die Menon-Intuition postuliert einen erkenntnistheoretischen *Mehrwert* des Wissens gegenüber der bloß wahren Überzeugung (WÜ): $Wert(Wissen) &gt; Wert(W\\ddot{U})$. Der strikte Wahrheitsmonismus hat hier ein massives Erklärungsdefizit: Da Wahrheit das *einzige* intrinsische Ziel ist, ist dieses Ziel bei einer bloß wahren Überzeugung bereits maximal erreicht. Instrumentelle Faktoren (wie die Genese der Überzeugung) können den intrinsischen Zielwert rein logisch nicht weiter steigern.",
+      "tags": "",
+      "guid": "uBImik2NrL",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666297,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666298,
+      "front": "Woran erkennen Sie in einer philosophischen Textanalyse, mit welcher strategischen Stoßrichtung ein Autor auf das Problem des epistemischen „Mehrwerts“ (Menon-Intuition) reagiert?",
+      "back": "Prüfen Sie das Argumentationsmuster auf *Rettung* vs. *Eliminierung (Debunking)*:  \n1\\. **Rettung durch Addition:** Argumentiert der Autor, dass das Vorhandensein von zuverlässigen Prozessen (Rechtfertigung) die Gesamtsituation aufwertet, indem er instrumentelle Werte zum Wahrheitswert addiert (vgl. F. Hofmann)?  \n2\\. **Eliminierung durch Diagnose:** Argumentiert der Autor, dass wir einem Kategorienfehler aufsitzen? (Prüffrage: Wirft er uns vor, praktischen Nutzen wie z.B. Handlungsstabilität fälschlich für *epistemischen* Wert zu halten, oder den instrumentellen Wert der Methode unzulässigerweise zum intrinsischen Wahrheitswert hinzuzuaddieren?).",
+      "tags": "",
+      "guid": "68HeVBSfIw",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666298,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666299,
+      "front": "Inwiefern unterscheidet sich der aristotelische Wissensbegriff ($Wissen_A$) strukturell vom klassisch-erkenntnistheoretischen Wissensbegriff ($Wissen_E$)?",
+      "back": "* **$Wissen_E$ (Erkenntnistheoretisch):** Bezeichnet eine starke epistemische/kognitive Relation eines Subjekts zu einer isolierten Proposition (z.B. durch unanfechtbare oder sichere Gründe).  \n* **$Wissen_A$ (Aristotelisch):** Bezeichnet die explanatorische Kenntnis der *Ursachen* von Phänomenen. Es ist ein systemischer Begriff: Wahrheiten werden aus Kausalprinzipien (Axiomen) theorematisch abgeleitet.  \n* **Pointe:** Wenn Aristoteles sagt „Alle Menschen streben von Natur aus nach Wissen“, streben sie nicht nach Ansammlungen von $Wissen_E$ (Einzeltatsachen), sondern nach $Wissen_A$, also tiefgreifendem, theoretischem Weltverständnis.",
+      "tags": "",
+      "guid": "DgVFW8e2zh",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666299,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666300,
+      "front": "Wie lässt sich Sartwells Argument für die Inkonsistenz des Wissensbegriffs in seiner logischen Normalform rekonstruieren?",
+      "back": "Das Argument dekonstruiert den Wissensbegriff durch Aufzeigen eines Deduktions-Widerspruchs:  \n(1) $Wissen = Ziel$ (analytisch wahr)  \n(2) $Ziel = Wahre\\\\ \\\\ddot{U}berzeugung\\\\ (W\\\\ddot{U})$ (analytisch wahr aus Sicht des Wahrheitsmonismus)  \n(3) $Wissen = W\\\\ddot{U} + Rechtfertigung\\\\ (R)$ (analytisch wahr per Standarddefinition)  \n(4) Aus (2) & (3) folgt: $Wissen > Ziel$  \n(5) Konsequenz: Widerspruch zwischen (1) und (4).",
+      "tags": "",
+      "guid": "LZql8A90gM",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666300,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666301,
+      "front": "Wie lässt sich Sartwells formales Paradoxon der begrifflichen Inkohärenz durch semantische Analyse (Disambiguierung) auflösen?",
+      "back": "Durch die Aufdeckung einer Äquivokation (Gleichsetzungsfehler) im Begriff „Wissen“. Sartwell vermischt in seinen Prämissen zwei verschiedene Konzepte:  \n* Prämisse (1) operiert mit dem aristotelischen Begriff wissenschaftlich-explanatorischer Theorien ($Wissen_W$ als Ziel).  \n* Prämisse (3) operiert mit dem Statusbegriff der Erkenntnistheorie ($Wissen_E$ als Status des gerechtfertigt Seins).  \nSobald man die Indizes trennt ($Wissen_W = Ziel$ versus $Wissen_E = W\\\\ddot{U} + R$), verflüchtigt sich der scheinbare logische Widerspruch.",
+      "tags": "",
+      "guid": "YKQ609qEgC",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666301,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784033666302,
+      "front": "Woran erkenne ich in Texten der metaphilosophischen/metaepistemologischen Debatte den Vorwurf der „Inkohärenz“ eines Konzepts, und wie begegne ich ihm analytisch?",
+      "back": "* **Identifikation:** Ein Autor (wie Sartwell) behauptet, dass aus der bloßen Definition eines Begriffs (per Begriffsanalyse und deduktiver Inferenz) ein logischer Widerspruch folgt (z.B. Ein Begriff ist gleichzeitig ein reiner Zielbegriff und übersteigt das Ziel).  \n* **Analytische Abwehr:** Prüfen Sie die Prämissen auf den „Wahrheitsmonismus“. Fällt das Argument, wenn wir den monistischen Parameter ändern (z.B. Pluralismus zulassen)? Suchen Sie nach semantischen Verschiebungen (Äquivokationen) zwischen Alltagsverständnis, wissenschaftlichem Zielverständnis und erkenntnistheoretischem Statusbegriff.",
+      "tags": "",
+      "guid": "3K6cdER4Fn",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784033666302,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604532,
+      "front": "[Modell der Verpflichtung | Logik-Struktur]  \nWie ist das Modell der erkenntnistheoretischen Verpflichtung (das deontologische Modell) formal strukturiert und auf welcher grundlegenden Prämisse operiert es?",
+      "back": "Eine Überzeugung ist nach diesem Modell genau dann gerechtfertigt, wenn das Erkenntnissubjekt gegen keine epistemischen Pflichten bezüglich der Bildung dieser Überzeugung verstößt. Formal setzt dieses Modell den doxastischen Voluntarismus voraus: Gemäß dem Grundsatz „Sollen impliziert Können“ kann es Pflichten zur Überzeugungsbildung logisch nur dann geben, wenn wir eine direkte willentliche Kontrolle über unsere Überzeugungen besitzen.",
+      "tags": "",
+      "guid": "ErgXC4WUf8",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604532,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604533,
+      "front": "[Modell der Verpflichtung | Semantische Pointe]  \nWorin besteht der systematische und psychologische Fehlschluss des doxastischen Voluntarismus, der das Verpflichtungsmodell zu Fall bringt?",
+      "back": "Psychologisch ist das Modell inkorrekt, da sich Überzeugungen oft als unvermeidbare kausale Reaktionen (etwa bei zwingenden Wahrnehmungen oder logischen Schlüssen) einstellen, ohne dass eine willentliche Kontrolle möglich ist. Systematisch führt die Annahme, Überzeugungen seien Handlungen, in einen logischen Regress: Da jede Handlung zur Erklärung einen Wunsch und eine weitere Überzeugung benötigt, bräuchte jede Überzeugungsbildung ad infinitum vorherige Überzeugungen. Die Abschwächung auf bloße Reflexions- oder Sorgfaltspflichten erweist sich als weder notwendig noch hinreichend für echte Rechtfertigung.",
+      "tags": "",
+      "guid": "Sa8eOekb1Z",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604533,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604534,
+      "front": "[Modell der Verpflichtung | Transfer-Indikator]  \nWoran erkennen wir in der philosophischen Textanalyse das (oft fehlerhafte) deontologische Rechtfertigungsmodell und wie dekonstruieren wir es?",
+      "back": "Das Modell offenbart sich sprachlich durch normativ-moralisierende Vokabeln (z. B. „S hätte den Schluss nicht ziehen dürfen“, „S verhält sich epistemisch unverantwortlich“). Die Dekonstruktion erfolgt durch die Prüfung, ob der Autor intellektuelle Sorgfaltspflichten als Kriterium anlegt. Dies lässt sich durch Gegenbeispiele dekonstruieren, in denen ein Subjekt extrem sorgfältig ist, aber dennoch völlig irrationalen Vorurteilen unterliegt (Sorgfalt ist nicht hinreichend) oder gute Gründe rein zufällig, ohne eigene Sorgfalt, erwirbt (Sorgfalt ist nicht notwendig).",
+      "tags": "",
+      "guid": "50d5vPO0H1",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604534,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604535,
+      "front": "[Instrumentelle Rationalität | Logik-Struktur]  \nWie definiert das Modell der instrumentellen Rationalität einen „guten Grund“ für eine Überzeugung?",
+      "back": "Die epistemische Rechtfertigung wird konsequent teleologisch auf das kognitive Ziel ausgerichtet, nämlich den Erwerb von Wahrheit. Ein Grund \\(g\\) für eine Überzeugung \\(p\\) ist genau dann gut (adäquat), wenn \\(g\\) ein zuverlässiges Mittel beziehungsweise ein zuverlässiger Indikator ist, um das Ziel der Wahrheit zu erreichen – wenn er die Wahrheit von \\(p\\) also objektiv wahrscheinlich macht (\\(P(p|g) > 0.5\\)).",
+      "tags": "",
+      "guid": "zKPMNRD1oW",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604535,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604536,
+      "front": "[Instrumentelle Rationalität | Semantische Pointe]  \nWarum ist das Modell der instrumentellen Rationalität dem Verpflichtungsmodell philosophisch überlegen?",
+      "back": "Es erfüllt ohne Rekurs auf eine fragwürdige Willensfreiheit alle Adäquatheitsbedingungen der erkenntnistheoretischen Rechtfertigung. Es erklärt Wahrheitszuträglichkeit durch objektive Zuverlässigkeit, ermöglicht messbare Grade der Rechtfertigung (quantifizierbar durch die Wahrheitswahrscheinlichkeit der Methode) und macht die Anfechtbarkeit als nützlichen Korrekturmechanismus verständlich. Epistemische Reflexionspflichten haben hier keinen intrinsischen, sondern lediglich einen abgeleiteten instrumentellen Wert, sofern sie der Wahrheitsfindung dienen.",
+      "tags": "",
+      "guid": "sqIf2NbDha",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604536,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604537,
+      "front": "[Instrumentelle Rationalität | Transfer-Indikator]  \nWoran erkennt man in einem Argument die Anwendung des Modells instrumenteller Rationalität?",
+      "back": "Der Text verschiebt den Fokus von den internen Reflexionspflichten des Subjekts hin zu der objektiven Eignung von Methoden, Prozessen oder Verfahren der Überzeugungsbildung. Zentrale Indikatoren für dieses Muster sind Begriffe wie „Zuverlässigkeit“, „Wahrscheinlichkeit“, „Zweckdienlichkeit“ und „Wahrheitszuträglichkeit“ als alleinige Kriterien für einen guten Grund.",
+      "tags": "",
+      "guid": "aRFvGrCmST",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604537,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604538,
+      "front": "Wie definiert sich der kategoriale Raum der erkenntnistheoretischen Debatte zwischen Internalismus und Externalismus? Entlang welcher zwei Achsen lassen sich die Hauptpositionen (Evidentialismus vs. Reliabilismus) lokalisieren?",
+      "back": "Die Topologie wird durch zwei orthogonale Leitfragen aufgespannt:  \n1\\. **Ontologische Achse (Was sind Gründe?):**  \n* *Subjektivismus:* Gründe sind mentale, perspektivische Zustände des Subjekts.  \n* *Objektivismus:* Gründe sind von der mentalen Perspektive unabhängige, objektive Tatsachen oder Prozesse.  \n2\\. **Kognitive Zugangs-Achse (Welches Verhältnis besteht zu Gründen?):**  \n* *Zugangsinternalismus:* Das Subjekt muss kognitiven (oft introspektiven) Zugriff auf seine rechtfertigenden Gründe haben.  \n* *Zugangsexternalismus:* Die rechtfertigenden Faktoren müssen lediglich de facto vorliegen; ein kognitiver Zugang des Subjekts zu ihnen ist für die Rechtfertigung nicht erforderlich.  \n  \n*(Anwendung: Der Evidentialismus ist ein subjektivistischer Zugangsinternalismus; der Reliabilismus ein objektivistischer Zugangsexternalismus.)*",
+      "tags": "",
+      "guid": "dn09pvRQkO",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604538,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604539,
+      "front": "Worin besteht das fundamentale formallogische Scheitern zugangsinternalistischer Rechtfertigungsmodelle (wie z.B. bei L. BonJour)?",
+      "back": "Sie scheitern am infiniten Regress der Metarechtfertigung.  \nWenn eine Überzeugung \\\\\\(p\\\\\\) nur dann gerechtfertigt ist, wenn das Subjekt nicht nur durch einen Prozess \\\\\\(M\\\\\\) zu \\\\\\(p\\\\\\) gelangt, sondern *zusätzlich* gerechtfertigt glauben muss, dass \\\\\\(M\\\\\\) zuverlässig ist (Metarechtfertigung), entsteht ein unendlicher definitorischer Regress. Um die Zuverlässigkeit von \\\\\\(M\\\\\\) zu rechtfertigen, bedarf es eines Kriteriums \\\\\\(K\\\\\\), dessen Zuverlässigkeit wiederum gerechtfertigt geglaubt werden muss, usw..  \nZudem entkoppelt der internalistische Evidentialismus Rechtfertigung von der objektiven Wahrheitszuträglichkeit (siehe Dämonen-Szenario), was dem teleologischen Ziel der Erkenntnis (Wahrheit) widerspricht.",
+      "tags": "",
+      "guid": "PTnHrbySb7",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604539,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604540,
+      "front": "Wie lautet die logische Grundstruktur des Reliabilismus nach Alvin Goldman?",
+      "back": "Der Reliabilismus (Objektivismus + Zugangsexternalismus) definiert prima facie Rechtfertigung wie folgt:  \nEine Überzeugung \\\\\\(p\\\\\\) ist für ein Subjekt \\\\\\(S\\\\\\) erkenntnistheoretisch gerechtfertigt \\\\\\(\\\\leftrightarrow p\\\\\\) ist das kausale Resultat eines kognitiven Prozesses/einer Methode \\\\\\(M\\\\\\), und \\\\\\(M\\\\\\) ist objektiv zuverlässig (d.h. die bedingte Wahrscheinlichkeit der Wahrheit ist hoch: \\\\\\(P(p=wahr \\\\mid M) \\\\gg 0.5\\\\\\)).  \n*Pointe:* Die Zuverlässigkeit von \\\\\\(M\\\\\\) muss \\\\\\(S\\\\\\) nicht kognitiv bekannt sein (Zugangsexternalismus).",
+      "tags": "",
+      "guid": "3jNTxnCoJ4",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604540,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604541,
+      "front": "Worin besteht das Referenzklassenproblem des Reliabilismus und mit welchen ontologischen Setzungen wird es gelöst?",
+      "back": "Jeder psychologische Einzelprozess der Überzeugungsbildung ist ein Token (Einzelereignis) und fällt logisch unter unendlich viele Types (Klassen). Statistische Zuverlässigkeit lässt sich aber nur für Types berechnen.  \n*Das Problem spaltet sich:*  \n1\\. **Generalitätsproblem:** Welche Beschreibungstiefe ist relevant? (z.B. „Wahrnehmung“ vs. „visuelle Wahrnehmung am Mittwoch“).  \n*Lösung:* Kognitive Prozesse bilden *natürliche Arten* (wie H2O). Die objektiven kausalen Mechanismen (nicht beliebige Beschreibungen) determinieren die Referenzklasse.  \n2\\. **Lokalisationsproblem:** In welcher Umwelt wird die Zuverlässigkeit gemessen?  \n*Lösung:* Die für die Zuverlässigkeit relevante Umwelt wird durch die *natürliche Funktion* (z.B. evolutionsbiologische Anpassung) des kognitiven Mechanismus determiniert.",
+      "tags": "",
+      "guid": "P63EnNb3kr",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604541,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    },
+    {
+      "id": 1784554604542,
+      "front": "Woran erkennen Sie bei der Textanalyse, ob eine Argumentation zur Begründung einer Erkenntnismethode illegitim *logisch zirkulär* oder legitim *epistemisch zirkulär* ist?",
+      "back": "* **Logischer Zirkel (Erkenntnistheoretisch wertlos):** Die Konklusion \\\\\\(K\\\\\\) („Meine Wahrnehmung ist zuverlässig“) tritt explizit als Prämisse \\\\\\(P\\\\\\) auf (\\\\\\(P \\\\rightarrow K\\\\\\)).  \n* **Epistemischer Zirkel (Für Externalisten legitim):** Die Prämissen \\\\\\(P_1 \\\\dots P_n\\\\\\) (z.B. empirische Daten) stützen induktiv die Konklusion \\\\\\(K\\\\\\) („Die Wahrnehmung ist zuverlässig“). Der Zirkel besteht darin, dass \\\\\\(P_1 \\\\dots P_n\\\\\\) selbst durch Wahrnehmung gewonnen wurden.  \n* **Prüfregel an den Text:** Argumentiert ein internalistischer Autor, wertet er diesen Zirkel als logisch defizitär, da er \\\\\\(K\\\\\\) als bewusste Meta-Prämisse fordert. Argumentiert ein externalistischer (reliabilistischer) Autor, wertet er den Zirkel als gültig, da die Wahrnehmung nur *de facto* zuverlässig sein muss, um die Prämissen zu rechtfertigen, ohne dass diese Zuverlässigkeit als Prämisse vorausgesetzt werden muss.",
+      "tags": "",
+      "guid": "ysRhZX8NUx",
+      "mid": 1770298967856,
+      "usn": 0,
+      "deckName": "PHIL BA2014::Analytische Einführung in die Erkenntnistheorie::Kap. 4: Rechtfertigung",
+      "cards": [
+        {
+          "id": 1784554604542,
+          "ord": 0,
+          "did": 1784554662318
+        }
+      ]
+    }
+  ],
+  "style": "",
+  "creationTag": "AI Enhanced",
+  "subsets": [
+    {
+      "name": "Kap. 1: Einführung",
+      "cardCount": 9
+    },
+    {
+      "name": "Kap. 2: Wahrheit",
+      "cardCount": 18
+    },
+    {
+      "name": "Kap. 3: Wissen",
+      "cardCount": 36
+    },
+    {
+      "name": "Kap. 4: Rechtfertigung",
+      "cardCount": 22
+    }
+  ],
+  "cardCount": 85,
+  "insights": {
+    "cardCount": 85,
+    "includesScheduling": false,
+    "newCount": 0,
+    "learningCount": 0,
+    "reviewCount": 0,
+    "suspendedCount": 0,
+    "taggedCardCount": 0
+  }
+}

@@ -1,0 +1,65 @@
+services:
+  webapp:
+    # Pin to a specific release tag (or @sha256:... digest for maximum supply-chain security)
+    image: ghcr.io/maxoem/Schedae:latest
+    container_name: webapp
+    restart: unless-stopped
+
+    # 1. Process & Privilege Hardening
+    user: "101:101"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+    # 2. Ephemeral In-Memory /tmp
+    # - Required for nginx.pid, nginx *_temp folders, and 40-runtime-config.sh outputs
+    # - noexec: prevents executing any binary dropped into /tmp
+    # - nosuid/nodev: prevents privilege escalation or device creation
+    # - uid=101,gid=101: ensures the unprivileged nginx user owns the mount
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m,mode=1777,uid=101,gid=101
+
+    # 3. Network Binding
+    # Bind ONLY to localhost (127.0.0.1) so Docker doesn't bypass host firewalls (like UFW/nftables).
+    # Have your host reverse proxy (Caddy, Traefik, or host Nginx) handle TLS and proxy to 127.0.0.1:8080.
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - web_net
+
+    # 4. Runtime Configuration
+    environment:
+      SITE_URL: "https://example.com"
+      ANALYTICS_HOST: "https://analytics.example.com"
+      ANALYTICS_WEBSITE_ID: "00000000-0000-0000-0000-000000000000"
+
+    # 5. DoS & Fork-Bomb Protection (Resource Limits)
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+          pids: 64
+        reservations:
+          memory: 32M
+
+    # 6. Prevent Disk Exhaustion from Log Flooding
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # 7. Native Container Healthcheck
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:8080/healthz"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+networks:
+  web_net:
+    driver: bridge

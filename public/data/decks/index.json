@@ -1,0 +1,59 @@
+{
+  "format": "knowledge-flashcards-public-manifest-v1",
+  "decks": [
+    {
+      "id": "custom-1775940279574",
+      "file": "einfu_hrung_in_die_wissenschaftstheorie.json",
+      "title": "Einführung in die Wissenschaftstheorie",
+      "description": "Einführung in die Wissenschaftstheorie, ihre zentralen Probleme und Lösungsansätze. Entspricht dem Umfang und der Komplexität üblicher Studienmodule.",
+      "topic": "Philosophie",
+      "author": "G. Isar",
+      "date": "2026-04-11",
+      "complexity": "Anfänger",
+      "level": "BSc",
+      "creationTag": "AI Enhanced",
+      "cardCount": 158
+    },
+    {
+  "id": "custom-1784582830540",
+  "stackId": "phil-epistemik",
+  "file": "analytische_einfuhrung_in_die_erkenntnistheorie.json",
+  "title": "Analytische Einführung in die Erkenntnistheorie",
+  "description": "Sammlung basierend auf Thomas Grundmanns “Analytische Einführung in die Erkenntnistheorie”.",
+  "topic": "Philosophie",
+  "author": "Anonymer Weizen",
+  "date": "2026-06-20",
+  "complexity": "Fortgeschritten",
+  "level": "BSc",
+  "creationTag": "AI Enhanced",
+  "cardCount": 85,
+  "insights": {
+    "cardCount": 85,
+    "includesScheduling": false,
+    "newCount": 0,
+    "learningCount": 0,
+    "reviewCount": 0,
+    "suspendedCount": 0,
+    "taggedCardCount": 0
+  },
+  "subsets": [
+    {
+      "name": "Kap. 1: Einführung",
+      "cardCount": 9
+    },
+    {
+      "name": "Kap. 2: Wahrheit",
+      "cardCount": 18
+    },
+    {
+      "name": "Kap. 3: Wissen",
+      "cardCount": 36
+    },
+    {
+      "name": "Kap. 4: Rechtfertigung",
+      "cardCount": 22
+    }
+  ]
+}
+  ]
+}
