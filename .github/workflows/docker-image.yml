@@ -29,7 +29,7 @@ jobs:
           context: .
           target: production
           load: true
-          tags: ghcr.io/${{ github.repository }}:scan
+          tags: schedae:scan # local tag as repo has uppercase
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
