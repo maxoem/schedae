@@ -1,6 +1,6 @@
 import React from "react";
 import "katex/dist/katex.min.css";
-import { cn } from "@/lib/utils";
+import { cn, dedentText } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -20,7 +20,7 @@ export function KaTeXRenderer({
   text: string;
   className?: string;
 }) {
-  const content = React.useMemo(() => normalizeMathMarkdown(text), [text]);
+  const content = React.useMemo(() => normalizeMathMarkdown(dedentText(text)), [text]);
 
   return (
     <div className={cn("leading-relaxed max-w-none", className)}>

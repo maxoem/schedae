@@ -1,6 +1,7 @@
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import { toString } from "mdast-util-to-string";
+import { dedentText } from "@/lib/utils";
 import type { FlashCard } from "@/converters/types";
 import type {
   ExtractorOptions,
@@ -213,8 +214,18 @@ export class MarkdownSectionsExtractor implements ExtractorStrategy {
         }
       }
 
+      front = dedentText(front);
+      back = dedentText(back);
+      const cleanCustomFields: Record<string, string> = {};
+      for (const [k, v] of Object.entries(customFields)) {
+        const cleaned = dedentText(v);
+        if (cleaned) {
+          cleanCustomFields[k] = cleaned;
+        }
+      }
+
       // Quality diagnostics
-      if (!front && !back && Object.keys(customFields).length === 0) {
+      if (!front && !back && Object.keys(cleanCustomFields).length === 0) {
         diagnostics.push({
           id: `card-${cardIdx}-empty`,
           level: "warning",
@@ -257,7 +268,7 @@ export class MarkdownSectionsExtractor implements ExtractorStrategy {
         id: `card-${cardIdx + 1}`,
         front,
         back,
-        ...(Object.keys(customFields).length > 0 ? { customFields } : {}),
+        ...(Object.keys(cleanCustomFields).length > 0 ? { customFields: cleanCustomFields } : {}),
       });
     });
 

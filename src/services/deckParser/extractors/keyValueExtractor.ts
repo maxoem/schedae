@@ -1,4 +1,5 @@
 import type { FlashCard } from "@/converters/types";
+import { dedentText } from "@/lib/utils";
 import type {
   ExtractorOptions,
   ExtractorResult,
@@ -43,8 +44,8 @@ export class KeyValueExtractor implements ExtractorStrategy {
     };
 
     const finalizeCard = () => {
-      const front = currentCard.front.trim();
-      const back = currentCard.back.trim();
+      const front = dedentText(currentCard.front);
+      const back = dedentText(currentCard.back);
       const hasCustom = Object.keys(currentCard.customFields).length > 0;
 
       if (!front && !back && !hasCustom) {
@@ -73,7 +74,7 @@ export class KeyValueExtractor implements ExtractorStrategy {
       // Clean up whitespace inside custom fields
       const cleanCustomFields: Record<string, string> = {};
       for (const [k, v] of Object.entries(currentCard.customFields)) {
-        const cleaned = v.trim();
+        const cleaned = dedentText(v);
         if (cleaned) {
           cleanCustomFields[k] = cleaned;
         }

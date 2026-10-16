@@ -269,13 +269,10 @@ export function formatMarkdownForAnki(content: string): string {
   // 2. Strip trailing whitespace from each line
   str = str.replace(/[ \t]+$/gm, "");
 
-  // 3. Clean up existing raw <br> tags adjacent to list markers
-  str = str.replace(/<br\s*[\/]?[^>]*>[ \t]*(?=[*+-]|\d+\.)/gi, "\n");
-
-  // Also normalize any remaining stray <br> tags in markdown to newlines
+  // 3. Clean up existing raw <br> tags in markdown to standard newlines
   str = str.replace(/<br\s*[\/]?[^>]*>/gi, "\n");
 
-  // 4. Normalize accidental single-space indentation before list markers
+  // 4. Normalize accidental single-space indentation before list markers (leaves 2+ spaces / tabs intact)
   str = str.replace(/(^|\n) ([*+-]|\d+\.) /g, "$1$2 ");
 
   // 5. Normalize multiple blank lines to clean double newlines

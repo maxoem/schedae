@@ -27,6 +27,7 @@ const staticRoutes: SitemapRoute[] = [
   { path: '/configure', priority: '0.7', changefreq: 'monthly' },
   { path: '/llm-merge', priority: '0.7', changefreq: 'monthly' },
   { path: '/deck/create', priority: '0.6', changefreq: 'monthly' },
+  { path: '/changelog', priority: '0.6', changefreq: 'weekly' },
 ];
 
 // 2. Discover dynamic routes (decks and stacks)

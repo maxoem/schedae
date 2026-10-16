@@ -2,6 +2,7 @@ import { marked } from 'marked';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import DOMPurify from 'dompurify';
+import { dedentText } from '@/lib/utils';
 
 // Configure marked: pass existing HTML through, enable GFM (tables, strikethrough, etc.)
 marked.setOptions({ gfm: true });
@@ -180,8 +181,9 @@ function escapeOrphanedLeadingAsterisk(text: string): string {
  * HTML ready to be passed to `dangerouslySetInnerHTML`.
  */
 export const createMarkup = (content: string): { __html: string } => {
-  // 1. Fix orphaned leading asterisks before markdown processing
-  const normalised = escapeOrphanedLeadingAsterisk(content);
+  // 1. Dedent content and fix orphaned leading asterisks before markdown processing
+  const dedented = dedentText(content);
+  const normalised = escapeOrphanedLeadingAsterisk(dedented);
 
   // 2. Protect math and render with KaTeX before markdown touches it
   const mathRendered = renderMath(normalised);

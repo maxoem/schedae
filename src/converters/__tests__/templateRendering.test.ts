@@ -74,6 +74,15 @@ describe("Markdown & KaTeX Template Rendering", () => {
       formattedSubList,
       "* Parent item<br>  * Child item (2 spaces)<br>    * Sub-child item (4 spaces)"
     );
+
+    // 5. Existing <br> tags followed by intentional sub-bullet indentations are preserved
+    const inputWithBrSubList =
+      "* Parent item<br>  * Child item (2 spaces)<br>    * Sub-child item (4 spaces)";
+    const formattedBrSubList = formatMarkdownForAnki(inputWithBrSubList);
+    assert.equal(
+      formattedBrSubList,
+      "* Parent item<br>  * Child item (2 spaces)<br>    * Sub-child item (4 spaces)"
+    );
   });
 
   test("normalizeMathMarkdown handles LaTeX and Anki MathJax delimiters", () => {

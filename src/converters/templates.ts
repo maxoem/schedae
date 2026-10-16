@@ -75,7 +75,6 @@ const markdownBasicFront = `
 
             // Strip editor HTML wrappers and line breaks
             str = str.replace(/<[\\/]?pre[^>]*>/gi, "");
-            str = str.replace(/<br\\s*[\\/]?[^>]*>[ \\t]*(?=[*+-]|\\d+\\.)/gi, "\\n");
             str = str.replace(/<br\\s*[\\/]?[^>]*>/gi, "\\n");
             str = str.replace(/<p[^>]*>/gi, "");
             str = str.replace(/<\\/p>/gi, "\\n");

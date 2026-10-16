@@ -14,6 +14,7 @@ import type { FlashCard } from "@/converters/types";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import { toString } from "mdast-util-to-string";
+import { dedentText } from "@/lib/utils";
 
 type MarkdownNode = {
   type: string;
@@ -366,6 +367,9 @@ export function extractFlashcardsFromText(text: string, settings: SplitSettings)
       frontMd = frontMd.replace(cleanRegex, "").trim();
       backMd = backMd.replace(cleanRegex, "").trim();
     }
+
+    frontMd = dedentText(frontMd);
+    backMd = dedentText(backMd);
 
     if (frontMd && backMd) {
         cards.push({ front: frontMd, back: backMd });

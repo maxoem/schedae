@@ -93,9 +93,9 @@ export class DeckParserService {
         .replace(/\]+\]/gi, "")
         .replace(/\[\s*\d+(?:\s*,\s*\d+)*\s*\]/g, "");
     }
-    // Clean accidental <br> tags adjacent to list markers
-    s = s.replace(/<br\s*[\/]?[^>]*>[ \t]*(?=[*+-]|\d+\.)/gi, "\n");
-    // Normalize lines starting with an accidental single leading space before a list marker
+    // Clean accidental <br> tags to standard newlines
+    s = s.replace(/<br\s*[\/]?[^>]*>/gi, "\n");
+    // Normalize lines starting with an accidental single leading space before a list marker (preserves 2+ space sub-bullets)
     s = s.replace(/(^|\n) ([*+-]|\d+\.) /g, "$1$2 ");
     return s.replace(/\n{3,}/g, "\n\n").trim();
   }

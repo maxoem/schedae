@@ -94,13 +94,11 @@ function transformFieldContent(content: string, config: TransformationConfig): s
     str = str.replace(/^\s*\*\*?(Vorderseite|Rückseite|Antwort|Front|Back|Question|Frage|Answer)\*\*?:\s*/gim, "");
   }
 
-  // 4. Clean list bullets & indentation (solves the accidental sub-bullet <br> * issue)
+  // 4. Clean list bullets & indentation (solves the accidental sub-bullet <br> * issue without removing intentional sub-bullets)
   if (config.cleanListBullets) {
-    // Strip <br> tags immediately preceding list markers
-    str = str.replace(/<br\s*[\/]?[^>]*>[ \t]*(?=[*+-]|\d+\.)/gi, "\n");
-    // Strip remaining <br> tags
+    // Strip <br> tags to standard newlines
     str = str.replace(/<br\s*[\/]?[^>]*>/gi, "\n");
-    // Strip accidental single-space indentations before list markers
+    // Strip accidental single-space indentations before list markers (preserves 2+ space sub-bullets)
     str = str.replace(/(^|\n) ([*+-]|\d+\.) /g, "$1$2 ");
   }
 
@@ -353,75 +351,99 @@ export default function DeckRemaster() {
   }, [noteItems, uploadedFile, navigate]);
 
   return (
-    <div className="relative min-h-[calc(100vh-3rem)] w-full bg-background flex flex-col pt-4 pb-8 px-4 md:px-8 max-w-7xl mx-auto">
-      {/* Top Breadcrumb & Title */}
-      <div className="flex flex-col gap-3 mb-5 shrink-0">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link to="/">Home</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage className="font-medium text-foreground">
-                Deck Transformation
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+    <div className="relative h-full flex-1 min-h-0 overflow-hidden bg-background flex flex-col w-full max-w-[1920px] mx-auto px-3 sm:px-6 py-2.5 sm:py-3">
+      {/* Top Header when deck is loaded: Sleek, compact, zero wasted whitespace */}
+      {deckRawData ? (
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b shrink-0">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Breadcrumb>
+              <BreadcrumbList className="text-xs">
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link to="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage className="font-semibold text-foreground flex items-center gap-1.5">
+                    <Replace className="w-3.5 h-3.5 text-zinc-800 shrink-0" />
+                    <span>Transform and Update</span>
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+            <span className="hidden md:inline text-zinc-300">|</span>
+            <span className="hidden md:inline text-xs text-muted-foreground truncate max-w-xl">
+              Sanitize formatting, convert math &amp; HTML to Markdown, and upgrade templates losslessly.
+            </span>
+          </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2 shrink-0">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                setDeckRawData(null);
+                setUploadedFile(null);
+                setError(null);
+                setSuccessMessage(null);
+              }}
+              className="h-8 text-xs gap-1.5 cursor-pointer"
+            >
+              <RotateCcw className="w-3.5 h-3.5" /> New Deck
+            </Button>
+            <Button
+              onClick={handleExportRemasteredApkg}
+              disabled={isExporting}
+              size="sm"
+              className="h-8 text-xs font-semibold gap-1.5 shadow-2xs cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5" />
+              {isExporting ? "Repacking..." : "Export Remastered .apkg"}
+            </Button>
+          </div>
+        </div>
+      ) : (
+        /* Top Header when NO deck is loaded: Welcoming overview */
+        <div className="flex flex-col gap-2.5 mb-4 shrink-0 max-w-3xl mx-auto w-full">
+          <Breadcrumb>
+            <BreadcrumbList className="text-xs">
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/">Home</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="font-medium text-foreground">
+                  Deck Transformation
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground flex items-center gap-2.5">
               <Replace className="w-6 h-6 text-zinc-800" />
               <span>Transform and Update</span>
             </h1>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-1 max-w-3xl">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1">
               Decompile legacy <code className="text-xs font-mono bg-muted px-1.5 py-0.5 rounded">.apkg</code> decks, sanitize broken formatting, modernize list bullets and math syntax, and upgrade card templates without losing your scheduling history.
             </p>
           </div>
-
-          {deckRawData && (
-            <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  setDeckRawData(null);
-                  setUploadedFile(null);
-                  setError(null);
-                  setSuccessMessage(null);
-                }}
-                className="h-8 text-xs gap-1.5"
-              >
-                <RotateCcw className="w-3.5 h-3.5" /> New Deck
-              </Button>
-              <Button
-                onClick={handleExportRemasteredApkg}
-                disabled={isExporting}
-                size="sm"
-                className="h-8 text-xs font-semibold gap-1.5 shadow-2xs"
-              >
-                <Download className="w-3.5 h-3.5" />
-                {isExporting ? "Repacking..." : "Export Remastered .apkg"}
-              </Button>
-            </div>
-          )}
         </div>
-      </div>
+      )}
 
       {/* Notifications */}
       {error && (
-        <div className="mb-4 flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-xs text-destructive">
+        <div className="mt-2.5 mb-1 flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/10 p-2.5 text-xs text-destructive shrink-0">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
       {successMessage && (
-        <div className="mb-4 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs text-emerald-800">
+        <div className="mt-2.5 mb-1 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-2.5 text-xs text-emerald-800 shrink-0">
           <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
           <span className="font-medium">{successMessage}</span>
         </div>
@@ -429,7 +451,7 @@ export default function DeckRemaster() {
 
       {/* Upload Dropzone (When no deck loaded) */}
       {!deckRawData ? (
-        <div className="flex-1 flex flex-col items-center justify-center p-6">
+        <div className="flex-1 flex flex-col items-center justify-center p-6 overflow-y-auto">
           <div
             {...getRootProps()}
             className={`w-full max-w-2xl border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${
@@ -489,12 +511,12 @@ export default function DeckRemaster() {
         </div>
       ) : (
         /* Workspace when deck is loaded */
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 min-h-0">
-          {/* Left Column: Deck Info & Transformation Settings */}
-          <div className="flex flex-col gap-4">
+        <div className="flex-1 min-h-0 pt-2.5 grid grid-cols-1 lg:grid-cols-[360px_1fr] xl:grid-cols-[380px_1fr] gap-3.5 overflow-hidden">
+          {/* Left Column: Deck Info & Transformation Settings with smooth scroll */}
+          <div className="h-full min-h-0 flex flex-col gap-3 overflow-y-auto pr-0.5">
             {/* Deck Summary Card */}
-            <Card className="rounded-xl border shadow-2xs overflow-hidden">
-              <div className="bg-muted/40 px-4 py-3 border-b flex items-center justify-between">
+            <Card className="rounded-xl border shadow-2xs overflow-hidden shrink-0">
+              <div className="bg-muted/40 px-3.5 py-2.5 border-b flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <FileArchive className="w-4 h-4 text-zinc-800" />
                   <span className="text-xs font-semibold text-foreground uppercase tracking-wider">
@@ -506,43 +528,43 @@ export default function DeckRemaster() {
                 </Badge>
               </div>
 
-              <CardContent className="p-4 space-y-3">
+              <CardContent className="p-3.5 space-y-2.5">
                 <div>
-                  <h4 className="text-sm font-bold text-foreground truncate">
+                  <h4 className="text-xs font-bold text-foreground truncate" title={uploadedFile?.name || "Uploaded Deck"}>
                     {uploadedFile?.name || "Uploaded Deck"}
                   </h4>
-                  <p className="text-xs text-muted-foreground mt-0.5">
+                  <p className="text-[11px] text-muted-foreground mt-0.5">
                     {noteItems.length} Notes &bull; {deckRawData?.summary?.cardCount || noteItems.length} Cards
                   </p>
                 </div>
 
                 {/* Scheduling Pill Breakdown */}
-                <div className="grid grid-cols-2 gap-2 pt-2 border-t text-xs">
-                  <div className="bg-muted/40 p-2 rounded-lg">
-                    <span className="text-[11px] text-muted-foreground block">Review Cards</span>
-                    <span className="font-semibold text-foreground">{schedulingStats.reviewCards}</span>
+                <div className="grid grid-cols-2 gap-1.5 pt-2 border-t text-xs">
+                  <div className="bg-muted/40 p-2 rounded-md">
+                    <span className="text-[10px] text-muted-foreground block leading-tight">Review Cards</span>
+                    <span className="font-semibold text-foreground text-xs">{schedulingStats.reviewCards}</span>
                   </div>
-                  <div className="bg-muted/40 p-2 rounded-lg">
-                    <span className="text-[11px] text-muted-foreground block">Learning / New</span>
-                    <span className="font-semibold text-foreground">
+                  <div className="bg-muted/40 p-2 rounded-md">
+                    <span className="text-[10px] text-muted-foreground block leading-tight">Learning / New</span>
+                    <span className="font-semibold text-foreground text-xs">
                       {schedulingStats.learningCards + schedulingStats.newCards}
                     </span>
                   </div>
-                  <div className="bg-muted/40 p-2 rounded-lg">
-                    <span className="text-[11px] text-muted-foreground block">Total Repetitions</span>
-                    <span className="font-semibold text-foreground">{schedulingStats.totalReps}</span>
+                  <div className="bg-muted/40 p-2 rounded-md">
+                    <span className="text-[10px] text-muted-foreground block leading-tight">Total Repetitions</span>
+                    <span className="font-semibold text-foreground text-xs">{schedulingStats.totalReps}</span>
                   </div>
-                  <div className="bg-muted/40 p-2 rounded-lg">
-                    <span className="text-[11px] text-muted-foreground block">Suspended</span>
-                    <span className="font-semibold text-foreground">{schedulingStats.suspendedCards}</span>
+                  <div className="bg-muted/40 p-2 rounded-md">
+                    <span className="text-[10px] text-muted-foreground block leading-tight">Suspended</span>
+                    <span className="font-semibold text-foreground text-xs">{schedulingStats.suspendedCards}</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* Transformation Rules Card */}
-            <Card className="rounded-xl border shadow-2xs flex-1 flex flex-col">
-              <div className="bg-muted/40 px-4 py-3 border-b flex items-center justify-between">
+            <Card className="rounded-xl border shadow-2xs overflow-hidden shrink-0">
+              <div className="bg-muted/40 px-3.5 py-2.5 border-b flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Wand2 className="w-4 h-4 text-zinc-800" />
                   <span className="text-xs font-semibold text-foreground uppercase tracking-wider">
@@ -553,16 +575,16 @@ export default function DeckRemaster() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setConfig(DEFAULT_CONFIG)}
-                  className="h-6 px-2 text-[10px] text-muted-foreground hover:text-foreground"
+                  className="h-6 px-2 text-[10px] text-muted-foreground hover:text-foreground cursor-pointer"
                 >
                   Reset Defaults
                 </Button>
               </div>
 
-              <CardContent className="p-4 space-y-4 flex-1">
+              <CardContent className="p-3.5 space-y-3">
                 {/* Target Template */}
                 <div>
-                  <label className="text-xs font-medium text-foreground block mb-1.5">
+                  <label className="text-xs font-medium text-foreground block mb-1">
                     Target Card Template
                   </label>
                   <select
@@ -573,7 +595,7 @@ export default function DeckRemaster() {
                         targetTemplate: e.target.value as CardTemplateId,
                       }))
                     }
-                    className="w-full text-xs bg-background border rounded-lg px-2.5 py-1.5 focus:ring-1 focus:ring-ring"
+                    className="w-full text-xs bg-background border rounded-md px-2.5 py-1.5 focus:ring-1 focus:ring-ring cursor-pointer"
                   >
                     <option value="markdown_basic">Markdown Basic (KaTeX + Inter font)</option>
                     <option value="modern_light">Modern Clean (Light)</option>
@@ -583,7 +605,7 @@ export default function DeckRemaster() {
                 </div>
 
                 {/* Toggles */}
-                <div className="space-y-3 pt-2 border-t">
+                <div className="space-y-2.5 pt-2 border-t">
                   <label className="flex items-start gap-2.5 cursor-pointer">
                     <input
                       type="checkbox"
@@ -597,8 +619,8 @@ export default function DeckRemaster() {
                       <span className="font-medium text-foreground block">
                         Fix List Bullets &amp; Indents
                       </span>
-                      <span className="text-[11px] text-muted-foreground">
-                        Removes stray <code>&lt;br&gt; *</code> tags and trims accidental single-space indents to avoid unwanted sub-bullets.
+                      <span className="text-[11px] text-muted-foreground leading-snug">
+                        Removes stray <code>&lt;br&gt; *</code> tags and trims accidental single-space indents.
                       </span>
                     </div>
                   </label>
@@ -616,8 +638,8 @@ export default function DeckRemaster() {
                       <span className="font-medium text-foreground block">
                         Normalize Math &amp; LaTeX
                       </span>
-                      <span className="text-[11px] text-muted-foreground">
-                        Converts Anki MathJax tags and raw <code>\(\)</code> / <code>\[\]</code> delimiters into standard <code>$..$</code> and <code>$$..$$</code>.
+                      <span className="text-[11px] text-muted-foreground leading-snug">
+                        Converts Anki MathJax tags and raw <code>\(\)</code> / <code>\[\]</code> into <code>$..$</code> and <code>$$..$$</code>.
                       </span>
                     </div>
                   </label>
@@ -635,8 +657,8 @@ export default function DeckRemaster() {
                       <span className="font-medium text-foreground block">
                         Convert HTML to Markdown
                       </span>
-                      <span className="text-[11px] text-muted-foreground">
-                        Translates legacy HTML formatting tags (<code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;ul&gt;</code>) into native clean Markdown.
+                      <span className="text-[11px] text-muted-foreground leading-snug">
+                        Translates legacy HTML formatting tags (<code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;ul&gt;</code>) into clean Markdown.
                       </span>
                     </div>
                   </label>
@@ -654,8 +676,8 @@ export default function DeckRemaster() {
                       <span className="font-medium text-foreground block">
                         Strip Redundant Field Labels
                       </span>
-                      <span className="text-[11px] text-muted-foreground">
-                        Removes repetitive prefixes like <code>**Front:**</code> or <code>**Antwort:**</code> that were hardcoded into fields.
+                      <span className="text-[11px] text-muted-foreground leading-snug">
+                        Removes hardcoded prefixes like <code>**Front:**</code> or <code>**Antwort:**</code>.
                       </span>
                     </div>
                   </label>
@@ -673,23 +695,23 @@ export default function DeckRemaster() {
                       <span className="font-medium text-foreground block">
                         Clean Spacing &amp; Linebreaks
                       </span>
-                      <span className="text-[11px] text-muted-foreground">
-                        Trims line-end whitespace and standardizes double line breaks between paragraphs.
+                      <span className="text-[11px] text-muted-foreground leading-snug">
+                        Trims trailing whitespace and standardizes paragraph line breaks.
                       </span>
                     </div>
                   </label>
                 </div>
 
                 {/* Secondary Actions */}
-                <div className="pt-4 border-t flex flex-col gap-2">
+                <div className="pt-2.5 border-t">
                   <Button
                     onClick={handleSendToWorkspace}
                     variant="outline"
                     size="sm"
-                    className="w-full text-xs h-8 justify-start gap-2"
+                    className="w-full text-xs h-8 justify-start gap-2 cursor-pointer"
                   >
-                    <BookOpen className="w-3.5 h-3.5 text-muted-foreground" />
-                    <span>Send to Schedae Workspace (MD &rarr; APKG)</span>
+                    <BookOpen className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                    <span className="truncate">Send to Schedae Workspace (MD &rarr; APKG)</span>
                   </Button>
                 </div>
               </CardContent>
@@ -697,10 +719,10 @@ export default function DeckRemaster() {
           </div>
 
           {/* Right Column: Card Inspection & Diff View */}
-          <div className="flex flex-col border rounded-xl overflow-hidden bg-card shadow-2xs min-h-[500px]">
+          <div className="flex flex-col border rounded-xl overflow-hidden bg-card shadow-2xs h-full min-h-0">
             {/* Top Toolbar */}
-            <div className="bg-muted/40 px-4 py-2.5 border-b flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
+            <div className="bg-muted/40 px-3.5 py-2 border-b flex items-center justify-between gap-2 shrink-0">
+              <div className="flex items-center gap-2 shrink-0">
                 <span className="text-xs font-semibold text-foreground uppercase tracking-wider">
                   Card Inspector
                 </span>
@@ -709,8 +731,42 @@ export default function DeckRemaster() {
                 </Badge>
               </div>
 
+              {/* View Tabs */}
+              <div className="inline-flex rounded-lg bg-zinc-100 p-0.5 border text-xs shrink-0">
+                <button
+                  onClick={() => setActiveTab("diff")}
+                  className={`px-2.5 py-1 rounded-md transition-all font-medium cursor-pointer ${
+                    activeTab === "diff"
+                      ? "bg-white text-foreground shadow-2xs"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Diff Compare
+                </button>
+                <button
+                  onClick={() => setActiveTab("preview")}
+                  className={`px-2.5 py-1 rounded-md transition-all font-medium cursor-pointer ${
+                    activeTab === "preview"
+                      ? "bg-white text-foreground shadow-2xs"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Rendered Preview
+                </button>
+                <button
+                  onClick={() => setActiveTab("raw")}
+                  className={`px-2.5 py-1 rounded-md transition-all font-medium cursor-pointer ${
+                    activeTab === "raw"
+                      ? "bg-white text-foreground shadow-2xs"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Raw Metadata
+                </button>
+              </div>
+
               {/* Search Bar */}
-              <div className="relative w-48 sm:w-64">
+              <div className="relative w-36 sm:w-48 md:w-56 shrink-0">
                 <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <input
                   type="text"
@@ -723,56 +779,22 @@ export default function DeckRemaster() {
                   className="w-full text-xs bg-background border rounded-lg pl-8 pr-3 py-1 focus:ring-1 focus:ring-ring"
                 />
               </div>
-
-              {/* View Tabs */}
-              <div className="inline-flex rounded-lg bg-zinc-100 p-0.5 border text-xs">
-                <button
-                  onClick={() => setActiveTab("diff")}
-                  className={`px-3 py-1 rounded-md transition-all font-medium ${
-                    activeTab === "diff"
-                      ? "bg-white text-foreground shadow-2xs"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Diff Compare
-                </button>
-                <button
-                  onClick={() => setActiveTab("preview")}
-                  className={`px-3 py-1 rounded-md transition-all font-medium ${
-                    activeTab === "preview"
-                      ? "bg-white text-foreground shadow-2xs"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Rendered Preview
-                </button>
-                <button
-                  onClick={() => setActiveTab("raw")}
-                  className={`px-3 py-1 rounded-md transition-all font-medium ${
-                    activeTab === "raw"
-                      ? "bg-white text-foreground shadow-2xs"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Raw Metadata
-                </button>
-              </div>
             </div>
 
             {/* Inspector Body */}
             {currentItem ? (
               <div className="flex-1 flex flex-col min-h-0">
                 {/* Active Card Header */}
-                <div className="px-4 py-2 border-b bg-muted/15 flex flex-wrap items-center justify-between text-xs text-muted-foreground gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-[11px] font-medium text-foreground">
+                <div className="px-3.5 py-1.5 border-b bg-muted/15 flex items-center justify-between text-xs text-muted-foreground gap-2 shrink-0">
+                  <div className="flex items-center gap-2 truncate">
+                    <span className="font-mono text-[11px] font-medium text-foreground shrink-0">
                       Note #{currentItem.id}
                     </span>
                     <span>&bull;</span>
-                    <span className="truncate max-w-[200px]">{currentItem.deckName}</span>
+                    <span className="truncate max-w-[280px]">{currentItem.deckName}</span>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 shrink-0">
                     {currentItem.scheduling ? (
                       <Badge variant="outline" className="text-[10px] leading-none py-0.5 bg-background">
                         <Clock className="w-3 h-3 mr-1 text-zinc-500" />
@@ -787,16 +809,16 @@ export default function DeckRemaster() {
                 </div>
 
                 {/* Content View Modes */}
-                <div className="flex-1 min-h-0 p-4">
+                <div className="flex-1 min-h-0 p-3 overflow-hidden">
                   {activeTab === "diff" && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 h-full min-h-0">
                       {/* Original */}
-                      <div className="flex flex-col border rounded-lg bg-zinc-50/50 overflow-hidden">
-                        <div className="px-3 py-1.5 border-b bg-zinc-100 text-[11px] font-semibold text-zinc-600 uppercase tracking-wider flex justify-between">
+                      <div className="flex flex-col border rounded-lg bg-zinc-50/50 overflow-hidden h-full min-h-0">
+                        <div className="px-3 py-1.5 border-b bg-zinc-100 text-[11px] font-semibold text-zinc-600 uppercase tracking-wider flex justify-between shrink-0">
                           <span>Original (Legacy HTML / Raw)</span>
                           <span className="text-[10px] lowercase text-zinc-400">before</span>
                         </div>
-                        <ScrollArea className="flex-1 p-3">
+                        <ScrollArea className="flex-1 min-h-0 p-3">
                           <div className="space-y-3 font-mono text-xs">
                             <div>
                               <span className="text-[10px] font-bold text-muted-foreground uppercase block mb-1">
@@ -819,12 +841,12 @@ export default function DeckRemaster() {
                       </div>
 
                       {/* Remastered */}
-                      <div className="flex flex-col border rounded-lg bg-emerald-50/20 border-emerald-200 overflow-hidden">
-                        <div className="px-3 py-1.5 border-b bg-emerald-50 text-[11px] font-semibold text-emerald-800 uppercase tracking-wider flex justify-between">
+                      <div className="flex flex-col border rounded-lg bg-emerald-50/20 border-emerald-200 overflow-hidden h-full min-h-0">
+                        <div className="px-3 py-1.5 border-b bg-emerald-50 text-[11px] font-semibold text-emerald-800 uppercase tracking-wider flex justify-between shrink-0">
                           <span>Remastered (Clean Markdown)</span>
                           <span className="text-[10px] lowercase text-emerald-600 font-bold">after</span>
                         </div>
-                        <ScrollArea className="flex-1 p-3">
+                        <ScrollArea className="flex-1 min-h-0 p-3">
                           <div className="space-y-3 font-mono text-xs">
                             <div>
                               <span className="text-[10px] font-bold text-emerald-900 uppercase block mb-1">
@@ -849,13 +871,13 @@ export default function DeckRemaster() {
                   )}
 
                   {activeTab === "preview" && (
-                    <div className="h-full flex flex-col border rounded-xl p-6 bg-white shadow-2xs overflow-y-auto">
-                      <div className="max-w-2xl mx-auto w-full space-y-6">
+                    <div className="h-full flex flex-col border rounded-xl p-5 bg-white shadow-2xs overflow-y-auto">
+                      <div className="max-w-2xl mx-auto w-full space-y-5">
                         <div>
-                          <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block mb-2">
+                          <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block mb-1.5">
                             Front (Question)
                           </span>
-                          <div className="p-4 rounded-xl bg-zinc-50 border text-foreground font-medium text-base">
+                          <div className="p-3.5 rounded-xl bg-zinc-50 border text-foreground font-medium text-base">
                             <KaTeXRenderer text={currentItem.transformedFront} />
                           </div>
                         </div>
@@ -863,10 +885,10 @@ export default function DeckRemaster() {
                         <hr className="border-border/60" />
 
                         <div>
-                          <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block mb-2">
+                          <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block mb-1.5">
                             Back (Answer &bull; Markdown &amp; Math)
                           </span>
-                          <div className="p-4 rounded-xl bg-zinc-50 border text-foreground text-sm">
+                          <div className="p-3.5 rounded-xl bg-zinc-50 border text-foreground text-sm">
                             <KaTeXRenderer text={currentItem.transformedBack} />
                           </div>
                         </div>
@@ -882,13 +904,13 @@ export default function DeckRemaster() {
                 </div>
 
                 {/* Card Navigation Pagination Footer */}
-                <div className="p-3 border-t bg-muted/20 flex items-center justify-between shrink-0">
+                <div className="px-3.5 py-2 border-t bg-muted/20 flex items-center justify-between shrink-0">
                   <Button
                     variant="outline"
                     size="sm"
                     disabled={selectedCardIndex <= 0}
                     onClick={() => setSelectedCardIndex((prev) => Math.max(0, prev - 1))}
-                    className="h-8 text-xs"
+                    className="h-8 text-xs cursor-pointer"
                   >
                     Previous Card
                   </Button>
@@ -904,7 +926,7 @@ export default function DeckRemaster() {
                     onClick={() =>
                       setSelectedCardIndex((prev) => Math.min(filteredNoteItems.length - 1, prev + 1))
                     }
-                    className="h-8 text-xs"
+                    className="h-8 text-xs cursor-pointer"
                   >
                     Next Card
                   </Button>

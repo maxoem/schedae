@@ -10,8 +10,10 @@ import Kartenkonzept from "@/pages/Kartenkonzept";
 import GenAiCards from "@/pages/GenAiCards";
 import JsonToApkg from "@/pages/JsonToApkg";
 import OpenSource from "@/pages/OpenSource";
+import Changelog from "@/pages/Changelog";
+import { useChangelogNews } from "@/hooks/useChangelogNews";
 import { OnboardingModal } from "@/components/OnboardingModal";
-import { BookOpen, Sparkles, RefreshCcw, Layers, Lightbulb, Menu, Braces, Lock, Wand2, Replace } from "lucide-react";
+import { BookOpen, Sparkles, RefreshCcw, Layers, Lightbulb, Menu, Braces, Lock, Wand2, Replace, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
 import { useState } from "react";
@@ -140,6 +142,7 @@ function DesktopNav() {
 function MobileNav() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  const { hasUnreadNews } = useChangelogNews();
 
   return (
     <div className="flex items-center md:hidden gap-2">
@@ -250,6 +253,24 @@ function MobileNav() {
                     Feature Tour
                   </Link>
                 </Button>
+                <Button
+                  variant={location.pathname === "/changelog" ? "secondary" : "ghost"}
+                  asChild
+                  className="justify-start h-9 text-sm font-medium"
+                >
+                  <Link to="/changelog" onClick={() => setOpen(false)} className="flex items-center justify-between w-full">
+                    <span className="flex items-center">
+                      <History className="w-4 h-4 mr-2.5 text-muted-foreground" />
+                      Changelog
+                    </span>
+                    {hasUnreadNews && (
+                      <span className="relative flex h-2 w-2 mr-1">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600" />
+                      </span>
+                    )}
+                  </Link>
+                </Button>
               </nav>
             </div>
 
@@ -266,6 +287,7 @@ function MobileNav() {
 
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
+  const { hasUnreadNews } = useChangelogNews();
 
   const isWorkspacePage =
     location.pathname === "/" ||
@@ -315,6 +337,19 @@ function Layout({ children }: { children: React.ReactNode }) {
             </p>
             <div className="flex items-center gap-3">
               <Link
+                to="/changelog"
+                className="relative inline-flex items-center gap-1.5 hover:text-foreground underline underline-offset-2 transition-colors"
+              >
+                <span>Changelog</span>
+                {hasUnreadNews && (
+                  <span className="relative flex h-1.5 w-1.5" title="New updates available">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-600" />
+                  </span>
+                )}
+              </Link>
+              <span className="text-zinc-300">•</span>
+              <Link
                 to="/open-source"
                 className="hover:text-foreground underline underline-offset-2 transition-colors"
               >
@@ -348,6 +383,18 @@ function Layout({ children }: { children: React.ReactNode }) {
               .
             </p>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <Link
+                to="/changelog"
+                className="relative inline-flex items-center gap-1.5 hover:text-foreground underline underline-offset-4 decoration-muted-foreground/40 transition-colors"
+              >
+                <span>Changelog</span>
+                {hasUnreadNews && (
+                  <span className="relative flex h-2 w-2" title="New updates available">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600" />
+                  </span>
+                )}
+              </Link>
               <Link
                 to="/open-source"
                 className="hover:text-foreground underline underline-offset-4 decoration-muted-foreground/40 transition-colors"
@@ -387,6 +434,7 @@ function App() {
           <Route path="/remaster" element={<DeckRemaster />} />
           <Route path="/refurbish" element={<DeckRemaster />} />
           <Route path="/deck/create" element={<CreateDeck />} />
+          <Route path="/changelog" element={<Changelog />} />
           <Route path="/open-access" element={<OpenSource />} />
           <Route path="/open-source" element={<OpenSource />} />
         </Routes>
