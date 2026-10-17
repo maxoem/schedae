@@ -1,7 +1,7 @@
 services:
   webapp:
     # Pin to a specific release tag (or @sha256:... digest for maximum supply-chain security)
-    image: ghcr.io/maxoem/Schedae:latest
+    image: ghcr.io/maxoem/schedae:latest
     container_name: webapp
     restart: unless-stopped
 
@@ -31,9 +31,9 @@ services:
 
     # 4. Runtime Configuration
     environment:
-      SITE_URL: "https://example.com"
-      ANALYTICS_HOST: "https://analytics.example.com"
-      ANALYTICS_WEBSITE_ID: "00000000-0000-0000-0000-000000000000"
+      SITE_URL: "https://schedae.maoem.de"
+      ANALYTICS_HOST: "https://stats.maoem.de"
+      ANALYTICS_WEBSITE_ID: "018ea2a9-ddae-4848-8926-52ef83659823"
 
     # 5. DoS & Fork-Bomb Protection (Resource Limits)
     deploy:

@@ -319,7 +319,7 @@ export default function DeckRemaster() {
       a.click();
       URL.revokeObjectURL(url);
 
-      setSuccessMessage(`Deck successfully remastered and exported with 100% scheduling intact!`);
+      setSuccessMessage(`Deck successfully remastered and exported with 100% scheduling intact! Tip: When importing into Anki, ensure "Update existing notes" is enabled to apply formatting to existing cards.`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to repack and export .apkg file.");
     } finally {

@@ -605,9 +605,22 @@ export async function decodeApkgRaw(
 
       const hasField = (field: string) => selectedFields.includes(field);
 
-      const colRows = db.exec("SELECT decks, dconf FROM col LIMIT 1");
-      const decksJson = colRows.length && colRows[0].values.length ? String(colRows[0].values[0]?.[0] ?? "") : "";
-      const dconfJson = colRows.length && colRows[0].values.length ? String(colRows[0].values[0]?.[1] ?? "") : "";
+      let colMeta: Record<string, any> = {};
+      try {
+        const colRes = db.exec("SELECT * FROM col LIMIT 1");
+        if (colRes.length && colRes[0].values.length) {
+          const cols = colRes[0].columns;
+          const vals = colRes[0].values[0];
+          cols.forEach((colName, idx) => {
+            colMeta[colName] = vals[idx];
+          });
+        }
+      } catch {
+        colMeta = {};
+      }
+
+      const decksJson = colMeta.decks ? String(colMeta.decks) : "";
+      const dconfJson = colMeta.dconf ? String(colMeta.dconf) : "";
 
       let dconfById: Record<string, any> = {};
       if (dconfJson) {
@@ -720,8 +733,13 @@ export async function decodeApkgRaw(
         odue: number;
         odid: number;
         flags: number;
+        data?: string;
       }>(
-        db.exec("SELECT id, nid, did, ord, mod, usn, type, queue, due, ivl, factor, reps, lapses, left, odue, odid, flags FROM cards"),
+        db.exec(
+          tableColumns(db, "cards").includes("data")
+            ? "SELECT id, nid, did, ord, mod, usn, type, queue, due, ivl, factor, reps, lapses, left, odue, odid, flags, data FROM cards"
+            : "SELECT id, nid, did, ord, mod, usn, type, queue, due, ivl, factor, reps, lapses, left, odue, odid, flags FROM cards"
+        ),
       );
 
       const cardsByNid = new Map<number, typeof cardRows>();
@@ -746,10 +764,12 @@ export async function decodeApkgRaw(
       }
 
       const normalizeCard = (card: (typeof cardRows)[number]) => {
+        const cardData = typeof card.data === "string" ? card.data : "";
         const base: Record<string, any> = {
           id: Number(card.id),
           ord: Number(card.ord),
           did: Number(card.did),
+          data: cardData,
         };
 
         if (includeScheduling) {
@@ -767,6 +787,7 @@ export async function decodeApkgRaw(
             flags: Number(card.flags),
             mod: Number(card.mod),
             usn: Number(card.usn),
+            data: cardData,
           };
         }
 
@@ -850,8 +871,39 @@ export async function decodeApkgRaw(
           .map((d) => [String(d.id), d]),
       );
 
+      let fullModels: Record<string, any> = {};
+      if (colMeta.models) {
+        try {
+          fullModels = JSON.parse(String(colMeta.models));
+        } catch {
+          fullModels = {};
+        }
+      }
       const modelMap = loadModelsLegacy(db) ?? loadModelsNew(db);
-      const models = modelMap ? Object.fromEntries(modelMap) : {};
+      const models = Object.keys(fullModels).length > 0
+        ? fullModels
+        : (modelMap ? Object.fromEntries(modelMap) : {});
+
+      let revlogRows: any[] = [];
+      if (includeScheduling) {
+        try {
+          if (tableColumns(db, "revlog").length > 0) {
+            revlogRows = rowsToObjects<{
+              id: number;
+              cid: number;
+              usn: number;
+              ease: number;
+              ivl: number;
+              lastIvl: number;
+              factor: number;
+              time: number;
+              type: number;
+            }>(db.exec("SELECT id, cid, usn, ease, ivl, lastIvl, factor, time, type FROM revlog"));
+          }
+        } catch {
+          revlogRows = [];
+        }
+      }
 
       return {
         format: "anki-apkg-reduced-v2",
@@ -868,6 +920,8 @@ export async function decodeApkgRaw(
           byId: deckById,
         },
         models,
+        col: colMeta,
+        revlog: revlogRows,
       };
     }
   } finally {
