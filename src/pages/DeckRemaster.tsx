@@ -36,82 +36,12 @@ import {
 import { decodeApkgRaw } from "@/converters/apkg";
 import { createApkgFromAnkiJson } from "@/converters/jsonToApkg";
 import { CARD_TEMPLATES, type CardTemplateId } from "@/converters/templates";
-import { normalizeMathMarkdown } from "@/utils/mathUtils";
 import { KaTeXRenderer } from "@/components/flashcard/KaTeXPreview";
-import TurndownService from "turndown";
-
-const _turndown = new TurndownService({
-  headingStyle: "atx",
-  codeBlockStyle: "fenced",
-  bulletListMarker: "-",
-});
-
-export interface TransformationConfig {
-  cleanListBullets: boolean;
-  normalizeMath: boolean;
-  htmlToMarkdown: boolean;
-  stripFieldLabels: boolean;
-  normalizeWhitespace: boolean;
-  targetTemplate: CardTemplateId;
-}
-
-const DEFAULT_CONFIG: TransformationConfig = {
-  cleanListBullets: true,
-  normalizeMath: true,
-  htmlToMarkdown: true,
-  stripFieldLabels: true,
-  normalizeWhitespace: true,
-  targetTemplate: "markdown_basic",
-};
-
-/**
- * Transforms legacy Anki note field content into clean modern Markdown.
- */
-function transformFieldContent(content: string, config: TransformationConfig): string {
-  if (!content || typeof content !== "string") return "";
-  let str = content;
-
-  // 1. Convert legacy HTML markup to clean Markdown via Turndown
-  if (config.htmlToMarkdown && /<[a-z][\s\S]*?>/i.test(str)) {
-    try {
-      str = _turndown.turndown(str);
-    } catch {
-      // Fallback: strip basic tags
-      str = str.replace(/<[\/]?pre[^>]*>/gi, "");
-      str = str.replace(/<[\/]?span[^>]*>/gi, "");
-    }
-  }
-
-  // 2. Normalize MathJax and LaTeX expressions
-  if (config.normalizeMath) {
-    str = normalizeMathMarkdown(str);
-    // Fix stray unescaped backslashes in math blocks
-    str = str.replace(/\\\\([()[\]])/g, "\\$1");
-  }
-
-  // 3. Strip redundant bold field labels baked into the text
-  if (config.stripFieldLabels) {
-    str = str.replace(/^\s*\*\*?(Vorderseite|Rückseite|Antwort|Front|Back|Question|Frage|Answer)\*\*?:\s*/gim, "");
-  }
-
-  // 4. Clean list bullets & indentation (solves the accidental sub-bullet <br> * issue without removing intentional sub-bullets)
-  if (config.cleanListBullets) {
-    // Strip <br> tags to standard newlines
-    str = str.replace(/<br\s*[\/]?[^>]*>/gi, "\n");
-    // Strip accidental single-space indentations before list markers (preserves 2+ space sub-bullets)
-    str = str.replace(/(^|\n) ([*+-]|\d+\.) /g, "$1$2 ");
-  }
-
-  // 5. Normalize whitespace
-  if (config.normalizeWhitespace) {
-    // Strip trailing spaces per line
-    str = str.replace(/[ \t]+$/gm, "");
-    // Collapse 3+ newlines to standard double newlines
-    str = str.replace(/\n{3,}/g, "\n\n");
-  }
-
-  return str.trim();
-}
+import {
+  defaultDeckTransformerService,
+  type TransformationConfig,
+  DEFAULT_TRANSFORMATION_CONFIG as DEFAULT_CONFIG,
+} from "@/services/deckTransformer";
 
 interface NoteCardItem {
   id: number;
@@ -200,8 +130,16 @@ export default function DeckRemaster() {
         const origFront = String(note.front || "");
         const origBack = String(note.back || "");
 
-        const transformedFront = transformFieldContent(origFront, config);
-        const transformedBack = transformFieldContent(origBack, config);
+        const transformedFront = defaultDeckTransformerService.transformField(origFront, config, {
+          fieldName: "front",
+          noteId: Number(note.id),
+          deckName,
+        });
+        const transformedBack = defaultDeckTransformerService.transformField(origBack, config, {
+          fieldName: "back",
+          noteId: Number(note.id),
+          deckName,
+        });
 
         const firstCard = Array.isArray(note.cards) && note.cards.length > 0 ? note.cards[0] : null;
 
@@ -284,8 +222,14 @@ export default function DeckRemaster() {
               const origFront = String(note.front || "");
               const origBack = String(note.back || "");
 
-              note.front = transformFieldContent(origFront, config);
-              note.back = transformFieldContent(origBack, config);
+              note.front = defaultDeckTransformerService.transformField(origFront, config, {
+                fieldName: "front",
+                noteId: Number(note.id),
+              });
+              note.back = defaultDeckTransformerService.transformField(origBack, config, {
+                fieldName: "back",
+                noteId: Number(note.id),
+              });
 
               // Update flds array if present
               if (note.flds) {
@@ -294,7 +238,10 @@ export default function DeckRemaster() {
                   parts[0] = note.front;
                   parts[1] = note.back;
                   for (let i = 2; i < parts.length; i++) {
-                    parts[i] = transformFieldContent(parts[i], config);
+                    parts[i] = defaultDeckTransformerService.transformField(parts[i], config, {
+                      fieldName: `field_${i}`,
+                      noteId: Number(note.id),
+                    });
                   }
                   note.flds = parts.join("\x1f");
                 }

@@ -1,16 +1,16 @@
+import { MathEnvironmentTransformer } from "@/services/deckTransformer/transformers/mathEnvironmentTransformer";
+
+const mathTransformer = new MathEnvironmentTransformer();
+
 /**
  * Normalizes math syntax across various formats (Anki-MathJax tags,
- * LaTeX \(...\) inline and \[...\] display math) to standard remark-math ($...$ and $$...$$).
+ * LaTeX \(...\) inline and \[...\] display math, bare display environments) to standard remark-math ($...$ and $$...$$).
+ * If the content does not contain math syntax requiring normalization, it is returned untouched.
  */
 export function normalizeMathMarkdown(raw: string): string {
-  if (!raw) return "";
-  let s = raw;
-  // Anki native tags
-  s = s.replace(/\\?<anki-mathjax[^>]*?block=["']?1["']?[^>]*>([\s\S]*?)\\?<\/anki-mathjax>/gi, (_, math) => `\n\n$$${math}$$\n\n`);
-  s = s.replace(/\\?<anki-mathjax[^>]*>([\s\S]*?)\\?<\/anki-mathjax>/gi, (_, math) => `$${math}$`);
-  // LaTeX display math \[...\] and double escaped \\[...\\]
-  s = s.replace(/\\\\?\[([\s\S]*?)\\\\?\]/g, (_, math) => `\n\n$$${math}$$\n\n`);
-  // LaTeX inline math \(...\) and double escaped \\(...\\)
-  s = s.replace(/\\\\?\(([\s\S]*?)\\\\?\)/g, (_, math) => `$${math}$`);
-  return s;
+  if (!raw || typeof raw !== "string") return "";
+  if (mathTransformer.canTransform(raw)) {
+    return mathTransformer.transform(raw);
+  }
+  return raw;
 }

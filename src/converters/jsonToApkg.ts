@@ -278,8 +278,28 @@ export function formatMarkdownForAnki(content: string): string {
   // 5. Normalize multiple blank lines to clean double newlines
   str = str.replace(/\n{3,}/g, "\n\n");
 
-  // 6. Convert newlines to Anki HTML breaks (<br>)
-  return str.replace(/\n/g, "<br>");
+  // 6. Convert newlines to Anki HTML breaks (<br>), protecting math formulas and code blocks
+  // so that internal newlines in LaTeX matrices or aligned equations are never corrupted with <br>
+  const placeholders: string[] = [];
+  const protect = (match: string) => {
+    const idx = placeholders.length;
+    placeholders.push(match);
+    return `XPROTECTEDCHUNK${idx}X`;
+  };
+
+  str = str.replace(/```[\s\S]*?```/g, protect);
+  str = str.replace(/\$\$[\s\S]*?\$\$/g, protect);
+  str = str.replace(/\\begin\{([a-z*]+)\}[\s\S]*?\\end\{\1\}/gi, protect);
+  str = str.replace(/\\?<anki-mathjax[^>]*>[\s\S]*?\\?<\/anki-mathjax>/gi, protect);
+  str = str.replace(/\$[^$\n]+?\$/g, protect);
+
+  str = str.replace(/\n/g, "<br>");
+
+  str = str.replace(/XPROTECTEDCHUNK(\d+)X/g, (_, idx) => {
+    return placeholders[Number(idx)] ?? "";
+  });
+
+  return str;
 }
 
 export interface CreateApkgOptions {

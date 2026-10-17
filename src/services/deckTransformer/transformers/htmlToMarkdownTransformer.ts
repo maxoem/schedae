@@ -1,0 +1,75 @@
+import TurndownService from "turndown";
+import type { ContentTransformer, TransformationContext } from "../types";
+
+export class HtmlToMarkdownTransformer implements ContentTransformer {
+  readonly id = "html-to-markdown";
+  readonly name = "HTML to Clean Markdown";
+  readonly description = "Converts legacy HTML markup into clean modern Markdown while strictly safeguarding math formulas and code blocks.";
+  readonly order = 20;
+
+  private turndown: TurndownService;
+
+  constructor() {
+    this.turndown = new TurndownService({
+      headingStyle: "atx",
+      hr: "---",
+      bulletListMarker: "-",
+      codeBlockStyle: "fenced",
+    });
+  }
+
+  canTransform(content: string, _context?: TransformationContext): boolean {
+    if (!content || typeof content !== "string") return false;
+    // Check if the string contains HTML markup (excluding bare <anki-mathjax> handled by Math transformer)
+    // Matches standard HTML tags like <p>, <br>, <div>, <span>, <b>, <i>, <ul>, <ol>, <li>, <table>, <code>, <h1>-<h6>, etc.
+    const nonMathHtmlPattern = /<(?!anki-mathjax|\/anki-mathjax)[a-z][\w-]*(\s+[^>]*)?>/i;
+    return nonMathHtmlPattern.test(content);
+  }
+
+  transform(content: string, _context?: TransformationContext): string {
+    if (!content) return "";
+
+    // Protect all math structures and code blocks so Turndown never escapes their contents
+    const placeholders: string[] = [];
+    const protect = (match: string) => {
+      const idx = placeholders.length;
+      placeholders.push(match);
+      // Use strictly alphanumeric tokens: no underscores or asterisks that Turndown would escape
+      return `XPROTECTEDCHUNK${idx}X`;
+    };
+
+    let s = content;
+
+    // 1. Protect existing code blocks
+    s = s.replace(/```[\s\S]*?```/g, protect);
+    // 2. Protect Anki MathJax tags
+    s = s.replace(/\\?<anki-mathjax[^>]*>[\s\S]*?\\?<\/anki-mathjax>/gi, protect);
+    // 3. Protect display math $$ ... $$
+    s = s.replace(/\$\$[\s\S]*?\$\$/g, protect);
+    // 4. Protect inline math $ ... $
+    s = s.replace(/\$[^$\n]+?\$/g, protect);
+    // 5. Protect LaTeX delimiters \[ ... \] and \( ... \)
+    s = s.replace(/\\\\?\[([\s\S]*?)\\\\?\]/g, protect);
+    s = s.replace(/\\\\?\(([\s\S]*?)\\\\?\)/g, protect);
+    // 6. Protect LaTeX environments: \begin{...} ... \end{...}
+    s = s.replace(/\\begin\{([a-z*]+)\}[\s\S]*?\\end\{\1\}/gi, protect);
+
+    // Run Turndown on the protected content
+    try {
+      s = this.turndown.turndown(s);
+    } catch {
+      // Fallback: strip standard basic wrapper tags
+      s = s.replace(/<[\/]?pre[^>]*>/gi, "");
+      s = s.replace(/<[\/]?span[^>]*>/gi, "");
+      s = s.replace(/<[\/]?div[^>]*>/gi, "");
+      s = s.replace(/<[\/]?p[^>]*>/gi, "\n");
+    }
+
+    // Restore protected chunks cleanly
+    s = s.replace(/XPROTECTEDCHUNK(\d+)X/g, (_, idx) => {
+      return placeholders[Number(idx)] ?? "";
+    });
+
+    return s;
+  }
+}
