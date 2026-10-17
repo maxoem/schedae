@@ -145,6 +145,7 @@ export default function DeckRemaster() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const [config, setConfig] = useState<TransformationConfig>(DEFAULT_CONFIG);
+  const [regenerateIds, setRegenerateIds] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<"diff" | "preview" | "raw">("diff");
@@ -309,7 +310,8 @@ export default function DeckRemaster() {
       const blob = await createApkgFromAnkiJson(
         transformedJson,
         deckTitle,
-        config.targetTemplate
+        config.targetTemplate,
+        { regenerateIds },
       );
 
       const url = URL.createObjectURL(blob);
@@ -319,13 +321,17 @@ export default function DeckRemaster() {
       a.click();
       URL.revokeObjectURL(url);
 
-      setSuccessMessage(`Deck successfully remastered and exported with 100% scheduling intact! Tip: When importing into Anki, ensure "Update existing notes" is enabled to apply formatting to existing cards.`);
+      setSuccessMessage(
+        regenerateIds
+          ? `Deck successfully remastered and exported with fresh IDs! 100% of scheduling, review history, and FSRS states preserved. Imports cleanly into Anki without duplicate skips or conflicts.`
+          : `Deck successfully remastered and exported with preserved IDs! Tip: When importing into Anki, ensure "Update existing notes" is enabled.`
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to repack and export .apkg file.");
     } finally {
       setIsExporting(false);
     }
-  }, [deckRawData, noteItems, config, uploadedFile]);
+  }, [deckRawData, noteItems, config, uploadedFile, regenerateIds]);
 
   // Send cards to Schedae Workspace
   const handleSendToWorkspace = useCallback(() => {
@@ -697,6 +703,36 @@ export default function DeckRemaster() {
                       </span>
                       <span className="text-[11px] text-muted-foreground leading-snug">
                         Trims trailing whitespace and standardizes paragraph line breaks.
+                      </span>
+                    </div>
+                  </label>
+                </div>
+
+                {/* Anki Import Mode */}
+                <div className="pt-2.5 border-t space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-semibold text-foreground uppercase tracking-wider">
+                      Anki Import Mode
+                    </span>
+                    {regenerateIds && (
+                      <Badge variant="outline" className="text-[9px] py-0 px-1 text-emerald-700 bg-emerald-50 border-emerald-200">
+                        Safe Import
+                      </Badge>
+                    )}
+                  </div>
+                  <label className="flex items-start gap-2.5 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={regenerateIds}
+                      onChange={(e) => setRegenerateIds(e.target.checked)}
+                      className="mt-0.5 rounded border-zinc-300 text-primary focus:ring-primary"
+                    />
+                    <div className="text-xs leading-normal">
+                      <span className="font-medium text-foreground block">
+                        Generate New IDs (Independent Deck)
+                      </span>
+                      <span className="text-[11px] text-muted-foreground leading-snug">
+                        Assigns fresh GUIDs &amp; card IDs so Anki imports cleanly without duplicate skips or notetype conflicts. 100% of scheduling is preserved.
                       </span>
                     </div>
                   </label>

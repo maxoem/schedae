@@ -282,11 +282,24 @@ export function formatMarkdownForAnki(content: string): string {
   return str.replace(/\n/g, "<br>");
 }
 
+export interface CreateApkgOptions {
+  /**
+   * When true, generates fresh GUIDs and IDs for notes, cards, models, and decks.
+   * This guarantees that Anki treats the package as a brand-new independent deck,
+   * avoiding duplicate card skips, note conflicts, and notetype schema rejections,
+   * while preserving 100% of scheduling history, review logs, and FSRS states.
+   */
+  regenerateIds?: boolean;
+}
+
 export async function createApkgFromAnkiJson(
   ankiJson: any,
   deckName: string,
   templateId: CardTemplateId = "default",
+  options?: CreateApkgOptions,
 ): Promise<Blob> {
+  const regenerateIds = Boolean(options?.regenerateIds);
+
   const initSqlJs = (window as any).initSqlJs;
   if (!initSqlJs) {
     await new Promise<void>((resolve, reject) => {
@@ -308,13 +321,41 @@ export async function createApkgFromAnkiJson(
   const timestamp = Math.floor(Date.now() / 1000);
   const fallbackDeckId = Date.now();
   const fallbackModelId = fallbackDeckId + 1;
+  let idGen = fallbackDeckId * 100;
+
+  // Remapping registries when regenerateIds is active
+  const deckIdMap = new Map<number, number>();
+  let nextDeckId = fallbackDeckId;
+  const getDeckId = (origId: number): number => {
+    if (!regenerateIds) return origId;
+    if (!deckIdMap.has(origId)) {
+      deckIdMap.set(origId, nextDeckId++);
+    }
+    return deckIdMap.get(origId)!;
+  };
+
+  const modelIdMap = new Map<number, number>();
+  let nextModelId = fallbackModelId;
+  const getModelId = (origId: number): number => {
+    if (!regenerateIds) return origId;
+    if (!modelIdMap.has(origId)) {
+      modelIdMap.set(origId, nextModelId++);
+    }
+    return modelIdMap.get(origId)!;
+  };
+
+  const cardIdMap = new Map<number, number>();
 
   // Preserve col properties (such as creation time `crt`) from original deck if available,
   // preventing relative card due dates from drifting by thousands of days.
   const colCrt = toFiniteNumber(ankiJson?.col?.crt, timestamp);
   const colMod = toFiniteNumber(ankiJson?.col?.mod, timestamp * 1000);
   const colScm = toFiniteNumber(ankiJson?.col?.scm, timestamp * 1000);
-  const colVer = toFiniteNumber(ankiJson?.col?.ver, 11);
+  // collection.anki2 in standard .apkg packages must always use schema version 11.
+  // Modern Anki schemas (ver 14+) store config in a dedicated SQLite `config` table;
+  // setting ver > 11 causes Anki to execute `SELECT ... FROM config` and crash with
+  // 'no such table: config'.
+  const colVer = 11;
   const colDty = toFiniteNumber(ankiJson?.col?.dty, 0);
   const colUsn = toFiniteNumber(ankiJson?.col?.usn, 0);
   const colLs = toFiniteNumber(ankiJson?.col?.ls, 0);
@@ -362,17 +403,27 @@ export async function createApkgFromAnkiJson(
   const modelTemplateCount = new Map<number, number>();
 
   for (const entry of noteEntries) {
-    decksToCreate.set(entry.deckId, entry.deckName);
+    const targetDid = getDeckId(entry.deckId);
+    let targetDeckName = entry.deckName;
+    if (regenerateIds && !targetDeckName.includes("(Remastered)")) {
+      targetDeckName = `${targetDeckName} (Remastered)`;
+    }
+    decksToCreate.set(targetDid, targetDeckName);
 
     const cards = Array.isArray(entry.note?.cards) ? entry.note.cards : [];
     for (const card of cards) {
-      const did = toFiniteNumber(card?.did, entry.deckId);
-      if (!decksToCreate.has(did)) {
-        decksToCreate.set(did, `Deck ${did}`);
+      const origDid = toFiniteNumber(card?.did, entry.deckId);
+      const targetCardDid = getDeckId(origDid);
+      if (!decksToCreate.has(targetCardDid)) {
+        decksToCreate.set(
+          targetCardDid,
+          regenerateIds ? `Deck ${targetCardDid} (Remastered)` : `Deck ${targetCardDid}`,
+        );
       }
     }
 
-    const mid = toFiniteNumber(entry.note?.mid, fallbackModelId);
+    const origMid = toFiniteNumber(entry.note?.mid, fallbackModelId);
+    const targetMid = getModelId(origMid);
     const fieldCount = typeof entry.note?.flds === "string" && entry.note.flds.length
       ? entry.note.flds.split("\x1f").length
       : 2;
@@ -381,8 +432,8 @@ export async function createApkgFromAnkiJson(
     }, 0);
     const templateCount = maxOrd + 1;
 
-    modelFieldCount.set(mid, Math.max(modelFieldCount.get(mid) ?? 0, fieldCount));
-    modelTemplateCount.set(mid, Math.max(modelTemplateCount.get(mid) ?? 1, templateCount));
+    modelFieldCount.set(targetMid, Math.max(modelFieldCount.get(targetMid) ?? 0, fieldCount));
+    modelTemplateCount.set(targetMid, Math.max(modelTemplateCount.get(targetMid) ?? 1, templateCount));
   }
 
   const firstDeckId = decksToCreate.keys().next().value ?? fallbackDeckId;
@@ -412,8 +463,14 @@ export async function createApkgFromAnkiJson(
   if (ankiJson?.models && typeof ankiJson.models === "object") {
     for (const [midStr, rawModel] of Object.entries(ankiJson.models as Record<string, any>)) {
       if (rawModel && Array.isArray(rawModel.flds) && rawModel.flds.length > 0) {
+        const origMid = toFiniteNumber(midStr, fallbackModelId);
+        const targetMid = getModelId(origMid);
         const clonedModel = JSON.parse(JSON.stringify(rawModel));
+        clonedModel.id = targetMid;
         clonedModel.mod = timestamp;
+        if (regenerateIds && typeof clonedModel.name === "string" && !clonedModel.name.includes("(Remastered)")) {
+          clonedModel.name = `${clonedModel.name} (Remastered)`;
+        }
 
         // If a specific template style was requested, apply CSS & template formatting
         // while preserving exact field schema
@@ -425,19 +482,19 @@ export async function createApkgFromAnkiJson(
             clonedModel.tmpls[0].afmt = tpl.afmt;
           }
         }
-        modelsObj[midStr] = clonedModel;
+        modelsObj[String(targetMid)] = clonedModel;
       }
     }
   }
 
   // 2. For any models not present in source deck, build fallback models
-  for (const [mid, count] of modelFieldCount.entries()) {
-    if (!modelsObj[String(mid)]) {
-      modelsObj[String(mid)] = buildModelFromFieldCount(
-        mid,
+  for (const [targetMid, count] of modelFieldCount.entries()) {
+    if (!modelsObj[String(targetMid)]) {
+      modelsObj[String(targetMid)] = buildModelFromFieldCount(
+        targetMid,
         firstDeckId,
         count,
-        modelTemplateCount.get(mid) ?? 1,
+        modelTemplateCount.get(targetMid) ?? 1,
         timestamp,
         templateId,
       );
@@ -453,8 +510,6 @@ export async function createApkgFromAnkiJson(
     JSON.stringify(decksObj),
     JSON.stringify(modelsObj),
   ]);
-
-  let idGen = fallbackDeckId * 100;
 
   for (const entry of noteEntries) {
     const note = entry.note ?? {};
@@ -478,14 +533,17 @@ export async function createApkgFromAnkiJson(
       }
     }
 
-    const noteId = toFiniteNumber(note.id, ++idGen);
-    const noteMid = toFiniteNumber(note.mid, fallbackModelId);
+    const noteId = regenerateIds ? ++idGen : toFiniteNumber(note.id, ++idGen);
+    const origMid = toFiniteNumber(note.mid, fallbackModelId);
+    const noteMid = getModelId(origMid);
     // Use current timestamp so Anki's "Update notes: If newer" updates existing notes
     // in the collection rather than skipping them as duplicates
     const noteMod = timestamp;
     const noteUsn = toFiniteNumber(note.usn, -1);
     const noteTags = typeof note.tags === "string" ? note.tags : "";
-    const noteGuid = typeof note.guid === "string" && note.guid.length ? note.guid : generateGuid();
+    const noteGuid = regenerateIds
+      ? generateGuid()
+      : (typeof note.guid === "string" && note.guid.length ? note.guid : generateGuid());
 
     db.exec(
       "INSERT INTO notes (id, guid, mid, mod, usn, tags, flds, sfld, csum, flags, data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -511,8 +569,14 @@ export async function createApkgFromAnkiJson(
     cards.forEach((card: any, idx: number) => {
       const scheduling = card?.scheduling ?? {};
 
-      const cardId = toFiniteNumber(card?.id, ++idGen);
-      const cardDid = toFiniteNumber(card?.did, entry.deckId);
+      const origCardId = toFiniteNumber(card?.id, 0);
+      const cardId = regenerateIds ? ++idGen : toFiniteNumber(card?.id, ++idGen);
+      if (origCardId) {
+        cardIdMap.set(origCardId, cardId);
+      }
+
+      const origDid = toFiniteNumber(card?.did, entry.deckId);
+      const cardDid = getDeckId(origDid);
       const cardOrd = toFiniteNumber(card?.ord, idx);
       const cardMod = toFiniteNumber(scheduling.mod ?? card?.mod, timestamp);
       const cardUsn = toFiniteNumber(scheduling.usn ?? card?.usn, -1);
@@ -560,14 +624,15 @@ export async function createApkgFromAnkiJson(
   // Preserve review history (revlog) if present from source deck
   if (Array.isArray(ankiJson?.revlog) && ankiJson.revlog.length > 0) {
     for (const r of ankiJson.revlog) {
-      const rId = toFiniteNumber(r.id, 0);
-      const rCid = toFiniteNumber(r.cid, 0);
-      if (rId && rCid) {
+      const origId = toFiniteNumber(r.id, 0);
+      const origCid = toFiniteNumber(r.cid, 0);
+      const targetCid = regenerateIds ? (cardIdMap.get(origCid) ?? origCid) : origCid;
+      if (origId && targetCid) {
         db.exec(
           "INSERT OR IGNORE INTO revlog (id, cid, usn, ease, ivl, lastIvl, factor, time, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
           [
-            rId,
-            rCid,
+            origId,
+            targetCid,
             toFiniteNumber(r.usn, -1),
             toFiniteNumber(r.ease, 0),
             toFiniteNumber(r.ivl, 0),
