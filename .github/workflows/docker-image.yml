@@ -44,11 +44,15 @@ jobs:
           target: production
           load: true
           tags: ghcr.io/${{ github.repository }}:scan
+          build-args: |
+            CACHEBUST=${{ github.run_id }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Run Trivy Vulnerability Scanner
         uses: aquasecurity/trivy-action@v0.36.0
+        env:
+          TRIVY_DISABLE_VEX_NOTICE: "true"
         with:
           image-ref: ghcr.io/${{ github.repository }}:scan
           format: 'table'
@@ -107,6 +111,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            CACHEBUST=${{ github.run_id }}
           cache-from: type=gha
 
       - name: Attest Build Provenance
