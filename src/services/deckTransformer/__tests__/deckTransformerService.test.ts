@@ -171,4 +171,121 @@ describe("DeckTransformer Pipeline & Orchestrator", () => {
       assert.ok(!formatted.includes("\\begin{aligned}<br>"));
     });
   });
+
+  describe("Indentation and List Sub-bullet Preservation", () => {
+    test("preserves 2-space, 4-space, and tab indentations while cleaning accidental single spaces", () => {
+      const indentedContent =
+        "* Top-level item 1\n" +
+        "  * Sub-item with 2 spaces\n" +
+        "    * Sub-sub-item with 4 spaces\n" +
+        "* Top-level item 2\n" +
+        "\t* Sub-item with tab\n" +
+        "\t\t* Sub-sub-item with 2 tabs\n" +
+        " * Accidental single space item";
+
+      const transformed = defaultDeckTransformerService.transformField(indentedContent);
+
+      assert.equal(
+        transformed,
+        "* Top-level item 1\n" +
+          "  * Sub-item with 2 spaces\n" +
+          "    * Sub-sub-item with 4 spaces\n" +
+          "* Top-level item 2\n" +
+          "\t* Sub-item with tab\n" +
+          "\t\t* Sub-sub-item with 2 tabs\n" +
+          "* Accidental single space item"
+      );
+    });
+
+    test("preserves code block indentations (spaces and tabs)", () => {
+      const codeBlockContent =
+        "```python\n" +
+        "def compute(data):\n" +
+        "    for x in data:\n" +
+        "        if x > 0:\n" +
+        "            yield x * 2\n" +
+        "```";
+
+      const transformed = defaultDeckTransformerService.transformField(codeBlockContent);
+      assert.equal(transformed, codeBlockContent);
+    });
+  });
+
+  describe("Real-world Corrupted Flashcards Dataset Verification", () => {
+    // Exact corrupted card provided by user screenshot
+    test("fixes user screenshot card: restores escaped bullets, bold text, unescapes dollars & double backslashes", () => {
+      const inputFront =
+        "Welches mathematische Unterscheidungskriterium trennt Regressions- von Klassifikationsaufgaben?";
+      const inputBack =
+        "\\* \\*\\*Regression:\\*\\* Der Zielraum ist kontinuierlich und reellwertig (\\\\$Y \\\\subseteq \\\\mathbb{R}^d\\\\$).<br>\\* \\*\\*Klassifikation:\\*\\* Der Zielraum ist diskret und kategorial (\\\\$Y \\\\in \\\\{1, \\\\dots, K\\\\}\\\\$).";
+      const inputField3 =
+        "Note: *KI Grundlagen: Konzepte & Definitionen* (Thema 4) | Goodfellow et al., Kapitel 5.1.1 (S. 99–100) | Prince, Kapitel 1.1.1 (S. 3)";
+
+      const fixedFront = defaultDeckTransformerService.transformField(inputFront);
+      const fixedBack = defaultDeckTransformerService.transformField(inputBack);
+      const fixedField3 = defaultDeckTransformerService.transformField(inputField3);
+
+      // Front: unchanged
+      assert.equal(fixedFront, inputFront);
+
+      // Back: escaped bullets and bold become clean markdown, escaped dollars become math, double backslashes fixed
+      assert.equal(
+        fixedBack,
+        "* **Regression:** Der Zielraum ist kontinuierlich und reellwertig ($Y \\subseteq \\mathbb{R}^d$).\n" +
+          "* **Klassifikation:** Der Zielraum ist diskret und kategorial ($Y \\in \\{1, \\dots, K\\}$)."
+      );
+
+      // Field 3: stripped 'Note:' label while preserving italic title
+      assert.equal(
+        fixedField3,
+        "*KI Grundlagen: Konzepte & Definitionen* (Thema 4) | Goodfellow et al., Kapitel 5.1.1 (S. 99–100) | Prince, Kapitel 1.1.1 (S. 3)"
+      );
+    });
+
+    test("fixes user screenshot card #2: removes stray backslashes, repairs escaped closing delimiter \\$$, and unescapes math subscripts", () => {
+      const inputBack =
+        "Ein Ansatz, bei dem ein einziges tiefes Modell die gesamte Abbildung von den unstrukturierten Rohdaten (z. B. Audiosignal) direkt bis zur Zielvorhersage (z. B. Text) erlernt:<br>\\\\\\<br><br>$$f\\_\\theta: X\\_{\\text{raw}} \\to Y\\_{\\text{target}}\\$$<br><br>ohne manuelle Zwischenverarbeitungsschritte oder getrennte Teilmodelle.";
+
+      const fixedBack = defaultDeckTransformerService.transformField(inputBack);
+
+      assert.equal(
+        fixedBack,
+        "Ein Ansatz, bei dem ein einziges tiefes Modell die gesamte Abbildung von den unstrukturierten Rohdaten (z. B. Audiosignal) direkt bis zur Zielvorhersage (z. B. Text) erlernt:\n\n" +
+          "$$f_\\theta: X_{\\text{raw}} \\to Y_{\\text{target}}$$\n\n" +
+          "ohne manuelle Zwischenverarbeitungsschritte oder getrennte Teilmodelle."
+      );
+    });
+
+    test("all entries in corruptedFlashcards.json dataset transform to clean expected representations", async () => {
+      const fs = await import("node:fs");
+      const { fileURLToPath } = await import("node:url");
+      const datasetPath = fileURLToPath(new URL("./data/corruptedFlashcards.json", import.meta.url));
+      const dataset = JSON.parse(fs.readFileSync(datasetPath, "utf-8"));
+
+      for (const entry of dataset) {
+        const actualFront = defaultDeckTransformerService.transformField(entry.input.front);
+        const actualBack = defaultDeckTransformerService.transformField(entry.input.back);
+
+        assert.equal(
+          actualFront,
+          entry.expected.front,
+          `Card #${entry.id} front transformation mismatch`
+        );
+        assert.equal(
+          actualBack,
+          entry.expected.back,
+          `Card #${entry.id} back transformation mismatch`
+        );
+
+        if (entry.input.extra && entry.expected.extra) {
+          const actualExtra = defaultDeckTransformerService.transformField(entry.input.extra);
+          assert.equal(
+            actualExtra,
+            entry.expected.extra,
+            `Card #${entry.id} extra transformation mismatch`
+          );
+        }
+      }
+    });
+  });
 });

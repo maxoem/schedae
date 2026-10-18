@@ -272,14 +272,8 @@ export function formatMarkdownForAnki(content: string): string {
   // 3. Clean up existing raw <br> tags in markdown to standard newlines
   str = str.replace(/<br\s*[\/]?[^>]*>/gi, "\n");
 
-  // 4. Normalize accidental single-space indentation before list markers (leaves 2+ spaces / tabs intact)
-  str = str.replace(/(^|\n) ([*+-]|\d+\.) /g, "$1$2 ");
-
-  // 5. Normalize multiple blank lines to clean double newlines
-  str = str.replace(/\n{3,}/g, "\n\n");
-
-  // 6. Convert newlines to Anki HTML breaks (<br>), protecting math formulas and code blocks
-  // so that internal newlines in LaTeX matrices or aligned equations are never corrupted with <br>
+  // Protect math formulas and code blocks so that internal newlines in LaTeX matrices
+  // or aligned equations are never corrupted with <br> or backslash removals
   const placeholders: string[] = [];
   const protect = (match: string) => {
     const idx = placeholders.length;
@@ -293,8 +287,20 @@ export function formatMarkdownForAnki(content: string): string {
   str = str.replace(/\\?<anki-mathjax[^>]*>[\s\S]*?\\?<\/anki-mathjax>/gi, protect);
   str = str.replace(/\$[^$\n]+?\$/g, protect);
 
+  // 4. Clean up stray backslash lines and trailing backslashes outside math
+  str = str.replace(/(^|\n)\s*\\+\s*(?=\n|$)/g, "$1");
+  str = str.replace(/([^\\])\\+[ \t]*(?=\n|$)/g, "$1");
+
+  // 5. Normalize accidental single-space indentation before list markers (leaves 2+ spaces / tabs intact)
+  str = str.replace(/(^|\n) ([*+-]|\d+\.) /g, "$1$2 ");
+
+  // 6. Normalize multiple blank lines to clean double newlines
+  str = str.replace(/\n{3,}/g, "\n\n");
+
+  // 7. Convert newlines to Anki HTML breaks (<br>)
   str = str.replace(/\n/g, "<br>");
 
+  // Restore protected chunks
   str = str.replace(/XPROTECTEDCHUNK(\d+)X/g, (_, idx) => {
     return placeholders[Number(idx)] ?? "";
   });

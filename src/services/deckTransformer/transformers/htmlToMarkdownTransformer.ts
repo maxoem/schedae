@@ -16,25 +16,27 @@ export class HtmlToMarkdownTransformer implements ContentTransformer {
       bulletListMarker: "-",
       codeBlockStyle: "fenced",
     });
+    // Crucial: do not escape markdown characters (like *, _, [, $, \) during HTML-to-markdown conversion
+    this.turndown.escape = (str: string) => str;
   }
 
   canTransform(content: string, _context?: TransformationContext): boolean {
     if (!content || typeof content !== "string") return false;
-    // Check if the string contains HTML markup (excluding bare <anki-mathjax> handled by Math transformer)
-    // Matches standard HTML tags like <p>, <br>, <div>, <span>, <b>, <i>, <ul>, <ol>, <li>, <table>, <code>, <h1>-<h6>, etc.
-    const nonMathHtmlPattern = /<(?!anki-mathjax|\/anki-mathjax)[a-z][\w-]*(\s+[^>]*)?>/i;
+    // Check if the string contains HTML markup other than <anki-mathjax> or simple <br> tags
+    // (simple <br> tags are handled cleanly by ListBulletTransformer without needing full HTML parsing)
+    const nonMathHtmlPattern = /<(?!anki-mathjax|\/anki-mathjax|br\s*[\/]?>)[a-z][\w-]*(\s+[^>]*)?>/i;
     return nonMathHtmlPattern.test(content);
   }
 
   transform(content: string, _context?: TransformationContext): string {
     if (!content) return "";
 
-    // Protect all math structures and code blocks so Turndown never escapes their contents
+    // Protect all math structures and code blocks so Turndown never escapes or alters their contents
     const placeholders: string[] = [];
     const protect = (match: string) => {
       const idx = placeholders.length;
       placeholders.push(match);
-      // Use strictly alphanumeric tokens: no underscores or asterisks that Turndown would escape
+      // Use strictly alphanumeric tokens: no underscores or asterisks that Turndown could touch
       return `XPROTECTEDCHUNK${idx}X`;
     };
 
@@ -64,6 +66,9 @@ export class HtmlToMarkdownTransformer implements ContentTransformer {
       s = s.replace(/<[\/]?div[^>]*>/gi, "");
       s = s.replace(/<[\/]?p[^>]*>/gi, "\n");
     }
+
+    // Strip legacy/stray <span> tags that may remain after Turndown
+    s = s.replace(/<[\/]?span[^>]*>/gi, "");
 
     // Restore protected chunks cleanly
     s = s.replace(/XPROTECTEDCHUNK(\d+)X/g, (_, idx) => {

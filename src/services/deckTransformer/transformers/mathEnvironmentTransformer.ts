@@ -3,7 +3,7 @@ import type { ContentTransformer, TransformationContext } from "../types";
 export class MathEnvironmentTransformer implements ContentTransformer {
   readonly id = "math-environments";
   readonly name = "Math & LaTeX Normalizer";
-  readonly description = "Normalizes Anki MathJax tags, LaTeX delimiters, bare math environments, and repairs escaped environment syntax.";
+  readonly description = "Normalizes Anki MathJax tags, LaTeX delimiters, bare math environments, repairs escaped environment syntax, and unescapes corrupted math delimiters.";
   readonly order = 30;
 
   private static readonly BARE_ENV_REGEX =
@@ -18,8 +18,20 @@ export class MathEnvironmentTransformer implements ContentTransformer {
   private static readonly ESCAPED_ENV_STAR_REGEX =
     /\\begin\{(align|alignat|gather|multline|flalign)\\\*\}/i;
 
+  private static readonly ESCAPED_DOLLAR_REGEX =
+    /\\+\$/;
+
+  private static readonly ESCAPED_SUBSCRIPT_REGEX =
+    /\\_[a-zA-Z0-9\\{]/;
+
+  private static readonly DOUBLE_ESCAPED_CMD_REGEX =
+    /\\\\[a-zA-Z]+/;
+
   canTransform(content: string, _context?: TransformationContext): boolean {
     if (!content || typeof content !== "string") return false;
+
+    // Check for escaped math dollar delimiters, e.g. \\$ or \$ or \$$
+    if (MathEnvironmentTransformer.ESCAPED_DOLLAR_REGEX.test(content)) return true;
 
     // Check if the content has Anki native MathJax tags
     if (MathEnvironmentTransformer.ANKI_MATHJAX_REGEX.test(content)) return true;
@@ -34,8 +46,11 @@ export class MathEnvironmentTransformer implements ContentTransformer {
     MathEnvironmentTransformer.BARE_ENV_REGEX.lastIndex = 0;
     if (MathEnvironmentTransformer.BARE_ENV_REGEX.test(content)) return true;
 
-    // Check for escaped subscripts inside formulas: e.g. \_{
-    if (content.includes("\\_{")) return true;
+    // Check for double escaped LaTeX commands, e.g. \\subseteq, \\mathbb
+    if (MathEnvironmentTransformer.DOUBLE_ESCAPED_CMD_REGEX.test(content)) return true;
+
+    // Check for escaped subscripts inside formulas: e.g. \_{ or \_\theta or \_1
+    if (MathEnvironmentTransformer.ESCAPED_SUBSCRIPT_REGEX.test(content)) return true;
 
     // Check for double escaped delimiters: e.g. \\( or \\[
     if (/\\\\[()[\]]/.test(content)) return true;
@@ -51,11 +66,25 @@ export class MathEnvironmentTransformer implements ContentTransformer {
     s = s.replace(/\\begin\{(align|alignat|gather|multline|flalign)\\\*\}/gi, "\\begin{$1*}");
     s = s.replace(/\\end\{(align|alignat|gather|multline|flalign)\\\*\}/gi, "\\end{$1*}");
 
-    // 2. Repair escaped subscript underscores inside formulas (e.g. \sum\_{k=0})
-    s = s.replace(/\\_\{/g, "_{");
-    s = s.replace(/\\_([a-zA-Z0-9])/g, "_$1");
+    // 2. Repair accidentally escaped dollar math delimiters (e.g. \\$Y ... \\$ or \$Y ... \$ or \$$)
+    s = s.replace(/\\+(\$\$?)/g, "$1");
 
-    // 3. Normalize Anki native mathjax tags
+    // 3. Repair double-escaped LaTeX commands and escaped underscores inside math blocks ($...$ and $$...$$)
+    s = s.replace(/\$([^\$\n]+?)\$/g, (_, math) => {
+      let fixed = math.replace(/\\\\([a-zA-Z{}|\\^_])/g, "\\$1");
+      fixed = fixed.replace(/\\+_/g, "_");
+      return `$${fixed}$`;
+    });
+    s = s.replace(/\$\$([\s\S]*?)\$\$/g, (_, math) => {
+      let fixed = math.replace(/\\\\([a-zA-Z{}|\\^_])/g, "\\$1");
+      fixed = fixed.replace(/\\+_/g, "_");
+      return `$$${fixed}$$`;
+    });
+
+    // 4. Repair escaped subscript underscores inside formulas (e.g. \sum\_{k=0}, f\_\theta, X\_{raw})
+    s = s.replace(/\\_([a-zA-Z0-9\\{])/g, "_$1");
+
+    // 5. Normalize Anki native mathjax tags
     s = s.replace(
       /\\?<anki-mathjax[^>]*?block=["']?1["']?[^>]*>([\s\S]*?)\\?<\/anki-mathjax>/gi,
       (_, math) => `\n\n$$${math.trim()}$$\n\n`
@@ -65,13 +94,13 @@ export class MathEnvironmentTransformer implements ContentTransformer {
       (_, math) => `$${math.trim()}$`
     );
 
-    // 4. Normalize LaTeX display math \[...\] and double-escaped \\[...\\]
+    // 6. Normalize LaTeX display math \[...\] and double-escaped \\[...\\]
     s = s.replace(/\\\\?\[([\s\S]*?)\\\\?\]/g, (_, math) => `\n\n$$${math.trim()}$$\n\n`);
 
-    // 5. Normalize LaTeX inline math \(...\) and double-escaped \\(...\\)
+    // 7. Normalize LaTeX inline math \(...\) and double-escaped \\(...\\)
     s = s.replace(/\\\\?\(([\s\S]*?)\\\\?\)/g, (_, math) => `$${math.trim()}$`);
 
-    // 6. Wrap any remaining bare LaTeX display environments in display math ($$...$$)
+    // 8. Wrap any remaining bare LaTeX display environments in display math ($$...$$)
     // First protect already delimited math expressions ($$ and $)
     const placeholders: string[] = [];
     const protect = (match: string) => {
@@ -95,8 +124,12 @@ export class MathEnvironmentTransformer implements ContentTransformer {
       return placeholders[Number(idx)] ?? "";
     });
 
-    // 7. Fix stray unescaped backslashes in math blocks
+    // 9. Fix stray unescaped backslashes in math blocks
     s = s.replace(/\\\\([()[\]])/g, "\\$1");
+
+    // 10. Ensure display math blocks ($$...$$) are cleanly isolated by blank lines from surrounding text
+    s = s.replace(/([^\n])\s*(\$\$[\s\S]*?\$\$)/g, "$1\n\n$2");
+    s = s.replace(/(\$\$[\s\S]*?\$\$)\s*([^\n])/g, "$1\n\n$2");
 
     return s;
   }

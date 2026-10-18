@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "description": "User screenshot card with escaped bullets, escaped bold, escaped dollars, double backslashes, and note label",
+    "input": {
+      "front": "Welches mathematische Unterscheidungskriterium trennt Regressions- von Klassifikationsaufgaben?",
+      "back": "\\* \\*\\*Regression:\\*\\* Der Zielraum ist kontinuierlich und reellwertig (\\\\$Y \\\\subseteq \\\\mathbb{R}^d\\\\$).<br>\\* \\*\\*Klassifikation:\\*\\* Der Zielraum ist diskret und kategorial (\\\\$Y \\\\in \\\\{1, \\\\dots, K\\\\}\\\\$).",
+      "extra": "Note: *KI Grundlagen: Konzepte & Definitionen* (Thema 4) | Goodfellow et al., Kapitel 5.1.1 (S. 99–100) | Prince, Kapitel 1.1.1 (S. 3)"
+    },
+    "expected": {
+      "front": "Welches mathematische Unterscheidungskriterium trennt Regressions- von Klassifikationsaufgaben?",
+      "back": "* **Regression:** Der Zielraum ist kontinuierlich und reellwertig ($Y \\subseteq \\mathbb{R}^d$).\n* **Klassifikation:** Der Zielraum ist diskret und kategorial ($Y \\in \\{1, \\dots, K\\}$).",
+      "extra": "*KI Grundlagen: Konzepte & Definitionen* (Thema 4) | Goodfellow et al., Kapitel 5.1.1 (S. 99–100) | Prince, Kapitel 1.1.1 (S. 3)"
+    }
+  },
+  {
+    "id": 2,
+    "description": "Card with Anki native mathjax block tags and HTML wrappers",
+    "input": {
+      "front": "<b>Was ist die Taylor-Formel?</b>",
+      "back": "<anki-mathjax block=\"1\">\\begin{aligned} f(x) &= \\sum_{k=0}^n \\frac{f^{(k)}(a)}{k!} (x - a)^k + R_n(x) \\end{aligned}</anki-mathjax><br>* Bedingung: <anki-mathjax>f \\in C^{n+1}</anki-mathjax>",
+      "extra": "**Quelle:** Bronstein & Semendjajew"
+    },
+    "expected": {
+      "front": "**Was ist die Taylor-Formel?**",
+      "back": "$$\\begin{aligned} f(x) &= \\sum_{k=0}^n \\frac{f^{(k)}(a)}{k!} (x - a)^k + R_n(x) \\end{aligned}$$\n\n* Bedingung: $f \\in C^{n+1}$",
+      "extra": "Bronstein & Semendjajew"
+    }
+  },
+  {
+    "id": 3,
+    "description": "Card with corrupted escaped environment asterisks (align\\*) and subscripts",
+    "input": {
+      "front": "Wie lautet die Matrix-Darstellung?",
+      "back": "\\begin{align\\*} A &= \\begin{pmatrix} a_{11} & a_{12} \\\\ a_{21} & a_{22} \\end{pmatrix} \\end{align\\*}"
+    },
+    "expected": {
+      "front": "Wie lautet die Matrix-Darstellung?",
+      "back": "$$\n\\begin{align*} A &= \\begin{pmatrix} a_{11} & a_{12} \\\\ a_{21} & a_{22} \\end{pmatrix} \\end{align*}\n$$"
+    }
+  },
+  {
+    "id": 4,
+    "description": "Invariance test: clean markdown card must remain completely untouched",
+    "input": {
+      "front": "What is Amdahl's Law?",
+      "back": "* Formula: $S_{\\text{latency}}(s) = \\frac{1}{(1 - p) + \\frac{p}{s}}$\n* **p**: Parallelizable fraction\n* **s**: Speedup factor"
+    },
+    "expected": {
+      "front": "What is Amdahl's Law?",
+      "back": "* Formula: $S_{\\text{latency}}(s) = \\frac{1}{(1 - p) + \\frac{p}{s}}$\n* **p**: Parallelizable fraction\n* **s**: Speedup factor"
+    }
+  },
+  {
+    "id": 5,
+    "description": "User screenshot card with stray backslash line (<br>\\\\\\<br>), unrendered KaTeX math caused by escaped closing delimiter (\\$$), and escaped underscores (f\\_\\theta, X\\_{\\text{raw}})",
+    "input": {
+      "front": "Was bedeutet *End-to-End Learning* im Deep Learning?",
+      "back": "Ein Ansatz, bei dem ein einziges tiefes Modell die gesamte Abbildung von den unstrukturierten Rohdaten (z. B. Audiosignal) direkt bis zur Zielvorhersage (z. B. Text) erlernt:<br>\\\\\\<br><br>$$f\\_\\theta: X\\_{\\text{raw}} \\to Y\\_{\\text{target}}\\$$<br><br>ohne manuelle Zwischenverarbeitungsschritte oder getrennte Teilmodelle.",
+      "extra": "*KI Grundlagen: Konzepte & Definitionen* (Thema 2) | Goodfellow et al., Kapitel 12.4 (S. 455) | Prince, Kapitel 1.1 (S. 2)"
+    },
+    "expected": {
+      "front": "Was bedeutet *End-to-End Learning* im Deep Learning?",
+      "back": "Ein Ansatz, bei dem ein einziges tiefes Modell die gesamte Abbildung von den unstrukturierten Rohdaten (z. B. Audiosignal) direkt bis zur Zielvorhersage (z. B. Text) erlernt:\n\n$$f_\\theta: X_{\\text{raw}} \\to Y_{\\text{target}}$$\n\nohne manuelle Zwischenverarbeitungsschritte oder getrennte Teilmodelle.",
+      "extra": "*KI Grundlagen: Konzepte & Definitionen* (Thema 2) | Goodfellow et al., Kapitel 12.4 (S. 455) | Prince, Kapitel 1.1 (S. 2)"
+    }
+  }
+]
