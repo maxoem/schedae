@@ -1,5 +1,23 @@
 [
   {
+    "id": 415715692,
+    "tag": "v1.0.2",
+    "name": "v1.0.2",
+    "publishedAt": "2026-10-17T09:50:50Z",
+    "body": "**Full Changelog**: https://github.com/maxoem/schedae/compare/v1.0.1...v1.0.2",
+    "url": "https://github.com/maxoem/schedae/releases/tag/v1.0.2",
+    "isPrerelease": false
+  },
+  {
+    "id": 415216685,
+    "tag": "v1.0.1",
+    "name": "v1.0.1",
+    "publishedAt": "2026-10-16T17:38:17Z",
+    "body": "**Full Changelog**: https://github.com/maxoem/schedae/compare/v1.0.0...v1.0.1",
+    "url": "https://github.com/maxoem/schedae/releases/tag/v1.0.1",
+    "isPrerelease": false
+  },
+  {
     "id": 414297409,
     "tag": "v1.0.0",
     "name": "v1.0.0",

@@ -3,7 +3,7 @@
 # ==========================================
 # Stage 1: Build Environment
 # ==========================================
-FROM public.ecr.aws/docker/library/node:24-alpine@sha256:44fce696f38ba8c987c4db89954051000bbd05ffd8d8659ba15ed4a8602e937f AS builder
+FROM docker.io/library/node:24-alpine@sha256:44fce696f38ba8c987c4db89954051000bbd05ffd8d8659ba15ed4a8602e937f AS builder
 
 WORKDIR /app
 
@@ -25,7 +25,7 @@ RUN pnpm run build
 # ==========================================
 # Stage 2: Hardened Unprivileged Runtime
 # ==========================================
-FROM public.ecr.aws/nginx/nginx-unprivileged:stable-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01 AS production
+FROM docker.io/nginxinc/nginx-unprivileged:stable-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01 AS production
 
 USER root
 RUN apk update && apk upgrade --no-cache && rm -rf /var/cache/apk/*
