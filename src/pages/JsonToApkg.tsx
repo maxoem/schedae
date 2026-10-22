@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useState } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useAiSettings, StreamingResponseDialog, LlmGuideDialog } from "@/components/flashcard/AiSettingsPanel";
 import { useKeyboardShortcuts } from "@/components/flashcard/useKeyboardShortcuts";
@@ -7,9 +7,10 @@ import { WorkspaceHeader } from "@/components/workspace/WorkspaceHeader";
 import { WorkspaceSourcePanel } from "@/components/workspace/WorkspaceSourcePanel";
 import { WorkspacePreviewPanel } from "@/components/workspace/WorkspacePreviewPanel";
 import { WorkspaceParserSheet } from "@/components/workspace/WorkspaceParserSheet";
-import { AlertCircle, X } from "lucide-react";
+import { AlertCircle, X, FileText, Layers } from "lucide-react";
 
 export default function JsonToApkg() {
+  const [mobileActiveTab, setMobileActiveTab] = useState<"source" | "preview">("source");
   const ai = useAiSettings();
   const abortRef = useRef<AbortController | null>(null);
 
@@ -90,50 +91,100 @@ export default function JsonToApkg() {
           </div>
         )}
 
-        {/* Modern 2-Column Split Workspace (Source & Live Deck) */}
-        <main className="flex-1 min-h-0 p-3 md:p-4 grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4 overflow-hidden max-w-[1920px] mx-auto w-full">
+        {/* Mobile / Narrow Screen View Switcher (< lg) */}
+        <div className="lg:hidden px-2.5 sm:px-3 pt-2 shrink-0 max-w-[1920px] mx-auto w-full">
+          <div className="flex items-center bg-zinc-200/70 p-1 rounded-xl border border-zinc-200/80 shadow-2xs gap-1">
+            <button
+              type="button"
+              onClick={() => setMobileActiveTab("source")}
+              className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                mobileActiveTab === "source"
+                  ? "bg-white text-zinc-950 shadow-xs"
+                  : "text-zinc-600 hover:text-zinc-950 hover:bg-white/40"
+              }`}
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Notes</span>
+              {workspace.draftCards.length > 0 && (
+                <span className="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200/80">
+                  {workspace.draftCards.length}
+                </span>
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobileActiveTab("preview")}
+              className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                mobileActiveTab === "preview"
+                  ? "bg-white text-zinc-950 shadow-xs"
+                  : "text-zinc-600 hover:text-zinc-950 hover:bg-white/40"
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>Deck Preview</span>
+              <span
+                className={`text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-full ${
+                  workspace.totalCardCount > 0
+                    ? "bg-zinc-900 text-white"
+                    : "bg-zinc-100 text-zinc-500 border border-zinc-200/80"
+                }`}
+              >
+                {workspace.totalCardCount}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Responsive Workspace: Tabbed on narrow screens (< lg), 2-Column Split on desktop (>= lg) */}
+        <main className="flex-1 min-h-0 p-2 sm:p-3 md:p-4 flex flex-col lg:grid lg:grid-cols-2 gap-2.5 sm:gap-3 md:gap-4 overflow-hidden max-w-[1920px] mx-auto w-full">
           {/* Column 1: Source Notes Editor */}
-          <WorkspaceSourcePanel
-            value={workspace.sourceText}
-            onChange={workspace.setSourceText}
-            markerPatterns={workspace.highlightPatterns}
-            detectedFormatLabel={workspace.parseResult.detectedFormatLabel}
-            detectedCardCount={workspace.draftCards.length}
-            parserRule={workspace.parserRule}
-            onParserRuleChange={workspace.setParserRule}
-            hasCustomRules={Boolean(ai.stencil) || workspace.parserRule === "custom"}
-            onLoadSample={workspace.loadSample}
-            onClear={workspace.clearSource}
-            onOpenParserSettings={() => workspace.setIsSheetOpen(true)}
-            onAddToDeck={workspace.addCurrentAsBatch}
-            isProcessing={workspace.isProcessing}
-            onFileLoaded={(_text, filename) => {
-              if (filename) {
-                const cleanName = filename.replace(/\.[^/.]+$/, "");
-                workspace.setDeckName(cleanName);
-              }
-            }}
-          />
+          <div className={`h-full min-h-0 ${mobileActiveTab === "source" ? "flex flex-col flex-1" : "hidden lg:flex lg:flex-col"}`}>
+            <WorkspaceSourcePanel
+              value={workspace.sourceText}
+              onChange={workspace.setSourceText}
+              markerPatterns={workspace.highlightPatterns}
+              detectedFormatLabel={workspace.parseResult.detectedFormatLabel}
+              detectedCardCount={workspace.draftCards.length}
+              parserRule={workspace.parserRule}
+              onParserRuleChange={workspace.setParserRule}
+              hasCustomRules={Boolean(ai.stencil) || workspace.parserRule === "custom"}
+              onLoadSample={workspace.loadSample}
+              onClear={workspace.clearSource}
+              onOpenParserSettings={() => workspace.setIsSheetOpen(true)}
+              onAddToDeck={workspace.addCurrentAsBatch}
+              onViewPreview={() => setMobileActiveTab("preview")}
+              isProcessing={workspace.isProcessing}
+              onFileLoaded={(_text, filename) => {
+                if (filename) {
+                  const cleanName = filename.replace(/\.[^/.]+$/, "");
+                  workspace.setDeckName(cleanName);
+                }
+              }}
+            />
+          </div>
 
           {/* Column 2: Live Flashcard Deck Preview with Collapsible Batches */}
-          <WorkspacePreviewPanel
-            batches={workspace.batches}
-            draftCards={workspace.draftCards}
-            selectedTemplate={workspace.selectedTemplate}
-            onTemplateChange={workspace.setSelectedTemplate}
-            searchQuery={workspace.searchQuery}
-            onSearchChange={workspace.setSearchQuery}
-            viewMode={workspace.previewViewMode}
-            onViewModeChange={workspace.setPreviewViewMode}
-            onDeleteBatch={workspace.deleteBatch}
-            onDeleteCardFromBatch={workspace.deleteCardFromBatch}
-            onDeleteDraftCard={workspace.deleteDraftCard}
-            onClearDeck={workspace.clearDeck}
-            onSaveDraftToDeck={workspace.addCurrentAsBatch}
-            onLoadSample={workspace.loadSample}
-            onOpenParserSettings={() => workspace.setIsSheetOpen(true)}
-            diagnostics={workspace.parseResult.diagnostics}
-          />
+          <div className={`h-full min-h-0 ${mobileActiveTab === "preview" ? "flex flex-col flex-1" : "hidden lg:flex lg:flex-col"}`}>
+            <WorkspacePreviewPanel
+              batches={workspace.batches}
+              draftCards={workspace.draftCards}
+              selectedTemplate={workspace.selectedTemplate}
+              onTemplateChange={workspace.setSelectedTemplate}
+              searchQuery={workspace.searchQuery}
+              onSearchChange={workspace.setSearchQuery}
+              viewMode={workspace.previewViewMode}
+              onViewModeChange={workspace.setPreviewViewMode}
+              onDeleteBatch={workspace.deleteBatch}
+              onDeleteCardFromBatch={workspace.deleteCardFromBatch}
+              onDeleteDraftCard={workspace.deleteDraftCard}
+              onClearDeck={workspace.clearDeck}
+              onSaveDraftToDeck={workspace.addCurrentAsBatch}
+              onLoadSample={workspace.loadSample}
+              onOpenParserSettings={() => workspace.setIsSheetOpen(true)}
+              onBackToSource={() => setMobileActiveTab("source")}
+              diagnostics={workspace.parseResult.diagnostics}
+            />
+          </div>
         </main>
 
         {/* Progressive Disclosure: Parser & Delimiter Tuning Slide-Over Sheet */}

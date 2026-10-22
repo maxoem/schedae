@@ -331,11 +331,11 @@ function Layout({ children }: { children: React.ReactNode }) {
       {/* Visible Footer: Minimal low-height bar on tool pages, full footer on content pages */}
       {isWorkspacePage ? (
         <footer className="h-7 shrink-0 border-t border-zinc-200/80 bg-zinc-50 flex items-center w-full z-10 select-none">
-          <div className="w-full flex items-center justify-between px-4 sm:px-6 text-[11px] text-muted-foreground">
-            <p className="leading-none text-muted-foreground/80">
+          <div className="w-full flex items-center justify-between px-3 sm:px-6 text-[11px] text-muted-foreground">
+            <p className="leading-none text-muted-foreground/80 hidden md:block truncate mr-2">
               Built with React & ShadCN &bull; Processing in Browser
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 ml-auto shrink-0">
               <Link
                 to="/changelog"
                 className="relative inline-flex items-center gap-1.5 hover:text-foreground underline underline-offset-2 transition-colors"
@@ -355,15 +355,15 @@ function Layout({ children }: { children: React.ReactNode }) {
               >
                 Open Source
               </Link>
-              <span className="text-zinc-300">•</span>
+              <span className="text-zinc-300 hidden sm:inline">•</span>
               <Link
                 to="?tour=true"
-                className="hover:text-foreground underline underline-offset-2 transition-colors"
+                className="hover:text-foreground underline underline-offset-2 transition-colors hidden sm:inline"
               >
-                Feature Tour
+                Tour
               </Link>
               <span className="text-zinc-300">•</span>
-              <span>&copy; {new Date().getFullYear()} Schedae</span>
+              <span>&copy; {new Date().getFullYear()}</span>
             </div>
           </div>
         </footer>
