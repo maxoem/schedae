@@ -318,15 +318,13 @@ export interface CreateApkgOptions {
   regenerateIds?: boolean;
 }
 
-export async function createApkgFromAnkiJson(
-  ankiJson: any,
-  deckName: string,
-  templateId: CardTemplateId = "default",
-  options?: CreateApkgOptions,
-): Promise<Blob> {
-  const regenerateIds = Boolean(options?.regenerateIds);
-
-  const initSqlJs = (window as any).initSqlJs;
+async function initSqlJsInstance() {
+  if (typeof window === "undefined") {
+    const sqlModule = await import("sql.js");
+    const init = sqlModule.default || sqlModule;
+    return await init();
+  }
+  let initSqlJs = (window as any).initSqlJs;
   if (!initSqlJs) {
     await new Promise<void>((resolve, reject) => {
       const script = document.createElement("script");
@@ -338,7 +336,18 @@ export async function createApkgFromAnkiJson(
   }
   const init = (window as any).initSqlJs;
   if (!init) throw new Error("sql.js failed to load");
-  const SQL = await init({ locateFile: () => "/sql-wasm.wasm" });
+  return await init({ locateFile: () => "/sql-wasm.wasm" });
+}
+
+export async function createApkgFromAnkiJson(
+  ankiJson: any,
+  deckName: string,
+  templateId: CardTemplateId = "default",
+  options?: CreateApkgOptions,
+): Promise<Blob> {
+  const regenerateIds = Boolean(options?.regenerateIds);
+
+  const SQL = await initSqlJsInstance();
   const db = new SQL.Database();
 
   db.exec(APKG_SCHEMA);
@@ -679,7 +688,9 @@ export async function createApkgFromAnkiJson(
   const mediaObj: Record<string, string> = {};
   let mediaIndex = 0;
 
-  const ankiMediaGlob = import.meta.glob('/public/anki-media/**/*', { query: '?url', import: 'default' });
+  const ankiMediaGlob: Record<string, () => Promise<string>> = typeof (import.meta as any).glob === "function"
+    ? (import.meta as any).glob('/public/anki-media/**/*', { query: '?url', import: 'default' })
+    : {};
 
   for (const [path, resolveUrl] of Object.entries(ankiMediaGlob)) {
     const filename = path.split('/').pop();
@@ -707,19 +718,7 @@ export async function createApkgFromAnkiJson(
 }
 
 export async function createApkg(cards: FlashCard[], deckName: string, templateId: CardTemplateId = "default", customCss?: string): Promise<Blob> {
-  const initSqlJs = (window as any).initSqlJs;
-  if (!initSqlJs) {
-    await new Promise<void>((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = "/sql-wasm.js";
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error("Failed to load sql.js"));
-      document.head.appendChild(script);
-    });
-  }
-  const init = (window as any).initSqlJs;
-  if (!init) throw new Error("sql.js failed to load");
-  const SQL = await init({ locateFile: () => "/sql-wasm.wasm" });
+  const SQL = await initSqlJsInstance();
   const db = new SQL.Database();
 
   db.exec(APKG_SCHEMA);
@@ -865,7 +864,9 @@ export async function createApkg(cards: FlashCard[], deckName: string, templateI
   let mediaIndex = 0;
 
   // Automatically fetch and bundle specified media files if present in the public folder.
-  const ankiMediaGlob = import.meta.glob('/public/anki-media/**/*', { query: '?url', import: 'default' });
+  const ankiMediaGlob: Record<string, () => Promise<string>> = typeof (import.meta as any).glob === "function"
+    ? (import.meta as any).glob('/public/anki-media/**/*', { query: '?url', import: 'default' })
+    : {};
 
   for (const [path, resolveUrl] of Object.entries(ankiMediaGlob)) {
     const filename = path.split('/').pop();

@@ -9,7 +9,7 @@ import type {
 
 const FRONT_ALIASES = /^(?:front|question|frage|vorderseite|prompt)$/i;
 const BACK_ALIASES = /^(?:back|answer|antwort|rückseite|solution|lösung)$/i;
-const CARD_HEADER_REGEX = /^(?:card|karte)\s*(\d+(?:\.\d+)*)?/i;
+const CARD_HEADER_REGEX = /^(?:card|karte)\b/i;
 
 export class KeyValueExtractor implements ExtractorStrategy {
   readonly id = "key-value";
@@ -106,11 +106,15 @@ export class KeyValueExtractor implements ExtractorStrategy {
       }
 
       // Heading-style card delimiters (e.g. "### **Karte 1.1: ...**" or "# Card 2")
-      if (/^#{1,4}\s+/.test(trimmed)) {
+      if (/^#{1,6}\s+/.test(trimmed)) {
         const headingText = trimmed.replace(/^#+\s+/, "").replace(/^[*_~`]+|[*_~`]+$/g, "").trim();
         if (CARD_HEADER_REGEX.test(headingText)) {
           finalizeCard();
           currentCard.title = headingText;
+          continue;
+        } else if (currentCard.front || currentCard.back) {
+          // A structural section heading (e.g. "#### Komplex 2") finalizes any in-progress card
+          finalizeCard();
           continue;
         }
       }

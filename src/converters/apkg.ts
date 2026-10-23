@@ -51,6 +51,12 @@ const SQLITE_MAGIC = new Uint8Array([
 let _sqlJs: Awaited<ReturnType<typeof import("sql.js")["default"]>> | null = null;
 
 async function loadSqlJs(): Promise<void> {
+  if (typeof window === "undefined") {
+    const sqlModule = await import("sql.js");
+    const init = sqlModule.default || sqlModule;
+    _sqlJs = await init();
+    return;
+  }
   if ((window as any).initSqlJs) return; // already loaded
 
   return new Promise((resolve, reject) => {
@@ -65,12 +71,14 @@ async function loadSqlJs(): Promise<void> {
 async function getSql() {
   if (!_sqlJs) {
     await loadSqlJs();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const init = (window as any).initSqlJs;
-    if (!init) throw new Error("sql.js not loaded");
-    _sqlJs = await init({
-      locateFile: () => "/sql-wasm.wasm",
-    });
+    if (!_sqlJs && typeof window !== "undefined") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const init = (window as any).initSqlJs;
+      if (!init) throw new Error("sql.js not loaded");
+      _sqlJs = await init({
+        locateFile: () => "/sql-wasm.wasm",
+      });
+    }
   }
   if (!_sqlJs) throw new Error("sql.js failed to initialize");
   return _sqlJs;
@@ -450,7 +458,22 @@ function buildCardsViaTemplates(db: Database): { cards: FlashCard[]; style: stri
       styles.push(model.css);
     }
 
-    cards.push({ front, back });
+    const customFields: Record<string, string> = {};
+    if (model.fieldNames.length > 2) {
+      for (let i = 2; i < model.fieldNames.length; i++) {
+        const name = model.fieldNames[i];
+        const val = fields[name];
+        if (val && val.trim()) {
+          customFields[name] = val.trim();
+        }
+      }
+    }
+
+    cards.push({
+      front,
+      back,
+      ...(Object.keys(customFields).length > 0 ? { customFields } : {}),
+    });
   }
 
   return { cards, style: styles.join("\n") };

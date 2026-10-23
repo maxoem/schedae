@@ -1,0 +1,37 @@
+{
+  "cardCount": 6,
+  "detectedFormat": "bullet-list",
+  "usedStrategyId": "key-value",
+  "cards": [
+    {
+      "id": "card-1",
+      "front": "`[5.2 | Neoklassischer Fundamentalismus]` Wie lässt sich die Rechtfertigungsstruktur epistemisch autonomer Gründe im Vergleich zum klassischen Fundamentalismus formal-logisch rekonstruieren?",
+      "back": "* **Klassischer Fundamentalismus (Descartes):**\n  \\\\[\\forall p \\left( B(S, p) \\land \\text{Basal}(B(S, p)) \\implies \\Box (B(S, p) \\implies p) \\right)\\\\]\n  *(Unfehlbarkeit und unanfechtbare Gewissheit basaler Überzeugungen \\\\(B(S, p)\\\\))*.\n* **Neoklassischer Fundamentalismus (BonJour):**\n  Der Regressstopper ist kein doxastischer Zustand \\\\(B(S, p)\\\\), sondern ein nicht-doxastischer kognitiver Zustand \\\\(e\\\\) (z. B. phänomenales Erlebnis oder rationale Intuition \\\\(I(p)\\\\)):\n  \\\\[e \\vdash_{\\text{prima facie}} B(S, p)\\\\]\n  * **Eigenschaften von \\\\(e\\\\):**  \n    1. *Epistemische Autonomie:* \\\\(e\\\\) benötigt keine vorgängige Überzeugung \\\\(B(S, q)\\\\), um \\\\(B(S, p)\\\\) zu stützen.  \n    2. *Fehlbarkeit:* \\\\((e \\land \\neg p)\\\\) ist logisch konsistent (keine Garantie der Wahrheit).  \n    3. *Anfechtbarkeit:* \\\\(\\exists d \\left( B(S, d) \\implies \\neg (e \\vdash_{\\text{ultrasubstanziell}} B(S, p)) \\right)\\\\)."
+    },
+    {
+      "id": "card-2",
+      "front": "`[5.2 | Neoklassischer Fundamentalismus]` Was ist die erkenntnistheoretische Pointe des Wechsels von basalen Überzeugungen zu nicht-doxastischen Zuständen bei BonJour?",
+      "back": "* BonJour gibt die cartesianische Unfehlbarkeits- und Skepsisresistenzforderung auf, um dem Regressproblem zu entgehen.  \n* Statt unbezweifelbarer Fundamentalsätze dienen **nicht-doxastische Zustände** (bewusste Erfahrungen, intuitive Einsichten) als erste Gründe. Sie sollen für ihre eigene Wahrheit sprechen („epistemisch autonom sein“) und somit keinen weiteren Begründungsregress auslösen."
+    },
+    {
+      "id": "card-3",
+      "front": "`[5.2 | Neoklassischer Fundamentalismus]` Woran erkennt man in der philosophischen Textanalyse eine neoklassisch-fundamentalistische Begründungsstrategie?",
+      "back": "* **Muster im Text:** Ein Autor stoppt den Rechtfertigungsregress durch Berufung auf ein unmittelbares Erleben oder Verstehen, räumt jedoch explizit ein, dass darauf aufbauende Urteilsschlüsse irrbar oder korrigierbar sind.\n* **Prüffrage an den Argumentationsgang:** Beruft sich der Autor auf einen *nicht-doxastischen Zustand* als Prima-facie-Grund, ohne dafür eine metaphysische Garantie der Unfehlbarkeit zu beanspruchen?"
+    },
+    {
+      "id": "card-4",
+      "front": "`[5.2 | Rationale Intuition]` Wie lässt sich die logische Struktur des Erfassens eines selbstevidenten Gedankens formalisieren?",
+      "back": "Sei \\\\(p\\\\) eine notwendige Proposition a priori (z. B. \\\\(p \\equiv \\neg \\exists x (Rot(x) \\land Gruen(x))\\\\)):\n\\\\[Verstehen(S, p) \\implies Intuition(S, p) \\implies \\text{Prima-facie-Rechtfertigung}(S, B(S, p))\\\\]\n* **Modaler Gehalt der Einsicht:**  \n  \\\\[Intuition(S, p) \\iff S \\text{ erfasst unmittelbar: } \\neg \\diamond \\neg p\\\\]\n  *(Das intellektuelle Verstehen von \\\\(p\\\\) liefert unmittelbar den Grund für die Wahrheit von \\\\(p\\\\), ohne dass empirische Evidenz nötig ist)*."
+    },
+    {
+      "id": "card-5",
+      "front": "`[5.2 | Rationale Intuition]` Worin besteht die funktionale Leistung der rationalen Intuition bei der Regressstilllegung?",
+      "back": "* Rationale Einsicht fungiert als erfahrungsunabhängiger (a priori), nicht-doxastischer Regressstopper für notwendige Wahrheiten.  \n* Der Grund begründet sich selbst: Allein das adäquate Begreifen des Gehalts einer selbstevidenten Proposition offenbart deren Unmöglichkeit des Falschseins."
+    },
+    {
+      "id": "card-6",
+      "front": "`[5.2 | Rationale Intuition]` Wie identifiziert man in einem philosophischen Text den Rekurs auf rationale Einsicht/Intuition?",
+      "back": "* **Muster im Text:** Behauptung der Wahrheit einer Aussage allein durch Verweis auf die logisch-begriffliche Undenkbarkeit ihres Gegenteils.\n* **Prüffrage an den Text:** Basiert die argumentierte Evidenz rein auf der Begriffsanalyse/dem Begriffsverständnis (a priori) oder fließen verdeckte empirische Wahrnehmungselemente ein?"
+    }
+  ]
+}

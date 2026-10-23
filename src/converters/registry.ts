@@ -1,6 +1,7 @@
 import type { Converter, ConversionResult, DownloadFormat, FlashCard } from "./types";
 import { ankiTsvConverter } from "./ankiTsv";
 import { apkgConverter } from "./apkg";
+import { cardsToMarkdown, type MarkdownSerializeOptions } from "./markdownSerializer";
 
 // ---------------------------------------------------------------------------
 // Registry – add new converters here; detection is first-match wins.
@@ -53,16 +54,23 @@ export function cardsToJSON(cards: FlashCard[], style?: string): string {
 }
 
 export function serialise(cards: FlashCard[], format: DownloadFormat, style?: string): string {
-  return format === "csv" ? cardsToCSV(cards) : cardsToJSON(cards, style);
+  if (format === "csv") return cardsToCSV(cards);
+  if (format === "markdown" || format === "md") return cardsToMarkdown(cards);
+  return cardsToJSON(cards, style);
 }
 
 export function mimeTypeOf(format: DownloadFormat): string {
-  return format === "csv" ? "text/csv" : "application/json";
+  if (format === "csv") return "text/csv";
+  if (format === "markdown" || format === "md") return "text/markdown";
+  return "application/json";
 }
 
 export function fileExtensionOf(format: DownloadFormat): string {
-  return format === "csv" ? "csv" : "json";
+  if (format === "csv") return "csv";
+  if (format === "markdown" || format === "md") return "md";
+  return "json";
 }
 
-// Re-export types so consumers can import everything from one place.
+// Re-export types and serializers so consumers can import everything from one place.
+export { cardsToMarkdown, type MarkdownSerializeOptions };
 export type { Converter, ConversionResult, DownloadFormat, FlashCard };
