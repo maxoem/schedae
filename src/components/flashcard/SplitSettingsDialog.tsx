@@ -25,6 +25,7 @@ export {
 import {
   type SplitSettings,
   PREDEFINED_EXTRACTION_SETS,
+  DEFAULT_SPLIT_SETTINGS,
   extractFlashcardsFromText,
 } from "@/services/deckParser/splitSettings";
 

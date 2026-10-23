@@ -688,7 +688,7 @@ export async function createApkgFromAnkiJson(
   const mediaObj: Record<string, string> = {};
   let mediaIndex = 0;
 
-  const ankiMediaGlob = typeof (import.meta as any).glob === "function"
+  const ankiMediaGlob: Record<string, () => Promise<string>> = typeof (import.meta as any).glob === "function"
     ? (import.meta as any).glob('/public/anki-media/**/*', { query: '?url', import: 'default' })
     : {};
 
@@ -864,7 +864,7 @@ export async function createApkg(cards: FlashCard[], deckName: string, templateI
   let mediaIndex = 0;
 
   // Automatically fetch and bundle specified media files if present in the public folder.
-  const ankiMediaGlob = typeof (import.meta as any).glob === "function"
+  const ankiMediaGlob: Record<string, () => Promise<string>> = typeof (import.meta as any).glob === "function"
     ? (import.meta as any).glob('/public/anki-media/**/*', { query: '?url', import: 'default' })
     : {};
 

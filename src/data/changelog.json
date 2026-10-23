@@ -1,5 +1,14 @@
 [
   {
+    "id": 416345862,
+    "tag": "v1.0.3",
+    "name": "v1.0.3",
+    "publishedAt": "2026-10-18T09:13:27Z",
+    "body": "**Full Changelog**: https://github.com/maxoem/schedae/compare/v1.0.2...v1.0.3",
+    "url": "https://github.com/maxoem/schedae/releases/tag/v1.0.3",
+    "isPrerelease": false
+  },
+  {
     "id": 415715692,
     "tag": "v1.0.2",
     "name": "v1.0.2",
