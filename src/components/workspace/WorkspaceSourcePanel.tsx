@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { FileText, Upload, Trash2, Wand2, Plus, SlidersHorizontal, FileCode2, Check, BookOpen, ChevronDown } from "lucide-react";
+import { FileText, Upload, Trash2, Wand2, Plus, SlidersHorizontal, FileCode2, Check, BookOpen, ChevronDown, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SyntaxEditor from "@/components/flashcard/SyntaxEditor";
@@ -22,6 +22,7 @@ interface WorkspaceSourcePanelProps {
   onClear: () => void;
   onOpenParserSettings: () => void;
   onAddToDeck?: () => void;
+  onViewPreview?: () => void;
   isProcessing?: boolean;
   onFileLoaded?: (text: string, filename?: string) => void;
 }
@@ -39,6 +40,7 @@ export function WorkspaceSourcePanel({
   onClear,
   onOpenParserSettings,
   onAddToDeck,
+  onViewPreview,
   isProcessing,
   onFileLoaded,
 }: WorkspaceSourcePanelProps) {
@@ -98,20 +100,20 @@ export function WorkspaceSourcePanel({
       )}
 
       {/* Panel Header - Exact h-11 (44px) matching Deck Preview */}
-      <div className="bg-muted/40 px-3.5 h-11 border-b border-[#E5E7EB] flex items-center justify-between shrink-0">
+      <div className="bg-muted/40 px-2.5 sm:px-3.5 h-11 border-b border-[#E5E7EB] flex items-center justify-between shrink-0 gap-2">
         {/* Left: Source Notes label + Format dropdown with docked Rules button */}
-        <div className="flex items-center gap-2 min-w-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
           <div className="flex items-center gap-1.5 shrink-0">
-            <FileText className="w-4 h-4 text-primary/80" />
-            <span className="text-xs font-semibold text-foreground/90">
+            <FileText className="w-4 h-4 text-primary/80 shrink-0" />
+            <span className="text-xs font-semibold text-foreground/90 hidden xs:inline">
               Source Notes
             </span>
           </div>
 
           {/* Docked Format Selector + Rules Action Group with divider */}
           <div className="flex items-center bg-background/90 border border-border/80 rounded-md shadow-2xs h-7 overflow-hidden">
-            <div className="flex items-center gap-1 px-2 border-r border-border/60 text-xs h-full">
-              <span className="text-muted-foreground font-medium text-[11px] mr-1 hidden sm:inline">Format:</span>
+            <div className="flex items-center gap-1 px-1.5 sm:px-2 border-r border-border/60 text-xs h-full">
+              <span className="text-muted-foreground font-medium text-[11px] mr-1 hidden md:inline">Format:</span>
               <select
                 value={parserRule}
                 onChange={(e) => {
@@ -121,7 +123,7 @@ export function WorkspaceSourcePanel({
                     onOpenParserSettings();
                   }
                 }}
-                className="bg-transparent font-medium text-foreground focus:outline-hidden cursor-pointer py-0.5 text-xs"
+                className="bg-transparent font-medium text-foreground focus:outline-hidden cursor-pointer py-0.5 text-xs max-w-[100px] xs:max-w-none"
                 title="Select markdown / flashcard input format"
               >
                 <option value="auto" className="bg-popover text-popover-foreground">
@@ -131,10 +133,10 @@ export function WorkspaceSourcePanel({
                   Generic (Q: / A:)
                 </option>
                 <option value="headings" className="bg-popover text-popover-foreground">
-                  Markdown Headings (###)
+                  Headings (###)
                 </option>
                 <option value="bold-italic" className="bg-popover text-popover-foreground">
-                  Bold & Italic (**)
+                  Bold (**)
                 </option>
                 <option value="custom" className="bg-popover text-popover-foreground">
                   Custom...
@@ -146,11 +148,11 @@ export function WorkspaceSourcePanel({
             <button
               type="button"
               onClick={onOpenParserSettings}
-              className="px-2 h-full flex items-center gap-1.5 text-xs font-medium text-zinc-700 hover:text-zinc-950 hover:bg-muted/80 transition-colors cursor-pointer"
+              className="px-1.5 sm:px-2 h-full flex items-center gap-1 text-xs font-medium text-zinc-700 hover:text-zinc-950 hover:bg-muted/80 transition-colors cursor-pointer"
               title="Open Parser & Delimiter Settings (Ctrl+M)"
             >
               <SlidersHorizontal className="w-3.5 h-3.5 text-zinc-500" />
-              <span className="text-[11px] hidden sm:inline">Rules</span>
+              <span className="text-[11px] hidden md:inline">Rules</span>
               {hasCustomRules && (
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" title="Custom rules active" />
               )}
@@ -158,25 +160,25 @@ export function WorkspaceSourcePanel({
           </div>
         </div>
 
-        {/* Right: Secondary file actions Prompt and Import */}
-        <div className="flex items-center gap-1 shrink-0 relative">
+        {/* Right: Secondary file actions Prompt, Sample, Import, and Clear */}
+        <div className="flex items-center gap-0.5 sm:gap-1 shrink-0 relative">
           {/* Format Instructions Button for LLM */}
           <Button
             variant="ghost"
             size="sm"
             onClick={handleCopyFormatPrompt}
-            className="h-7 text-xs px-2 gap-1 text-muted-foreground hover:text-foreground font-medium"
+            className="h-7 text-xs px-1.5 sm:px-2 gap-1 text-muted-foreground hover:text-foreground font-medium"
             title="Copy LLM Format Instructions to clipboard (includes Q&A and Custom Fields)"
           >
             {copiedPrompt ? (
               <>
                 <Check className="w-3.5 h-3.5 text-emerald-500" />
-                <span className="hidden sm:inline text-emerald-600 font-semibold">Copied!</span>
+                <span className="hidden lg:inline text-emerald-600 font-semibold">Copied!</span>
               </>
             ) : (
               <>
                 <FileCode2 className="w-3.5 h-3.5 text-primary/70" />
-                <span className="hidden sm:inline">Format Prompt</span>
+                <span className="hidden lg:inline">Format Prompt</span>
               </>
             )}
           </Button>
@@ -187,10 +189,11 @@ export function WorkspaceSourcePanel({
               variant="ghost"
               size="sm"
               onClick={() => setSampleMenuOpen((prev) => !prev)}
-              className="h-7 text-xs px-2 gap-1 text-muted-foreground hover:text-foreground font-medium"
+              className="h-7 text-xs px-1.5 sm:px-2 gap-1 text-muted-foreground hover:text-foreground font-medium"
+              title="Load sample flashcard template"
             >
               <BookOpen className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Sample</span>
+              <span className="hidden lg:inline">Sample</span>
               <ChevronDown className="w-3 h-3 opacity-60" />
             </Button>
 
@@ -209,7 +212,7 @@ export function WorkspaceSourcePanel({
                       onLoadSample(sample.id);
                       setSampleMenuOpen(false);
                     }}
-                    className="w-full text-left rounded-lg px-2.5 py-1.5 text-xs hover:bg-muted transition-colors flex flex-col gap-0.5"
+                    className="w-full text-left rounded-lg px-2.5 py-1.5 text-xs hover:bg-muted transition-colors flex flex-col gap-0.5 cursor-pointer"
                   >
                     <span className="font-medium text-foreground">{sample.label}</span>
                     <span className="text-[10px] text-muted-foreground">{sample.description}</span>
@@ -224,11 +227,11 @@ export function WorkspaceSourcePanel({
             variant="ghost"
             size="sm"
             onClick={openFileDialog}
-            className="h-7 text-xs px-2 gap-1 text-muted-foreground hover:text-foreground font-medium"
-            title="Import file from disk"
+            className="h-7 text-xs px-1.5 sm:px-2 gap-1 text-muted-foreground hover:text-foreground font-medium"
+            title="Import file from disk (.md, .txt, .json)"
           >
             <Upload className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Import</span>
+            <span className="hidden lg:inline">Import</span>
           </Button>
 
           {/* Clear Button */}
@@ -270,8 +273,8 @@ Tip: Drop .md or .json files directly onto this pane.`}
       </div>
 
       {/* Editor Footer Status & Save-to-Deck CTA */}
-      <div className="p-2.5 border-t border-[#E5E7EB] bg-muted/20 flex flex-wrap items-center justify-between gap-2 shrink-0">
-        <div className="flex items-center gap-3 text-[11px] text-muted-foreground font-mono">
+      <div className="p-2 sm:p-2.5 border-t border-[#E5E7EB] bg-muted/20 flex flex-wrap items-center justify-between gap-2 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 text-[11px] text-muted-foreground font-mono">
           <span>{charCount} chars</span>
           <span>•</span>
           <span>{lineCount} lines</span>
@@ -280,10 +283,38 @@ Tip: Drop .md or .json files directly onto this pane.`}
         <div className="flex items-center gap-2">
           {detectedCardCount > 0 ? (
             <>
-              <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-muted-foreground font-medium pr-1">
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span>{detectedCardCount} {detectedCardCount === 1 ? "card" : "cards"} parsed</span>
-              </span>
+              {onViewPreview ? (
+                <button
+                  type="button"
+                  onClick={onViewPreview}
+                  className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground font-medium pr-1 cursor-pointer group transition-colors"
+                  title="Click to view parsed cards in Deck Preview"
+                >
+                  <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span className="group-hover:underline">
+                    {detectedCardCount} {detectedCardCount === 1 ? "card" : "cards"} parsed
+                  </span>
+                  <span className="lg:hidden text-[10px] text-primary font-bold ml-0.5">→</span>
+                </button>
+              ) : (
+                <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-muted-foreground font-medium pr-1">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>{detectedCardCount} {detectedCardCount === 1 ? "card" : "cards"} parsed</span>
+                </span>
+              )}
+
+              {onViewPreview && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={onViewPreview}
+                  className="lg:hidden h-8 gap-1 px-2 text-xs font-medium border-border/80 text-foreground shadow-2xs hover:bg-muted"
+                  title="Switch to Deck Preview tab"
+                >
+                  <span>Preview</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                </Button>
+              )}
 
               <Button
                 size="sm"

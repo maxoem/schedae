@@ -9,6 +9,7 @@ import {
   Check,
   AlertCircle,
   ArrowRight,
+  ArrowLeft,
   Plus,
   Sparkles,
   ChevronDown,
@@ -50,6 +51,7 @@ interface WorkspacePreviewPanelProps {
   onSaveDraftToDeck: () => void;
   onLoadSample: (sampleId: string) => void;
   onOpenParserSettings: () => void;
+  onBackToSource?: () => void;
   diagnostics: DiagnosticIssue[];
 }
 
@@ -69,6 +71,7 @@ export function WorkspacePreviewPanel({
   onSaveDraftToDeck,
   onLoadSample,
   onOpenParserSettings,
+  onBackToSource,
   diagnostics,
 }: WorkspacePreviewPanelProps) {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -142,24 +145,36 @@ export function WorkspacePreviewPanel({
   return (
     <div className="flex flex-col rounded-lg border border-[#E5E7EB] bg-white shadow-xs min-h-0 overflow-hidden h-full">
       {/* Panel Header - Exact h-11 (44px) matching Source Notes */}
-      <div className="bg-muted/40 px-3.5 h-11 border-b border-[#E5E7EB] flex items-center justify-between shrink-0">
-        {/* Left: Deck Preview label */}
-        <div className="flex items-center gap-2 shrink-0">
-          <Layers className="w-4 h-4 text-primary/80" />
-          <span className="text-xs font-semibold text-foreground/90">
+      <div className="bg-muted/40 px-2.5 sm:px-3.5 h-11 border-b border-[#E5E7EB] flex items-center justify-between shrink-0 gap-2">
+        {/* Left: Deck Preview label (plus optional Back to Notes button on narrow viewports) */}
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {onBackToSource && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onBackToSource}
+              className="lg:hidden h-7 px-1.5 sm:px-2 text-xs text-muted-foreground hover:text-foreground font-medium gap-1"
+              title="Return to Source Notes editor"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span className="hidden xs:inline">Notes</span>
+            </Button>
+          )}
+          <Layers className="w-4 h-4 text-primary/80 shrink-0" />
+          <span className="text-xs font-semibold text-foreground/90 shrink-0">
             Deck Preview
           </span>
         </div>
 
         {/* Right: Template Picker + Segmented View Control [List | Flip] + Isolated Clear Deck */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Card Template Picker */}
-          <div className="flex items-center gap-1 bg-background/90 border border-border/80 rounded-md px-2 h-7 text-xs shadow-2xs">
-            <span className="text-muted-foreground font-medium text-[11px] hidden sm:inline">Template:</span>
+          <div className="flex items-center gap-1 bg-background/90 border border-border/80 rounded-md px-1.5 sm:px-2 h-7 text-xs shadow-2xs">
+            <span className="text-muted-foreground font-medium text-[11px] hidden md:inline">Template:</span>
             <select
               value={selectedTemplate}
               onChange={(e) => onTemplateChange(e.target.value as CardTemplateId)}
-              className="bg-transparent font-medium text-foreground focus:outline-hidden cursor-pointer py-0.5 text-xs"
+              className="bg-transparent font-medium text-foreground focus:outline-hidden cursor-pointer py-0.5 text-xs max-w-[110px] xs:max-w-[140px] sm:max-w-[190px] md:max-w-none"
               title="Select visual card styling template"
             >
               {(Object.keys(CARD_TEMPLATES) as CardTemplateId[]).map((tId) => (
@@ -172,11 +187,11 @@ export function WorkspacePreviewPanel({
 
           {/* Segmented Control Pill: [List | Flip] */}
           {totalCards > 0 && (
-            <div className="flex items-center bg-muted/80 p-0.5 rounded-lg border border-border/70 h-7">
+            <div className="flex items-center bg-muted/80 p-0.5 rounded-lg border border-border/70 h-7 shrink-0">
               <button
                 type="button"
                 onClick={() => onViewModeChange("list")}
-                className={`flex items-center gap-1 px-2.5 h-6 rounded-md text-xs transition-all cursor-pointer ${
+                className={`flex items-center gap-1 px-2 sm:px-2.5 h-6 rounded-md text-xs transition-all cursor-pointer ${
                   viewMode === "list"
                     ? "bg-background text-foreground font-semibold shadow-xs"
                     : "text-muted-foreground hover:text-foreground"
@@ -189,7 +204,7 @@ export function WorkspacePreviewPanel({
               <button
                 type="button"
                 onClick={() => onViewModeChange("flip")}
-                className={`flex items-center gap-1 px-2.5 h-6 rounded-md text-xs transition-all cursor-pointer ${
+                className={`flex items-center gap-1 px-2 sm:px-2.5 h-6 rounded-md text-xs transition-all cursor-pointer ${
                   viewMode === "flip"
                     ? "bg-background text-foreground font-semibold shadow-xs"
                     : "text-muted-foreground hover:text-foreground"
@@ -212,7 +227,7 @@ export function WorkspacePreviewPanel({
                   onClearDeck();
                 }
               }}
-              className="h-7 w-7 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+              className="h-7 w-7 text-muted-foreground hover:text-destructive hover:bg-destructive/10 shrink-0"
               title="Clear all batches in deck"
             >
               <Trash2 className="w-3.5 h-3.5" />
