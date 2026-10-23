@@ -1,0 +1,19 @@
+{
+  "cardCount": 3,
+  "detectedFormat": "custom-delimiters",
+  "usedStrategyId": "regex",
+  "cards": [
+    {
+      "front": "Was versteht man formal und konzeptionell unter der Ableitung eines Wortes $w$ in einer Grammatik $G$?",
+      "back": "Eine Ableitung ist die formale Sequenz von Substitutionen, durch die ein String aus dem Startsymbol der Grammatik erzeugt wird."
+    },
+    {
+      "front": "Was ist die grundlegende Idee hinter dem Modell der Turing-Maschine und warum ist dieses Konzept so zentral für die theoretische Informatik?",
+      "back": "Die Turing-Maschine ist ein weitaus genaueres mathematisches Modell eines universellen Computers, das mit einem unbegrenzten und uneingeschränkten Speicher arbeitet."
+    },
+    {
+      "front": "Wie ist die Chomsky-Normalform (CNF) definiert und welche rigorosen algorithmischen Schritte sind zur Transformation einer beliebigen kontextfreien Grammatik in diese Form notwendig?",
+      "back": "Eine kontextfreie Grammatik liegt in der Chomsky-Normalform vor, wenn jede Regel entweder die Form $A \\rightarrow BC$ oder die Form $A \\rightarrow a$ hat, wobei $a$ ein Terminalsymbol ist und $A, B$ sowie $C$ beliebige Variablen sind."
+    }
+  ]
+}

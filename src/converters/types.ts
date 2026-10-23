@@ -59,4 +59,4 @@ export interface Converter {
   ): Promise<ConversionResult>;
 }
 
-export type DownloadFormat = "csv" | "json";
+export type DownloadFormat = "csv" | "json" | "markdown" | "md";

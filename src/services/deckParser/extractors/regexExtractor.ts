@@ -4,7 +4,7 @@ import {
   PREDEFINED_EXTRACTION_SETS,
   DEFAULT_SPLIT_SETTINGS,
   extractFlashcardsFromText,
-} from "@/components/flashcard/SplitSettingsDialog";
+} from "../splitSettings";
 import type { ExtractorOptions, ExtractorResult, ExtractorStrategy, DiagnosticIssue } from "../types";
 
 export class RegexExtractor implements ExtractorStrategy {

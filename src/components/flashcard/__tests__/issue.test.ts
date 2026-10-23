@@ -1,6 +1,6 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
-import { extractFlashcardsFromText, PREDEFINED_EXTRACTION_SETS } from "../SplitSettingsDialog";
+import { extractFlashcardsFromText, PREDEFINED_EXTRACTION_SETS } from "@/services/deckParser/splitSettings";
 
 describe("extractFlashcardsFromText", () => {
 	test("removes markdown card titles and label markers from front/back", () => {

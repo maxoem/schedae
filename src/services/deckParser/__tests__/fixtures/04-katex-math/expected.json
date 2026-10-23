@@ -1,0 +1,25 @@
+{
+  "cardCount": 2,
+  "detectedFormat": "markdown-sections",
+  "usedStrategyId": "markdown-sections",
+  "cards": [
+    {
+      "id": "card-1",
+      "front": "What is the formula for the Taylor series expansion of \\( f(x) \\) around \\( a \\)?",
+      "back": "The Taylor series expansion of an infinitely differentiable function \\( f(x) \\) at point \\( a \\) is:\n\n$$f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x - a)^n$$\n\nWhere \\( f^{(n)}(a) \\) denotes the \\( n \\)-th derivative of \\( f \\) evaluated at \\( a \\).",
+      "customFields": {
+        "Notes": "Special case for \\( a = 0 \\) is known as the Maclaurin series.",
+        "Category": "Calculus"
+      }
+    },
+    {
+      "id": "card-2",
+      "front": "What defines an eigenvalue \\( \\lambda \\) and eigenvector \\( \\mathbf{v} \\) for an \\( n \\times n \\) matrix \\( A \\)?",
+      "back": "A non-zero vector \\( \\mathbf{v} \\neq \\mathbf{0} \\) is an eigenvector corresponding to eigenvalue \\( \\lambda \\) if:\n\n$$A \\mathbf{v} = \\lambda \\mathbf{v}$$\n\nEquivalently, the characteristic equation must be satisfied:\n\n$$\\det(A - \\lambda I) = 0$$",
+      "customFields": {
+        "Notes": "The set of all eigenvalues is called the spectrum of matrix \\( A \\).",
+        "Category": "Linear Algebra"
+      }
+    }
+  ]
+}
