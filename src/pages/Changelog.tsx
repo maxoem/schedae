@@ -6,17 +6,22 @@ import { useChangelogNews } from "@/hooks/useChangelogNews";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Github, ArrowLeft, ExternalLink, Sparkles, Tag } from "lucide-react";
+import { Seo } from "@/components/Seo";
 
 export default function Changelog() {
   const { releases, markAsRead } = useChangelogNews();
 
   useEffect(() => {
     markAsRead();
-    document.title = "Changelog | Schedae";
   }, [markAsRead]);
 
   return (
     <div className="w-full max-w-4xl px-4 sm:px-6 py-12 mx-auto">
+      <Seo
+        title="Changelog & Release Notes"
+        description="Latest updates, new features, parser improvements, and bug fixes for Schedae."
+        canonicalPath="/changelog"
+      />
       {/* Back button & top navigation */}
       <div className="flex items-center justify-between mb-8">
         <Button asChild variant="ghost" size="sm" className="gap-1.5 text-zinc-600 hover:text-zinc-950">

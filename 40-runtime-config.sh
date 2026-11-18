@@ -37,27 +37,42 @@ fi
 
 # 2. Generate sitemap.xml & robots.txt in /tmp
 if [ -f /usr/share/nginx/html/sitemap.xml ]; then
+  rm -f /tmp/sitemap.xml
   sed "s|https://__RUNTIME_SITE_URL__|${TARGET_URL}|g" /usr/share/nginx/html/sitemap.xml > /tmp/sitemap.xml
   chmod 0444 /tmp/sitemap.xml
 fi
 
 if [ -f /usr/share/nginx/html/robots.txt ]; then
+  rm -f /tmp/robots.txt
   sed "s|https://__RUNTIME_SITE_URL__|${TARGET_URL}|g" /usr/share/nginx/html/robots.txt > /tmp/robots.txt
   chmod 0444 /tmp/robots.txt
 fi
 
-# 3. Inject Analytics Script into /tmp/index.html if configured
+# 3. Inject Analytics Script & Runtime Site URL into all pre-rendered HTML files in /tmp/html
 ANALYTICS_CSP=""
+ANALYTICS_TAG=""
 if [ -n "${WEBSITE_ID}" ] && [ -n "${STATS_HOST}" ]; then
   ANALYTICS_TAG="<script defer src=\"${STATS_HOST}/script.js\" data-website-id=\"${WEBSITE_ID}\"></script>"
-  sed "s|<!-- __ANALYTICS_SCRIPT__ -->|${ANALYTICS_TAG}|g" /usr/share/nginx/html/index.html > /tmp/index.html
   ANALYTICS_CSP=" ${STATS_HOST}"
-else
-  sed "s|<!-- __ANALYTICS_SCRIPT__ -->||g" /usr/share/nginx/html/index.html > /tmp/index.html
 fi
-chmod 0444 /tmp/index.html
+
+rm -rf /tmp/html
+mkdir -p /tmp/html
+(
+  cd /usr/share/nginx/html
+  find . -type f -name '*.html' | while IFS= read -r relpath; do
+    dest="/tmp/html/${relpath#./}"
+    mkdir -p "$(dirname "${dest}")"
+    sed \
+      -e "s|https://__RUNTIME_SITE_URL__|${TARGET_URL}|g" \
+      -e "s|<!-- __ANALYTICS_SCRIPT__ -->|${ANALYTICS_TAG}|g" \
+      "${relpath}" > "${dest}"
+    chmod 0444 "${dest}"
+  done
+)
 
 # 4. Generate /tmp/security_headers.conf
+rm -f /tmp/security_headers.conf
 cat <<EOF > /tmp/security_headers.conf
 add_header X-Frame-Options "DENY" always;
 add_header X-Content-Type-Options "nosniff" always;

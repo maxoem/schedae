@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { getAllDecksSync, loadPublicDecksFromManifest, mergeDeckLists, fetchDeckCards, type Flashcard, type DeckInsights, type DeckSubset, type Deck } from "@/data/decks";
+import { getAllDecksSync, getDeckPath, getDeckSlug, loadPublicDecksFromManifest, mergeDeckLists, fetchDeckCards, type Flashcard, type DeckInsights, type DeckSubset, type Deck } from "@/data/decks";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -18,6 +18,7 @@ import InteractivePreview from "@/components/flashcard/InteractivePreview";
 import DeckMetadataCard from "@/components/flashcard/DeckMetadataCard";
 import CardList from "@/components/flashcard/CardList";
 import { createApkg } from "@/converters/jsonToApkg";
+import { Seo, getSiteUrl } from "@/components/Seo";
 
 function toCardSortKey(card: Flashcard, index: number): number {
   if (typeof card.mod === "number" && Number.isFinite(card.mod) && card.mod > 0) {
@@ -55,7 +56,7 @@ export default function DeckDetail() {
   const { id } = useParams<{ id: string }>();
   const [decks, setDecks] = useState<Deck[]>(getAllDecksSync());
   const [decksReady, setDecksReady] = useState(false);
-  const deck = decks.find((d) => d.id === id);
+  const deck = decks.find((d) => d.id === id || getDeckSlug(d) === id);
   const [expandedBacks, setExpandedBacks] = useState<Record<string, boolean>>({});
   const [cards, setCards] = useState<Flashcard[]>(deck?.cards || []);
   const [loading, setLoading] = useState(true);
@@ -149,6 +150,11 @@ export default function DeckDetail() {
   if (!deck && !decksReady) {
     return (
       <div className="flex h-screen w-full items-center justify-center">
+        <Seo
+          title="Flashcard Deck"
+          description="Loading Anki flashcard deck preview and .apkg download on Schedae."
+          canonicalPath={id ? `/deck/${encodeURIComponent(id)}` : "/decks"}
+        />
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
@@ -157,6 +163,11 @@ export default function DeckDetail() {
   if (!deck) {
     return (
       <div className="container mx-auto py-20 px-4 text-center flex flex-col items-center justify-center min-h-[60vh]">
+        <Seo
+          title="Deck Not Found"
+          description="The flashcard deck you are looking for does not exist or has been removed."
+          noindex
+        />
         <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mb-6">
           <BookOpen className="w-10 h-10 text-muted-foreground" />
         </div>
@@ -171,13 +182,31 @@ export default function DeckDetail() {
     );
   }
 
-  if (loading) {
-      return (
-          <div className="flex h-screen w-full items-center justify-center">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-          </div>
-      );
-  }
+  const deckPath = getDeckPath(deck);
+  const deckCardCount = deckInsights?.cardCount ?? deck.cardCount ?? allCards.length;
+  const deckSeo = (
+    <Seo
+      title={`${deck.title} — Anki Deck (${deckCardCount} Karten)`}
+      description={
+        deck.description ||
+        `${deck.title} (${deck.topic}, ${deckCardCount} Lernkarten) — Kostenlos als Anki .apkg, JSON oder CSV herunterladen.`
+      }
+      canonicalPath={deckPath}
+      lang="de"
+      jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        name: deck.title,
+        description: deck.description,
+        educationalLevel: deck.level,
+        about: deck.topic,
+        author: { "@type": "Person", name: deck.author },
+        datePublished: deck.date,
+        url: `${getSiteUrl()}${deckPath}`,
+        learningResourceType: "Flashcard Deck",
+      }}
+    />
+  );
 
   const toggleExpand = (cardId: string) => {
     setExpandedBacks((prev) => ({ ...prev, [cardId]: !prev[cardId] }));
@@ -251,6 +280,7 @@ export default function DeckDetail() {
 
   return (
     <div className="relative container mx-auto py-8 px-4 md:px-6 max-w-7xl">
+      {deckSeo}
       {/* Mathematical grid background */}
       <div className="pointer-events-none fixed inset-0 -z-10 bg-grid" />
       {/* Inject scoped CSS for markdown rendering */}
@@ -379,7 +409,7 @@ export default function DeckDetail() {
         <div className="xl:col-span-7 h-full">
           <DeckMetadataCard
             deck={deck}
-            cardCount={allCards.length || cards.length}
+            cardCount={allCards.length || cards.length || deckCardCount}
             insights={deckInsights}
             subsets={deckSubsets}
             isExporting={isExporting}
@@ -390,9 +420,15 @@ export default function DeckDetail() {
         </div>
 
         <div className="xl:col-span-5 flex flex-col gap-3 h-full">
-          <InteractivePreview
-            cards={cards}
-          />
+          {loading ? (
+            <div className="flex h-full min-h-[260px] w-full items-center justify-center rounded-2xl border border-border/60 bg-muted/20">
+              <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            </div>
+          ) : (
+            <InteractivePreview
+              cards={cards}
+            />
+          )}
         </div>
       </div>
 

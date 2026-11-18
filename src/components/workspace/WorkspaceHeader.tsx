@@ -86,10 +86,10 @@ export function WorkspaceHeader({
               className="group flex items-center gap-1.5 cursor-pointer rounded-md px-1.5 sm:px-2 py-1 -ml-1 sm:-ml-1.5 hover:bg-zinc-100 transition-colors h-8 min-w-0 max-w-[130px] xs:max-w-[180px] sm:max-w-[260px] md:max-w-md"
               title="Click to rename deck"
             >
-              <h1 className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-foreground flex items-center gap-1.5 min-w-0">
+              <span className="text-sm sm:text-base md:text-lg font-semibold tracking-tight text-foreground flex items-center gap-1.5 min-w-0">
                 <span className="truncate">{deckName || "Untitled Deck"}</span>
                 <Pencil className="w-3 h-3 text-muted-foreground opacity-40 group-hover:opacity-100 transition-opacity shrink-0" />
-              </h1>
+              </span>
             </div>
           )}
 

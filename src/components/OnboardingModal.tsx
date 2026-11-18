@@ -175,6 +175,12 @@ export function OnboardingModal() {
     }
 
     try {
+      const isAutomatedOrBot =
+        typeof navigator !== "undefined" &&
+        (navigator.webdriver ||
+          /bot|crawl|spider|slurp|bingpreview|lighthouse|headless/i.test(navigator.userAgent));
+      if (isAutomatedOrBot) return;
+
       const seen = localStorage.getItem(ONBOARDING_STORAGE_KEY);
       if (!seen) {
         setOpen(true);

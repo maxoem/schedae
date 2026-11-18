@@ -13,6 +13,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { useState, useCallback } from "react";
+import { Seo } from "@/components/Seo";
 
 // ---------------------------------------------------------------------------
 // Examples and Content
@@ -140,6 +141,11 @@ function CopyableCode({ code, title = "Prompt" }: { code: string, title?: string
 export default function GenAiCards() {
     return (
         <div className="relative min-h-screen flex flex-col pt-8 pb-12 px-4 md:px-8 max-w-5xl mx-auto w-full">
+            <Seo
+                title="AI Flashcard Guide — LLM Prompts for Anki Decks"
+                description="Learn how to generate high-quality Anki flashcards with ChatGPT, Claude, or local LLMs using structured Markdown prompts, KaTeX math, and lossless ID merging."
+                canonicalPath="/genai-cards"
+            />
             <div className="pointer-events-none fixed inset-0 -z-10 bg-grid" />
             <div className="flex flex-col gap-8">
                 {/* ── Breadcrumb ──────────────────────────────────────────────── */}

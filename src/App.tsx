@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 import Home from "@/pages/Home";
 import DeckDetail from "@/pages/DeckDetail";
 import StackDetail from "@/pages/StackDetail";
@@ -11,6 +11,7 @@ import GenAiCards from "@/pages/GenAiCards";
 import JsonToApkg from "@/pages/JsonToApkg";
 import OpenSource from "@/pages/OpenSource";
 import Changelog from "@/pages/Changelog";
+import NotFound from "@/pages/NotFound";
 import { useChangelogNews } from "@/hooks/useChangelogNews";
 import { OnboardingModal } from "@/components/OnboardingModal";
 import { BookOpen, Sparkles, RefreshCcw, Layers, Lightbulb, Menu, Braces, Lock, Wand2, Replace, History } from "lucide-react";
@@ -289,16 +290,19 @@ function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const { hasUnreadNews } = useChangelogNews();
 
-  const isWorkspacePage =
-    location.pathname === "/" ||
-    location.pathname === "/json-to-apkg" ||
+  const isFixedViewportPage =
     location.pathname === "/configure" ||
     location.pathname === "/llm-merge" ||
     location.pathname === "/remaster" ||
     location.pathname === "/refurbish";
 
+  const isMinimalFooterPage =
+    isFixedViewportPage ||
+    location.pathname === "/" ||
+    location.pathname === "/json-to-apkg";
+
   return (
-    <div className={`min-h-screen font-sans antialiased flex flex-col bg-white ${isWorkspacePage ? "h-screen overflow-hidden" : ""}`}>
+    <div className={`min-h-screen font-sans antialiased flex flex-col bg-white ${isFixedViewportPage ? "h-screen overflow-hidden" : ""}`}>
       <header className="sticky top-0 z-50 w-full glass-nav bg-white/80 backdrop-blur-md border-b border-zinc-200/80 shrink-0">
         <div className="relative w-full flex h-12 items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Brand (Left) */}
@@ -324,12 +328,12 @@ function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className={`flex-1 w-full flex flex-col items-center ${isWorkspacePage ? "min-h-0 overflow-hidden" : ""}`}>
+      <main className={`flex-1 w-full flex flex-col items-center ${isFixedViewportPage ? "min-h-0 overflow-hidden" : ""}`}>
         {children}
       </main>
 
       {/* Visible Footer: Minimal low-height bar on tool pages, full footer on content pages */}
-      {isWorkspacePage ? (
+      {isMinimalFooterPage ? (
         <footer className="h-7 shrink-0 border-t border-zinc-200/80 bg-zinc-50 flex items-center w-full z-10 select-none">
           <div className="w-full flex items-center justify-between px-3 sm:px-6 text-[11px] text-muted-foreground">
             <p className="leading-none text-muted-foreground/80 hidden md:block truncate mr-2">
@@ -416,29 +420,36 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+export function AppRoutes() {
+  return (
+    <Layout>
+      <OnboardingModal />
+      <Routes>
+        <Route path="/" element={<JsonToApkg />} />
+        <Route path="/json-to-apkg" element={<Navigate to="/" replace />} />
+        <Route path="/decks" element={<Home />} />
+        <Route path="/kartenkonzept" element={<Kartenkonzept />} />
+        <Route path="/genai-cards" element={<GenAiCards />} />
+        <Route path="/deck/create" element={<CreateDeck />} />
+        <Route path="/deck/:id" element={<DeckDetail />} />
+        <Route path="/stack/:id" element={<StackDetail />} />
+        <Route path="/configure" element={<DeckConverter />} />
+        <Route path="/llm-merge" element={<LlmMerge />} />
+        <Route path="/remaster" element={<DeckRemaster />} />
+        <Route path="/refurbish" element={<Navigate to="/remaster" replace />} />
+        <Route path="/changelog" element={<Changelog />} />
+        <Route path="/open-source" element={<OpenSource />} />
+        <Route path="/open-access" element={<Navigate to="/open-source" replace />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
+  );
+}
+
 function App() {
   return (
     <Router>
-      <Layout>
-        <OnboardingModal />
-        <Routes>
-          <Route path="/" element={<JsonToApkg />} />
-          <Route path="/json-to-apkg" element={<JsonToApkg />} />
-          <Route path="/decks" element={<Home />} />
-          <Route path="/kartenkonzept" element={<Kartenkonzept />} />
-          <Route path="/genai-cards" element={<GenAiCards />} />
-          <Route path="/deck/:id" element={<DeckDetail />} />
-          <Route path="/stack/:id" element={<StackDetail />} />
-          <Route path="/configure" element={<DeckConverter />} />
-          <Route path="/llm-merge" element={<LlmMerge />} />
-          <Route path="/remaster" element={<DeckRemaster />} />
-          <Route path="/refurbish" element={<DeckRemaster />} />
-          <Route path="/deck/create" element={<CreateDeck />} />
-          <Route path="/changelog" element={<Changelog />} />
-          <Route path="/open-access" element={<OpenSource />} />
-          <Route path="/open-source" element={<OpenSource />} />
-        </Routes>
-      </Layout>
+      <AppRoutes />
     </Router>
   );
 }

@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Seo } from "@/components/Seo";
 import JSZip from "jszip";
 
 export default function LlmMerge() {
@@ -182,6 +183,11 @@ export default function LlmMerge() {
 
   return (
     <div className="relative h-[100dvh] overflow-hidden bg-background flex flex-col pt-8 pb-6 px-4 md:px-8 max-w-7xl mx-auto w-full">
+      <Seo
+        title="Lossless LLM Merge — Update Anki Cards Without Losing Progress"
+        description="Merge AI-revised Markdown flashcards back into your Anki deck while preserving card GUIDs and FSRS/SM-2 scheduling intervals."
+        canonicalPath="/llm-merge"
+      />
       <div className="pointer-events-none fixed inset-0 -z-10 bg-grid opacity-50" />
 
       <header className="mb-4 flex flex-col gap-4 shrink-0">

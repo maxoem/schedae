@@ -48,6 +48,7 @@ export type DeckCreationTag = "AI Generated" | "AI Enhanced" | "Manual Tag";
 
 export interface Deck {
   id: string;
+  slug?: string;
   title: string;
   description: string;
   topic: string;
@@ -81,6 +82,7 @@ export interface DeckStack {
 
 export interface PublicDeckManifestItem {
   id?: string;
+  slug?: string;
   file?: string;
   cardsUrl?: string;
   stackId?: string;
@@ -369,6 +371,29 @@ function slugFromPath(filePath: string): string {
   return base.replace(/\.[^.]+$/, "").toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
 }
 
+export function slugifyDeckTitle(title: string): string {
+  return title
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ä/gi, "ae")
+    .replace(/ö/gi, "oe")
+    .replace(/ü/gi, "ue")
+    .replace(/ß/g, "ss")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function getDeckSlug(deck: Pick<Deck, "id" | "title" | "slug">): string {
+  if (deck.slug && deck.slug.trim()) return deck.slug.trim();
+  if (!deck.id.startsWith("custom-")) return deck.id;
+  return slugifyDeckTitle(deck.title) || deck.id;
+}
+
+export function getDeckPath(deck: Pick<Deck, "id" | "title" | "slug">): string {
+  return `/deck/${encodeURIComponent(getDeckSlug(deck))}`;
+}
+
 function mergeDeckMetadata(partial: Partial<Deck>, cardsUrl: string): Deck {
   const inferredCount =
     typeof partial.cardCount === "number"
@@ -379,9 +404,14 @@ function mergeDeckMetadata(partial: Partial<Deck>, cardsUrl: string): Deck {
           ? partial.cards.length
           : undefined;
 
+  const id = partial.id?.trim() || slugFromPath(cardsUrl);
+  const title = partial.title?.trim() || id;
+  const slug = partial.slug?.trim() || (id.startsWith("custom-") ? slugifyDeckTitle(title) : id);
+
   return {
-    id: partial.id?.trim() || slugFromPath(cardsUrl),
-    title: partial.title?.trim() || partial.id?.trim() || slugFromPath(cardsUrl),
+    id,
+    slug,
+    title,
     description: partial.description?.trim() || "",
     topic: partial.topic?.trim() || "Allgemein",
     author: partial.author?.trim() || "Unbekannt",
@@ -456,6 +486,11 @@ export function mergeDeckLists(base: Deck[], extra: Deck[]): Deck[] {
   for (const deck of base) merged.set(deck.id, deck);
   for (const deck of extra) merged.set(deck.id, deck);
   return Array.from(merged.values());
+}
+
+export function setPreloadedPublicDecks(decks: Deck[]) {
+  cachedPublicDecks = decks;
+  attachPublicDecksToStacks(decks);
 }
 
 export function getAllDecksSync(): Deck[] {

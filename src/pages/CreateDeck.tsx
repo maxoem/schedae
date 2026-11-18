@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { useLocation, Link } from "react-router-dom";
+import { Seo } from "@/components/Seo";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -367,6 +368,12 @@ export default function CreateDeck() {
   // ── Main form ─────────────────────────────────────────────────────────────
   return (
     <div className="relative container mx-auto py-10 px-4 md:px-6 max-w-6xl">
+      <Seo
+        title="Neues Anki Deck erstellen & einreichen"
+        description="Erstelle und exportiere strukturierte Karteikarten-Decks für die Schedae-Bibliothek."
+        canonicalPath="/deck/create"
+        lang="de"
+      />
       <div className="pointer-events-none fixed inset-0 -z-10 bg-grid" />
       {style && <style>{style}</style>}
 

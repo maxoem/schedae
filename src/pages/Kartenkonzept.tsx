@@ -19,6 +19,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Seo } from "@/components/Seo";
 
 const getConceptFileForTopic = (topic: string): string => {
     const t = topic.toLowerCase();
@@ -186,6 +187,12 @@ export default function Kartenkonzept() {
 
     return (
         <div className="relative min-h-screen flex flex-col pt-8 pb-12 px-4 md:px-8 max-w-5xl mx-auto w-full">
+            <Seo
+                title="Kartenkonzept & Didaktische Blueprints für Anki"
+                description="Strukturierte Lernkarten-Konzepte für Philosophie, Mathematik und Informatik. Vermeide Kompetenzillusionen durch formale Schemata, Beweisideen und Gegenbeispiele."
+                canonicalPath="/kartenkonzept"
+                lang="de"
+            />
             <div className="pointer-events-none fixed inset-0 -z-10 bg-grid" />
 
             {/* ── Header ────────────────────────────────────── */}

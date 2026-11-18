@@ -3,6 +3,7 @@
   "decks": [
     {
       "id": "custom-1775940279574",
+      "slug": "einfuehrung-in-die-wissenschaftstheorie",
       "file": "einfu_hrung_in_die_wissenschaftstheorie.json",
       "title": "Einführung in die Wissenschaftstheorie",
       "description": "Einführung in die Wissenschaftstheorie, ihre zentralen Probleme und Lösungsansätze. Entspricht dem Umfang und der Komplexität üblicher Studienmodule.",
@@ -16,6 +17,7 @@
     },
     {
   "id": "custom-1784582830540",
+  "slug": "analytische-einfuehrung-in-die-erkenntnistheorie",
   "stackId": "phil-epistemik",
   "file": "analytische_einfuhrung_in_die_erkenntnistheorie.json",
   "title": "Analytische Einführung in die Erkenntnistheorie",
