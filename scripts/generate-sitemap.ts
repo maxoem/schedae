@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { mockDecks, mockStacks } from '../src/data/decks';
+import { mockDecks, mockStacks, getDeckSlug } from '../src/data/decks';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,17 +26,19 @@ const staticRoutes: SitemapRoute[] = [
   { path: '/genai-cards', priority: '0.8', changefreq: 'monthly' },
   { path: '/configure', priority: '0.7', changefreq: 'monthly' },
   { path: '/llm-merge', priority: '0.7', changefreq: 'monthly' },
+  { path: '/remaster', priority: '0.7', changefreq: 'monthly' },
   { path: '/deck/create', priority: '0.6', changefreq: 'monthly' },
   { path: '/changelog', priority: '0.6', changefreq: 'weekly' },
+  { path: '/open-source', priority: '0.5', changefreq: 'monthly' },
 ];
 
 // 2. Discover dynamic routes (decks and stacks)
-const deckIds = new Set<string>();
+const deckSlugs = new Set<string>();
 const stackIds = new Set<string>();
 
 // From mock data
 for (const deck of mockDecks) {
-  if (deck.id) deckIds.add(deck.id);
+  if (deck.id) deckSlugs.add(getDeckSlug(deck));
 }
 for (const stack of mockStacks) {
   if (stack.id) stackIds.add(stack.id);
@@ -50,7 +52,9 @@ if (fs.existsSync(manifestPath)) {
     const manifest = JSON.parse(raw);
     const decks = Array.isArray(manifest) ? manifest : (manifest.decks || []);
     for (const d of decks) {
-      if (d.id) deckIds.add(d.id);
+      if (d.id || d.slug) {
+        deckSlugs.add(getDeckSlug({ id: d.id || d.slug, title: d.title || d.id || '', slug: d.slug }));
+      }
       if (d.stackId) stackIds.add(d.stackId);
     }
   } catch (err) {
@@ -59,8 +63,8 @@ if (fs.existsSync(manifestPath)) {
 }
 
 const dynamicRoutes: SitemapRoute[] = [
-  ...Array.from(deckIds).map((id) => ({
-    path: `/deck/${encodeURIComponent(id)}`,
+  ...Array.from(deckSlugs).map((slug) => ({
+    path: `/deck/${encodeURIComponent(slug)}`,
     priority: '0.8',
     changefreq: 'weekly' as const,
   })),

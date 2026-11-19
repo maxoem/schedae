@@ -51,12 +51,20 @@ const STORAGE_KEYS = {
   PARSER_RULE: "schedae-workspace-parser-rule",
 } as const;
 
+const safeGetItem = (key: string): string | null => {
+  try {
+    return typeof localStorage !== "undefined" ? localStorage.getItem(key) : null;
+  } catch {
+    return null;
+  }
+};
+
 export function useDeckWorkspace(aiStencil?: Stencil | null) {
   // Source Notes raw text (persists in localStorage)
   const [sourceText, setSourceText] = useState<string>(() => {
     return (
-      localStorage.getItem(STORAGE_KEYS.SOURCE_TEXT) ||
-      localStorage.getItem("json-apkg-builder-input") ||
+      safeGetItem(STORAGE_KEYS.SOURCE_TEXT) ||
+      safeGetItem("json-apkg-builder-input") ||
       ""
     );
   });
@@ -65,8 +73,8 @@ export function useDeckWorkspace(aiStencil?: Stencil | null) {
   const [batches, setBatches] = useState<BuilderBatch[]>(() => {
     try {
       const saved =
-        localStorage.getItem(STORAGE_KEYS.BUILDER_BATCHES) ||
-        localStorage.getItem("json-apkg-builder-batches");
+        safeGetItem(STORAGE_KEYS.BUILDER_BATCHES) ||
+        safeGetItem("json-apkg-builder-batches");
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -74,20 +82,20 @@ export function useDeckWorkspace(aiStencil?: Stencil | null) {
   });
 
   const [deckName, setDeckName] = useState<string>(() => {
-    return localStorage.getItem(STORAGE_KEYS.DECK_NAME) || "My Study Deck";
+    return safeGetItem(STORAGE_KEYS.DECK_NAME) || "My Study Deck";
   });
 
   const [selectedTemplate, setSelectedTemplate] = useState<CardTemplateId>(() => {
-    return (localStorage.getItem(STORAGE_KEYS.TEMPLATE) as CardTemplateId) || "markdown_basic";
+    return (safeGetItem(STORAGE_KEYS.TEMPLATE) as CardTemplateId) || "markdown_basic";
   });
 
   const [noteTypeMode, setNoteTypeMode] = useState<NoteTypeMode>(() => {
-    const saved = localStorage.getItem(STORAGE_KEYS.NOTE_TYPE_MODE);
+    const saved = safeGetItem(STORAGE_KEYS.NOTE_TYPE_MODE);
     return saved === "per_schema" ? "per_schema" : "unified";
   });
 
   const [customNoteTypeName, setCustomNoteTypeName] = useState<string>(() => {
-    return localStorage.getItem(STORAGE_KEYS.CUSTOM_NOTE_TYPE_NAME) || "";
+    return safeGetItem(STORAGE_KEYS.CUSTOM_NOTE_TYPE_NAME) || "";
   });
 
   const [exportMathFormat, setExportMathFormat] = useState<ExportMathFormat>(() => {
@@ -105,12 +113,12 @@ export function useDeckWorkspace(aiStencil?: Stencil | null) {
   sourceTextRef.current = sourceText;
 
   const [selectedModel, setSelectedModel] = useState<AiModelPresetId>(() => {
-    return (localStorage.getItem(STORAGE_KEYS.MODEL) as AiModelPresetId) || "auto";
+    return (safeGetItem(STORAGE_KEYS.MODEL) as AiModelPresetId) || "auto";
   });
 
   // Explicit parser format rule
   const [parserRule, setParserRuleState] = useState<ParserRuleId>(() => {
-    const saved = localStorage.getItem(STORAGE_KEYS.PARSER_RULE);
+    const saved = safeGetItem(STORAGE_KEYS.PARSER_RULE);
     if (saved === "auto" || saved === "headings" || saved === "bold-italic" || saved === "generic" || saved === "custom") {
       return saved;
     }
@@ -121,7 +129,7 @@ export function useDeckWorkspace(aiStencil?: Stencil | null) {
   const [validateJson, setValidateJson] = useState(true);
   const [extractTopicBadges, setExtractTopicBadgesState] = useState<boolean>(() => {
     try {
-      const saved = localStorage.getItem("schedae_extract_topic_badges");
+      const saved = safeGetItem("schedae_extract_topic_badges");
       return saved !== null ? JSON.parse(saved) : true;
     } catch {
       return true;
@@ -141,9 +149,9 @@ export function useDeckWorkspace(aiStencil?: Stencil | null) {
 
   const [splitSettings, setSplitSettingsState] = useState<SplitSettings>(() => {
     try {
-      const rule = localStorage.getItem(STORAGE_KEYS.PARSER_RULE);
+      const rule = safeGetItem(STORAGE_KEYS.PARSER_RULE);
       if (rule === "custom") {
-        const saved = localStorage.getItem(STORAGE_KEYS.SPLIT_SETTINGS);
+        const saved = safeGetItem(STORAGE_KEYS.SPLIT_SETTINGS);
         if (saved) return JSON.parse(saved);
       }
       if (rule === "headings") return PREDEFINED_EXTRACTION_SETS[0];
@@ -155,7 +163,7 @@ export function useDeckWorkspace(aiStencil?: Stencil | null) {
   });
 
   const [previewViewMode, setPreviewViewMode] = useState<"list" | "flip">(() => {
-    return (localStorage.getItem(STORAGE_KEYS.VIEW_MODE) as "list" | "flip") || "list";
+    return (safeGetItem(STORAGE_KEYS.VIEW_MODE) as "list" | "flip") || "list";
   });
 
   const [searchQuery, setSearchQuery] = useState("");

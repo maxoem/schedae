@@ -18,6 +18,7 @@ import {
   type LlmMarkdownFieldSelection,
 } from "@/services/llmMarkdown";
 import { decodeApkgRaw } from "@/converters/apkg";
+import { Seo } from "@/components/Seo";
 import TurndownService from "turndown";
 import JSZip from "jszip";
 
@@ -426,6 +427,11 @@ export default function DeckConverter() {
 
   return (
     <TooltipProvider>
+      <Seo
+        title="APKG to Markdown & JSON Decompiler"
+        description="Decompile Anki .apkg files into clean Markdown or JSON in your browser. Preserve card IDs, strip HTML, and prepare decks for Obsidian, Logseq, or AI refinement."
+        canonicalPath="/configure"
+      />
       <div className="relative h-[100dvh] overflow-hidden bg-background flex flex-col pt-8 pb-6 px-4 md:px-8 max-w-7xl mx-auto w-full">
         <div className="pointer-events-none fixed inset-0 -z-10 bg-grid opacity-50" />
 

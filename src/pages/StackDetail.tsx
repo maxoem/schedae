@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { mockStacks, getDeckCardCount, getAllDecksSync, loadPublicDecksFromManifest, compareDecksNewestFirst, type Deck } from "@/data/decks";
+import { mockStacks, getDeckCardCount, getDeckPath, getAllDecksSync, loadPublicDecksFromManifest, compareDecksNewestFirst, type Deck } from "@/data/decks";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -15,6 +15,7 @@ import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from 
 import { BookOpen, Calendar, User, ArrowRight, Signal, GraduationCap, Layers } from "lucide-react";
 import SpotlightCard from "@/components/ui/spotlight-card";
 import AnkiBanner from "@/components/ui/anki-banner";
+import { Seo } from "@/components/Seo";
 
 // Monochromatic header — using subtle colored gradients for each stack
 const accentMap: Record<string, string> = {
@@ -49,7 +50,13 @@ export default function StackDetail() {
   if (!stack) {
     return (
       <div className="mx-auto w-[92%] md:w-[80%] max-w-7xl py-24 text-center">
-        <h2 className="text-2xl font-bold mb-2">Stack nicht gefunden</h2>
+        <Seo
+          title="Stack nicht gefunden"
+          description="Dieser Lernpfad existiert nicht auf Schedae."
+          noindex
+          lang="de"
+        />
+        <h1 className="text-2xl font-bold mb-2">Stack nicht gefunden</h1>
         <p className="text-muted-foreground mb-6">Dieser Lernpfad existiert nicht.</p>
         <Button asChild>
           <Link to="/">Zurück zur Übersicht</Link>
@@ -66,6 +73,12 @@ export default function StackDetail() {
 
   return (
     <div className="min-h-screen w-full">
+      <Seo
+        title={`${stack.title} — Lernpfad (${stack.discipline})`}
+        description={stack.description}
+        canonicalPath={`/stack/${stack.id}`}
+        lang="de"
+      />
       {/* Hero banner */}
       <div className={`w-full bg-gradient-to-br ${gradient} pt-12 pb-16 px-4`}>
         <div className="mx-auto w-[92%] md:w-[80%] max-w-7xl">
@@ -181,7 +194,7 @@ export default function StackDetail() {
 
               <CardFooter className="px-8 pb-8 pt-2 mt-auto">
                 <Button asChild className="w-full h-11 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
-                  <Link to={`/deck/${deck.id}`} className="flex items-center justify-center gap-2 font-semibold">
+                  <Link to={getDeckPath(deck)} className="flex items-center justify-center gap-2 font-semibold">
                     <span>Datensatz öffnen</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>

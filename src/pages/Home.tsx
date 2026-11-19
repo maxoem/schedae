@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { mockDecks, mockStacks, getDeckCardCount, loadPublicDecksFromManifest, mergeDeckLists, compareDecksNewestFirst, type Deck } from "@/data/decks";
+import { mockDecks, mockStacks, getDeckCardCount, getDeckPath, loadPublicDecksFromManifest, mergeDeckLists, compareDecksNewestFirst, type Deck } from "@/data/decks";
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { BookOpen, Calendar, User, ArrowRight, Sparkles, GraduationCap, Signal, 
 import SpotlightCard from "@/components/ui/spotlight-card";
 import StackCard from "@/components/flashcard/StackCard";
 import AnkiBanner from "@/components/ui/anki-banner";
+import { Seo } from "@/components/Seo";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("alle");
@@ -71,6 +72,12 @@ export default function Home() {
 
   return (
     <div className="relative container mx-auto py-12 px-4 md:px-6 max-w-7xl">
+      <Seo
+        title="Kuratierte Anki-Karteikarten & Lernpfade"
+        description="Frei zugängliche, wissenschaftlich kuratierte Anki-Decks für Philosophie, Erkenntnistheorie, Mathematik und Informatik. Mit KaTeX-Formeln und 1-Klick-.apkg-Export."
+        canonicalPath="/decks"
+        lang="de"
+      />
       {/* Precise mathematical grid background */}
       <div className="pointer-events-none fixed inset-0 -z-10 bg-grid" />
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
@@ -239,7 +246,7 @@ export default function Home() {
 
               <CardFooter className="px-8 pb-8 pt-2 mt-auto">
                 <Button asChild className="w-full h-11 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
-                  <Link to={`/deck/${deck.id}`} className="flex items-center justify-center gap-2 font-semibold">
+                  <Link to={getDeckPath(deck)} className="flex items-center justify-center gap-2 font-semibold">
                     <span>Datensatz öffnen</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>

@@ -34,6 +34,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { decodeApkgRaw } from "@/converters/apkg";
+import { Seo } from "@/components/Seo";
 import { createApkgFromAnkiJson } from "@/converters/jsonToApkg";
 import { CARD_TEMPLATES, type CardTemplateId } from "@/converters/templates";
 import { KaTeXRenderer } from "@/components/flashcard/KaTeXPreview";
@@ -313,6 +314,11 @@ export default function DeckRemaster() {
 
   return (
     <div className="relative h-full flex-1 min-h-0 overflow-hidden bg-background flex flex-col w-full max-w-[1920px] mx-auto px-3 sm:px-6 py-2.5 sm:py-3">
+      <Seo
+        title="Anki Deck Transformer & Remaster Tool"
+        description="Clean up, re-style, convert LaTeX to MathJax, and remaster existing Anki .apkg decks directly in your browser without losing scheduling data."
+        canonicalPath="/remaster"
+      />
       {/* Top Header when deck is loaded: Sleek, compact, zero wasted whitespace */}
       {deckRawData ? (
         <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b shrink-0">

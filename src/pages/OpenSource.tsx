@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, ArrowLeft, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Seo } from "@/components/Seo";
 
 export default function OpenSource() {
   const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "contact@localhost";
@@ -8,6 +9,11 @@ export default function OpenSource() {
 
   return (
     <div className="w-full max-w-xl px-4 py-20 mx-auto flex flex-col items-center text-center">
+      <Seo
+        title="Open Source & Privacy-First Architecture"
+        description="Schedae is free, MIT-licensed open-source software. All Anki .apkg compilation, SQLite parsing, and deck exports happen 100% locally in your browser."
+        canonicalPath="/open-source"
+      />
       <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
         Open Source
       </h1>
