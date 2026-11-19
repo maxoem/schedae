@@ -25,7 +25,7 @@ RUN pnpm run build
 # ==========================================
 # Stage 2: Hardened Unprivileged Runtime
 # ==========================================
-FROM docker.io/nginx/nginx-unprivileged:stable-alpine@sha256:0255fc1dcc1d7b358aac20166543e52029fea577413edadb0912f5b928c7e312 AS production
+FROM docker.io/nginx/nginx-unprivileged:mainline-alpine3.24@sha256:60214a103e6f38e953ff957f34b1f2e97a9db801ab2df3821da955d0fe6cadd6 AS production
 
 USER root
 # Cache-busting argument to ensure fresh security patches when upstream CVEs are resolved in Alpine
