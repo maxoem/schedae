@@ -99,6 +99,64 @@ function isGermanRoute(routePath: string): boolean {
   );
 }
 
+function createMemoryStorage(): Storage {
+  const store = new Map<string, string>();
+  return {
+    get length() {
+      return store.size;
+    },
+    clear() {
+      store.clear();
+    },
+    getItem(key: string) {
+      return store.has(key) ? (store.get(key) ?? null) : null;
+    },
+    key(index: number) {
+      return Array.from(store.keys())[index] ?? null;
+    },
+    removeItem(key: string) {
+      store.delete(key);
+    },
+    setItem(key: string, value: string) {
+      store.set(String(key), String(value));
+    },
+  };
+}
+
+/**
+ * Provides in-memory Web Storage shims during Node SSR pre-rendering so components
+ * or hooks reading storage in initializers do not fail when Node lacks Web Storage.
+ */
+function installSsrStorageShims(): { reset: () => void; cleanup: () => void } {
+  const keys = ["localStorage", "sessionStorage"] as const;
+  const installed: Array<{ key: (typeof keys)[number]; storage: Storage }> = [];
+
+  for (const key of keys) {
+    if (typeof (globalThis as Record<string, unknown>)[key] === "undefined") {
+      const storage = createMemoryStorage();
+      Object.defineProperty(globalThis, key, {
+        value: storage,
+        configurable: true,
+        writable: true,
+      });
+      installed.push({ key, storage });
+    }
+  }
+
+  return {
+    reset() {
+      for (const { storage } of installed) {
+        storage.clear();
+      }
+    },
+    cleanup() {
+      for (const { key } of installed) {
+        delete (globalThis as Record<string, unknown>)[key];
+      }
+    },
+  };
+}
+
 async function main() {
   const templatePath = path.resolve(buildDir, "index.html");
   if (!fs.existsSync(templatePath)) {
@@ -123,6 +181,8 @@ async function main() {
     },
   });
 
+  const storageShims = installSsrStorageShims();
+
   try {
     const entryModule = await import(path.resolve(ssrOutDir, "entry-server.mjs"));
     const render: (url: string, publicDecks: Deck[]) => string = entryModule.render;
@@ -130,6 +190,7 @@ async function main() {
     const routes = getRoutesFromSitemap();
 
     for (const routePath of routes) {
+      storageShims.reset();
       const rendered = render(routePath, publicDecks);
       const { headTags, bodyHtml } = extractHeadTags(rendered);
 
@@ -156,6 +217,7 @@ async function main() {
 
     console.log(`✅ Pre-rendered ${routes.length} routes into build/`);
   } finally {
+    storageShims.cleanup();
     fs.rmSync(ssrOutDir, { recursive: true, force: true });
   }
 }
